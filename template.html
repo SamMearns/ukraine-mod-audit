@@ -1,0 +1,1494 @@
+<title>Ukraine MOD Claims Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an intelligence-assessment report. Summary judgement first, then one section per test, each closing with a verdict on the probability yardstick. Single reading column, charts break slightly wider. */
+:root {
+  /* Monochrome editorial: white page, near-black ink, soft grey panels, hairline rules, one orange accent used sparingly */
+  --bg: #ffffff;
+  --surface: #f6f6f8;
+  --ink: #030712;
+  --ink-2: #4b5563;
+  --ink-3: #9ca3af;
+  --rule: #e5e7eb;
+  --grid: #eaecef;
+  --accent: #030712;
+  --accent-soft: #f6f6f8;
+  --hi: #fe6e0f;
+  --s-claims: #2a78d6; --s-indep: #eb6834; --s-recruit: #1baf7a; --s-muted: #b4b8c0; --s-ru: #4a3aa7; --s-ua: #eda100; --s-drone: #e87ba4; --c-west: #1baf7a; --c-ru: #e34948; --yr-1: #86b6ef; --yr-2: #2a78d6; --yr-3: #104281;
+  --good: #0ca30c;
+  --warn: #fab219;
+  --serious: #ec835a;
+  --crit: #d03b3b;
+  --good-ink: #0a6e0a;
+  --warn-ink: #8a5d00;
+  --crit-ink: #b02c2c;
+  --chip-good: #e8f5e8;
+  --chip-warn: #fdf3dc;
+  --chip-crit: #fbe7e7;
+  --f-display: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0e0e; --surface: #161616; --ink: #f4f4f5; --ink-2: #a1a1aa; --ink-3: #71717a;
+    --rule: #262626; --grid: #1f1f1f; --accent: #f4f4f5; --accent-soft: #161616; --hi: #fe6e0f;
+    --s-claims: #3987e5; --s-indep: #d95926; --s-recruit: #199e70; --s-muted: #52525b; --s-ru: #9085e9; --s-ua: #c98500; --s-drone: #d55181; --c-west: #199e70; --c-ru: #e66767; --yr-1: #9ec5f4; --yr-2: #3987e5; --yr-3: #1c5cab;
+    --good-ink: #5ccf5c; --warn-ink: #f2c35a; --crit-ink: #f08080;
+    --chip-good: #12261a; --chip-warn: #2e2410; --chip-crit: #301717;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e0e0e; --surface: #161616; --ink: #f4f4f5; --ink-2: #a1a1aa; --ink-3: #71717a;
+    --rule: #262626; --grid: #1f1f1f; --accent: #f4f4f5; --accent-soft: #161616; --hi: #fe6e0f;
+    --s-claims: #3987e5; --s-indep: #d95926; --s-recruit: #199e70; --s-muted: #52525b; --s-ru: #9085e9; --s-ua: #c98500; --s-drone: #d55181; --c-west: #199e70; --c-ru: #e66767; --yr-1: #9ec5f4; --yr-2: #3987e5; --yr-3: #1c5cab;
+    --good-ink: #5ccf5c; --warn-ink: #f2c35a; --crit-ink: #f08080;
+    --chip-good: #12261a; --chip-warn: #2e2410; --chip-crit: #301717;
+    color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; padding-block: 40px 80px; display: grid; gap: 64px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; padding-block: 24px 56px; gap: 48px; } }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.08; }
+h1 { font-size: clamp(2.1rem, 5.4vw, 3.6rem); font-weight: 800; font-stretch: 72%; letter-spacing: -0.01em; max-width: 18ch; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 750; font-stretch: 78%; }
+h3 { font-size: 1.05rem; font-weight: 700; font-stretch: 90%; letter-spacing: 0.01em; }
+p { margin: 0; }
+.prose { display: grid; gap: 14px; max-width: 66ch; color: var(--ink-2); }
+.prose strong { color: var(--ink); }
+.eyebrow { font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* Header */
+header { display: grid; gap: 20px; }
+.classif { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; border-block: 1px solid var(--rule); padding-block: 8px; }
+.lede { font-size: 1.13rem; color: var(--ink-2); max-width: 64ch; }
+
+/* KPI strip */
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+.kpi { padding: 14px 16px 4px 0; display: grid; gap: 4px; align-content: start; }
+.kpi + .kpi { padding-left: 16px; border-left: 1px solid var(--rule); }
+.kpi .v { font-family: var(--f-display); font-weight: 750; font-stretch: 75%; font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi .l { font-size: 0.86rem; color: var(--ink-2); line-height: 1.4; }
+.kpi .src { font-size: 0.74rem; color: var(--ink-3); }
+@media (max-width: 760px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi:nth-child(3) { padding-left: 0; border-left: 0; }
+  .kpi:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+
+.intro-body { display: grid; gap: 14px; max-width: 64ch; }
+.intro-body p { color: var(--ink-2); font-size: 1.05rem; }
+.intro-body .intro-lead { color: var(--ink); font-size: clamp(1.2rem, 2.4vw, 1.4rem); line-height: 1.45; font-weight: 600; }
+
+.campcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .campcards { grid-template-columns: minmax(0, 1fr); } }
+.campcard { background: var(--surface); border: 1px solid var(--rule); border-top: 4px solid var(--cc); border-radius: 6px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.campcard h3 { font-size: 1.1rem; }
+.campcard p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
+.campcard p strong { color: var(--ink); }
+.cc-stat { font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink-2); background: var(--bg); border-radius: 4px; padding: 8px 10px; line-height: 1.5; }
+.cc-stat b { color: var(--ink); font-size: 0.95rem; }
+.campcard .cc-use { border-top: 1px solid var(--rule); padding-top: 10px; color: var(--ink); }
+
+.echo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+@media (max-width: 800px) { .echo { grid-template-columns: minmax(0, 1fr); } }
+.echo-col { padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.echo-col + .echo-col { border-left: 1px solid var(--rule); }
+@media (max-width: 800px) { .echo-col + .echo-col { border-left: 0; border-top: 1px solid var(--rule); } }
+.echo-1 { background: var(--chip-crit); }
+.echo-2 { background: var(--chip-warn); }
+.echo-3 { background: var(--chip-good); }
+.echo-1 .eyebrow { color: var(--crit-ink); } .echo-2 .eyebrow { color: var(--warn-ink); } .echo-3 .eyebrow { color: var(--good-ink); }
+.echo ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
+.echo b { color: var(--ink); }
+
+.fv-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.fv-presets button { font: inherit; font-size: 0.82rem; font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 99px; padding: 4px 12px; cursor: pointer; }
+.fv-presets button:hover, .fv-presets button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.fv-checks { display: grid; gap: 10px; }
+.fv-check { border-left: 4px solid var(--rule); background: var(--bg); padding: 10px 14px; border-radius: 0 4px 4px 0; display: grid; gap: 2px; }
+.fv-check b { font-family: var(--f-mono); font-size: 1.05rem; }
+.fv-check p { font-size: 0.86rem; color: var(--ink-2); line-height: 1.45; }
+.fv-check.ok { border-left-color: var(--good); } .fv-check.edge { border-left-color: var(--warn); } .fv-check.bad { border-left-color: var(--crit); }
+.fv-proto td:nth-child(2) { white-space: normal; text-align: left; min-width: 30ch; }
+.fv-proto td:nth-child(3) { text-align: left; }
+
+/* Yardstick */
+.judgement { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 24px; display: grid; gap: 22px; }
+.yard { position: relative; display: grid; gap: 6px; }
+.yard-scale { display: grid; grid-template-columns: 5fr 5fr 10fr 5fr 10fr 5fr 20fr 5fr 10fr 5fr 10fr 5fr 5fr; height: 14px; }
+.yard-scale span { background: var(--accent); }
+.yard-scale span:nth-child(even) { background: transparent; }
+.yard-labels { position: relative; height: 34px; font-size: 0.72rem; color: var(--ink-3); line-height: 1.2; }
+.yard-labels span { position: absolute; transform: translateX(-50%); text-align: center; width: 9ch; }
+.yard-pins { position: relative; height: 26px; }
+.pin { position: absolute; bottom: 0; transform: translateX(-50%); display: grid; justify-items: center; font-family: var(--f-mono); font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+.pin::after { content: ""; width: 2px; height: 8px; background: var(--ink); }
+.judgements { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.judgements li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.judgements .key { font-family: var(--f-mono); font-weight: 600; font-size: 0.85rem; border: 1px solid var(--ink); border-radius: 50%; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; }
+.judgements b { font-weight: 700; color: var(--ink); }
+.judgements p { color: var(--ink-2); }
+.yard-term { font-family: var(--f-display); font-stretch: 85%; font-weight: 750; color: var(--accent); text-transform: uppercase; letter-spacing: 0.03em; font-size: 0.95em; }
+
+/* Scorecard */
+.scorecard { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.scorecard th { text-align: left; font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-3); font-weight: 400; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ink); }
+.scorecard td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-2); }
+.scorecard td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.scorecard td:first-child a { color: inherit; text-decoration: none; }
+.scorecard td:first-child a:hover { text-decoration: underline; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; padding: 2px 9px 2px 7px; border-radius: 99px; white-space: nowrap; }
+.chip svg { width: 12px; height: 12px; flex: none; }
+.chip.crit { background: var(--chip-crit); color: var(--crit-ink); }
+.chip.warn { background: var(--chip-warn); color: var(--warn-ink); }
+.chip.good { background: var(--chip-good); color: var(--good-ink); }
+.table-scroll { overflow-x: auto; }
+
+/* Sections */
+section { display: grid; gap: 22px; scroll-margin-top: 16px; }
+.sec-head { display: grid; gap: 8px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.sec-head .eyebrow { display: flex; gap: 12px; flex-wrap: wrap; }
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 18px 12px; display: grid; gap: 10px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline; }
+.fig-head h3 { flex: 1 1 22ch; }
+.fig-note { font-size: 0.8rem; color: var(--ink-3); line-height: 1.45; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.8rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.legend i.sq { height: 10px; width: 10px; border-radius: 2px; }
+.legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { fill: var(--ink-3); font-family: var(--f-mono); font-size: 10.5px; }
+.chart .lbl { fill: var(--ink-2); font-family: var(--f-body); font-size: 11.5px; }
+.chart .lbl-strong { fill: var(--ink); font-family: var(--f-body); font-size: 12px; font-weight: 600; }
+.chart .grid { stroke: var(--grid); stroke-width: 1; }
+.chart .axis { stroke: var(--rule); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 0.8rem; line-height: 1.4; padding: 7px 10px; border-radius: 4px; white-space: nowrap; z-index: 5; transform: translate(-50%, calc(-100% - 12px)); }
+.tip b { font-family: var(--f-mono); font-weight: 600; }
+.tip .k { opacity: 0.75; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.verdict { display: grid; gap: 10px; background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0; padding: 22px 26px; }
+.verdict .claim { font-family: var(--f-display); font-stretch: 80%; font-weight: 750; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.15; color: var(--ink); text-wrap: balance; max-width: 30ch; }
+.verdict p { color: var(--ink); font-size: 1.08rem; line-height: 1.55; max-width: 62ch; }
+@media (max-width: 600px) { .verdict { padding: 18px 18px; } }
+
+/* Season heatmap */
+.heat { border-collapse: separate; border-spacing: 3px; width: 100%; font-variant-numeric: tabular-nums; }
+.heat th { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 400; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 6px; text-align: center; }
+.heat th:first-child { text-align: left; }
+.heat td { text-align: center; padding: 10px 4px 8px; border-radius: 3px; font-family: var(--f-mono); font-size: 0.95rem; font-weight: 600; line-height: 1.15; }
+.heat td small { display: block; font-weight: 400; font-size: 0.7rem; opacity: 0.85; }
+.heat td.na { color: var(--ink-3); background: transparent; font-weight: 400; }
+.heat td.row { text-align: left; color: var(--ink); background: transparent; font-family: var(--f-display); font-stretch: 80%; font-size: 1rem; }
+
+/* Simulator */
+.sim { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; }
+@media (max-width: 760px) { .sim { grid-template-columns: minmax(0, 1fr); } }
+.ctrls { display: grid; gap: 16px; }
+.ctrl { display: grid; gap: 4px; }
+.ctrl label { display: flex; justify-content: space-between; gap: 12px; font-size: 0.88rem; font-weight: 600; }
+.ctrl label output { font-family: var(--f-mono); font-weight: 600; color: var(--accent); }
+.ctrl .hint { font-size: 0.78rem; color: var(--ink-3); line-height: 1.4; }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.sim-out { display: grid; gap: 14px; align-content: start; }
+.sim-big { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.sim-big .v { font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 3rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.sim-read { font-size: 0.92rem; color: var(--ink-2); }
+
+details { font-size: 0.86rem; color: var(--ink-2); }
+details summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+details table { margin-top: 10px; }
+.dtable { border-collapse: collapse; font-size: 0.84rem; font-variant-numeric: tabular-nums; width: 100%; }
+.dtable th, .dtable td { padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
+.dtable th { font-family: var(--f-mono); font-weight: 400; font-size: 0.72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; }
+.dtable th:first-child, .dtable td:first-child { text-align: left; }
+.dtable td.hi { color: var(--ink); font-weight: 700; }
+
+.lessons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+@media (max-width: 760px) { .lessons { grid-template-columns: minmax(0, 1fr); } }
+.lessons div { display: grid; gap: 4px; padding-block: 14px; border-top: 1px solid var(--rule); }
+.lessons h3 { font-size: 1rem; }
+.lessons p { color: var(--ink-2); font-size: 0.93rem; }
+.sources { columns: 2 320px; column-gap: 32px; font-size: 0.84rem; color: var(--ink-2); padding-left: 18px; margin: 0; }
+.sources li { break-inside: avoid; margin-bottom: 6px; }
+footer { font-size: 0.8rem; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 14px; }
+@media (prefers-reduced-motion: no-preference) { .pin { transition: left 0.3s ease; } }
+
+.frames { margin: 0; }
+.frames-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+@media (max-width: 640px) { .frames-row { grid-template-columns: minmax(0, 1fr); } }
+.frame { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.frame img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 649; object-fit: cover; background: var(--bg); }
+.frame-cap { font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
+.frame-cap b { color: var(--ink); font-weight: 500; }
+
+/* ---- Editorial monochrome layer ---- */
+body { font-size: 15.5px; line-height: 1.55; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; gap: 112px; padding-block: 0 96px; }
+@media (max-width: 600px) { .wrap { gap: 72px; } }
+a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+h1, h2, h3 { font-weight: 500; font-stretch: normal; }
+h1 { font-size: clamp(2.7rem, 7.2vw, 5.4rem); letter-spacing: -0.045em; line-height: 0.95; max-width: 13ch; }
+h1 .h-muted { color: var(--ink-3); }
+h2 { font-size: clamp(1.9rem, 4.4vw, 3.4rem); letter-spacing: -0.045em; line-height: 1; max-width: 20ch; }
+h3 { font-size: 1.08rem; letter-spacing: -0.025em; line-height: 1.25; }
+.prose { color: var(--ink-2); font-size: 1rem; }
+.eyebrow { font-family: var(--f-body); font-size: 0.92rem; font-weight: 500; letter-spacing: -0.02em; text-transform: none; color: var(--ink-3); }
+.topnav { display: flex; justify-content: space-between; align-items: center; gap: 12px 28px; flex-wrap: wrap; min-height: 68px; font-size: 15px; font-weight: 500; letter-spacing: -0.02em; }
+.topnav a { text-decoration: none; }
+.topnav .links { display: flex; gap: 8px 26px; flex-wrap: wrap; }
+.plus::before { content: "+ "; color: var(--hi); }
+header { gap: 36px; padding-top: 40px; }
+.classif { border: 0; padding: 0; gap: 6px 28px; }
+.lede { font-size: 1.15rem; color: var(--ink-2); letter-spacing: -0.02em; }
+.kpis { border-top: 1px solid var(--rule); gap: 0; }
+.kpi { padding-top: 22px; }
+.kpi + .kpi { border-left: 0; }
+.kpi .v { font-family: var(--f-body); font-weight: 500; font-stretch: normal; letter-spacing: -0.05em; font-size: clamp(2.1rem, 4.4vw, 3.3rem); }
+.kpi .l { color: var(--ink); font-size: 0.92rem; }
+.kpi .src { color: var(--ink-3); font-size: 0.8rem; }
+@media (max-width: 760px) { .kpi:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+.sec-head { border-top: 1px solid var(--rule); padding-top: 26px; gap: 22px; }
+.sec-head .eyebrow { gap: 14px; }
+.sec-head .eyebrow span:first-child { color: var(--ink); }
+.intro-body .intro-lead { font-weight: 500; letter-spacing: -0.03em; font-size: clamp(1.3rem, 2.6vw, 1.75rem); line-height: 1.25; }
+.judgement { background: transparent; border: 0; border-radius: 0; padding: 0; gap: 32px; }
+.yard-scale span { background: var(--ink); }
+.yard-term { font-family: var(--f-body); font-stretch: normal; font-weight: 600; text-transform: none; letter-spacing: -0.01em; color: var(--hi); font-size: 1em; }
+.judgements .key { border-radius: 0; border-color: var(--rule); font-family: var(--f-body); font-weight: 500; }
+.judgements li { gap: 16px; }
+.judgements p { font-size: 1.02rem; }
+.scorecard th, .dtable th, .heat th { font-family: var(--f-body); text-transform: none; letter-spacing: -0.01em; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+.scorecard th { border-bottom: 1px solid var(--rule); }
+.scorecard td:first-child { font-weight: 500; }
+.chip { border-radius: 2px; font-weight: 500; }
+.figure { background: var(--surface); border: 0; border-radius: 0; padding: 26px 26px 18px; gap: 14px; }
+@media (max-width: 600px) { .figure { padding: 18px 14px 12px; } }
+.fig-head h3 { font-size: 1.15rem; letter-spacing: -0.03em; }
+.legend { color: var(--ink-2); font-size: 0.82rem; }
+.tip { border-radius: 0; font-family: var(--f-body); }
+.heat td { border-radius: 0; font-family: var(--f-mono); font-weight: 500; }
+.heat td.row { font-family: var(--f-body); font-stretch: normal; font-weight: 500; }
+.verdict { background: transparent; border: 0; border-top: 1px solid var(--ink); border-radius: 0; padding: 22px 0 0; gap: 14px; }
+.verdict .eyebrow::before { content: "+ "; color: var(--hi); }
+.verdict .claim { font-family: var(--f-body); font-stretch: normal; font-weight: 500; letter-spacing: -0.045em; font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.02; max-width: 24ch; }
+.verdict p { font-size: 1.05rem; color: var(--ink-2); max-width: 64ch; }
+.sim-big .v { font-family: var(--f-body); font-stretch: normal; font-weight: 500; letter-spacing: -0.05em; color: var(--ink); }
+.ctrl label output { color: var(--ink); }
+input[type=range] { accent-color: var(--ink); }
+.fv-presets button { border-radius: 0; border-color: var(--rule); color: var(--ink); font-weight: 500; background: var(--bg); }
+.fv-presets button:hover, .fv-presets button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.fv-check { border-radius: 0; background: var(--bg); }
+.campcards { gap: 2px; }
+.campcard { border: 0; border-top: 2px solid var(--cc); border-radius: 0; background: var(--surface); padding: 22px; }
+.cc-stat { border-radius: 0; background: var(--bg); font-family: var(--f-body); letter-spacing: -0.01em; }
+.echo { border: 0; border-radius: 0; gap: 2px; }
+.echo-col + .echo-col { border: 0; }
+.echo-1 .eyebrow, .echo-2 .eyebrow, .echo-3 .eyebrow { font-weight: 600; }
+.lessons { gap: 0 48px; }
+.lessons h3 { font-size: 1.15rem; letter-spacing: -0.03em; }
+details summary { color: var(--ink); font-weight: 500; }
+details summary::marker { color: var(--hi); }
+.sources { color: var(--ink-2); }
+.sources .eyebrow { font-size: 0.8rem; }
+footer { border-top: 1px solid var(--rule); color: var(--ink-3); }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline-color: var(--hi); border-radius: 0; }
+</style>
+
+<div class="wrap">
+
+<header>
+  <nav class="topnav" aria-label="Sections"><span>Ukraine MOD Claims Audit</span><span class="links"><a class="plus" href="#judgements">Key judgements</a><a class="plus" href="#s1">Tests</a><a class="plus" href="#camps">Cross-reference</a><a class="plus" href="#sources">Sources</a></span></nav>
+  <div class="classif eyebrow"><span>Open-source reliability assessment</span><span>Data to <span data-asof>6 Nov 2026</span></span><span>1,716 daily reports tested</span></div>
+  <h1><span class="h-muted">Can Ukraine's count of Russian losses</span> be trusted?</h1>
+  <p class="lede">Ten tests of the Russian-loss figure Ukraine publishes every day, using only data from outside Ukraine.</p>
+  <div class="kpis">
+    <div class="kpi"><span class="v" id="kpi-total">1,601,830</span><span class="l">Russian personnel losses claimed by Ukraine's General Staff</span><span class="src"><span data-asof>6 Nov 2026</span> · killed, wounded &amp; captured combined</span></div>
+    <div class="kpi"><span class="v">283,000</span><span class="l">Russian military deaths confirmed by name</span><span class="src">Mediazona &amp; BBC Russian · 23 Oct 2026 · a floor</span></div>
+    <div class="kpi"><span class="v">1,709<span style="font-size:.5em;color:var(--ink-3)"> / 1,716</span></span><span class="l">Daily figures rounded to the nearest ten and labelled "about"</span><span class="src">General Staff daily bulletins</span></div>
+    <div class="kpi"><span class="v">−0.05</span><span class="l">Correlation between front-line rainfall and that day's claimed losses</span><span class="src">Spearman ρ, 1,404 days, 2023–2026</span></div>
+  </div>
+</header>
+
+<section class="intro" aria-labelledby="intro-h">
+  <div class="sec-head"><span class="eyebrow">Introduction</span><h2 id="intro-h">Why this matters</h2></div>
+  <div class="intro-body">
+    <p class="intro-lead">Ukraine's General Staff has published a running count of Russian losses every day since 24 February 2022. It now stands at 1.6 million. Newsrooms, think tanks and politicians repeat it as fact.</p>
+    <p>It is a wartime claim by one side, about the other side, released with no breakdown and no way to check it. That does not make it false. It does make it unsafe to build analysis on without testing it first.</p>
+    <p>This page puts the figure through ten tests: seasons, front size, weather, battles, doctrine and firepower, Russian recruitment, independent death counts, officials' own statements, the incentives behind the number and the drone footage it rests on. Every check uses data from outside Ukraine. The judgements below say how likely each conclusion is, using the scale UK Defence Intelligence uses for its own assessments.</p>
+  </div>
+</section>
+
+<section id="judgements" aria-labelledby="bl">
+  <div class="sec-head"><span class="eyebrow">Bottom line</span><h2 id="bl">Key judgements</h2></div>
+  <div class="judgement">
+    <div class="prose"><p>The judgements below use the <strong>probability yardstick</strong> that UK Defence Intelligence uses in its own assessments, so each one states how likely it is, not only what we found.</p></div>
+    <div class="yard" aria-hidden="true">
+      <div class="yard-pins" id="pins"></div>
+      <div class="yard-scale"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="yard-labels" id="ylabels"></div>
+    </div>
+    <ol class="judgements">
+      <li><span class="key">A</span><p>It is <span class="yard-term">highly likely</span> that the daily figure is <b>not a day-by-day measurement</b> of Russian losses. It does not move with rain, snow, cold or a lagged day, and on the most variable test (wind) the effect is about 4%. Since mid-2024 none of 14 major battles, including Avdiivka's final assault, Kursk and Pokrovsk, pushed it outside an ordinary month's range. Using it for daily, weather or single-battle analysis builds conclusions on numbers that cannot carry them.</p></li>
+      <li><span class="key">B</span><p>It is <span class="yard-term">likely</span> that the <b>cumulative total is the right order of magnitude</b> for killed plus wounded. It sits 3.1 to 4.8 times above Russian-sourced and CSIS death estimates at every matched date, which implies 2.1 to 3.8 wounded per death, inside the normal historical range. Western estimates that match it almost exactly are mostly an echo, because they draw on Ukrainian data. The fully independent check, deaths from Russia's own registries, is consistent with anything from about 1.15 to 1.6 million today, depending on how many video-claimed drone hits were real (Test 10).</p></li>
+      <li><span class="key">C</span><p>It is a <span class="yard-term">realistic possibility</span> that <b>figures since mid-2026 are inflated</b>. Claimed losses reached records while ISW shows Russia gaining about 80 km² net in ten months. The defence ministry's own video-verified drone count stayed flat at about 30,000 a month while the published total rose to 54,200, and October became the first month to clear the 50,000 target set in January. Against this, a NATO official put September's Russian losses even higher than the General Staff did.</p></li>
+      <li><span class="key">D</span><p>It is <span class="yard-term">almost certain</span> that <b>comparing 1.6 million to Mediazona's 283,000 as like for like is an error</b>, in either direction. One counts casualties, the other counts named dead, and the gap between them is mostly the wounded.</p></li>
+    </ol>
+  </div>
+
+  <div class="table-scroll">
+  <table class="scorecard">
+    <thead><tr><th>Test</th><th>What the data shows</th><th>Reliability signal</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#s1">1 · Seasons</a></td><td>No dip in the spring and autumn mud seasons. Since 2024, day-to-day variation drops by more than half every summer.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Caution</span></td></tr>
+      <tr><td><a href="#s2">2 · Front size</a></td><td>Some smoothness is expected across a 1,200 km front. Summer smoothness only fits if nothing front-wide moves losses.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Caution</span></td></tr>
+      <tr><td><a href="#s2">2 · Intensity</a></td><td>No link to how much ground Russia took per ISW in 2024–25 (ρ = 0.00). In 2026 claims hit records while ISW shows Russia losing ground.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag</span></td></tr>
+      <tr><td><a href="#s3">3 · Weather</a></td><td>No measurable link to rain, snow or temperature on the day or the day after.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag (daily use)</span></td></tr>
+      <tr><td><a href="#s4">4 · Key battles</a></td><td>Until mid-2024 the figure jumped around big battles. Since then none of 14 major battles moved it beyond an ordinary month's range.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag (since 2024)</span></td></tr>
+      <tr><td><a href="#s5">5 · Doctrine &amp; firepower</a></td><td>The 2025 dip and 2026 rise have military explanations (infiltration tactics, a wider drone kill zone). Flat battle response and the unverified 2026 increment do not.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Caution</span></td></tr>
+      <tr><td><a href="#s6">6 · Recruitment</a></td><td>Claims roughly matched recruitment in 2024–25, then ran ahead of it in 2026.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Caution</span></td></tr>
+      <tr><td><a href="#s7">7 · Independent counts</a></td><td>A stable multiple of Russian-sourced death estimates. CSIS matches the total to within 1%, which may not be fully independent.</td><td><span class="chip good"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="currentColor"/></svg>Holds up (totals)</span></td></tr>
+      <tr><td><a href="#s8">8 · Officials' statements</a></td><td>Whole-war totals just repeat the General Staff figure. Battle claims run 1.3–1.7× outside estimates, and in 2026 the video-verified drone count stopped rising while the total kept climbing.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag</span></td></tr>
+      <tr><td><a href="#s9">9 · Incentives</a></td><td>A public 50,000-a-month target and a points-for-kills system now sit upstream of the figure.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag</span></td></tr>
+<tr><td><a href="#s10">10 · Footage verification</a></td><td>Since 2025 about three-quarters of the figure rests on drone footage that ends at impact, verified only inside Ukraine's own systems. At RUSI's 50% hit rate the total would be about 1.15M, and Russian death records could not tell the difference.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag (unaudited)</span></td></tr>
+      <tr><td><a href="#camps">Cross-reference</a></td><td>Western casualty totals now match the MOD within 1%, but mostly because they use its data. Only death counts from Russian registries are fully independent.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Echo chamber</span></td></tr>
+        </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="s1" aria-labelledby="h1s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 1</span><span>The official series</span></span><h2 id="h1s">The whole series, and season by season</h2></div>
+  <div class="prose">
+    <p>The General Staff figure has risen in three steps: about 200 a day in mid-2022, 600–1,000 through 2023, and 1,000–1,500 from 2024. In 2026 it climbed again, averaging 1,750 a day in October and over 2,200 in early November, the highest sustained level of the war. Fighting in Ukraine is known to follow the ground. Mud in spring (<i>rasputitsa</i>) and late autumn slows armour and assaults, and summer and frozen winter ground favour them.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Russian personnel losses claimed per day</h3><div class="legend"><span><i style="background:var(--s-muted)"></i>Daily figure</span><span><i style="background:var(--s-claims)"></i>30-day average</span></div></div>
+    <div class="chart" id="c-daily" style="height:300px"></div>
+    <p class="fig-note">Source: General Staff of the Armed Forces of Ukraine daily bulletins, compiled by P. Ivaniuk. Daily figure is the change in the cumulative total. Hover for values.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Average claimed losses per day, by season</h3><span class="fig-note">Small figure: day-to-day variation (coefficient of variation)</span></div>
+    <div class="table-scroll"><table class="heat" id="heat"></table></div>
+    <p class="fig-note">Meteorological seasons. December counts toward the following winter. 2022 starts on 25 February; autumn 2026 runs to 6 November.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The season changes how steady the number is, not how big it is.</span>
+    <p>Spring mud never produces the lowest season. Since 2024, summers have been twice as steady as winters (7.5% daily variation against 18%), the opposite of what bursty summer fighting should produce.</p>
+  </div>
+</section>
+
+<section id="s2" aria-labelledby="h2s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 2</span><span>Front-line size and intensity</span></span><h2 id="h2s">How consistent should the numbers be on a 1,200 km front?</h2></div>
+  <div class="prose">
+    <p>No source outside Ukraine publishes a measured length for the active front. Ukraine's command gives 1,200–1,250 km (reported by AP, September 2025, unverified). Independent analysts' maps give about 1,000–1,100 km. The model below works with any figure in that range, and the answer barely changes across it. A long front works against the "too consistent" argument. A daily total built from hundreds of separate sectors <strong>should</strong> be fairly smooth, in the same way a national daily birth count is smoother than one hospital's. The real question is how smooth. The model below adds up independent sectors and lets you set how clustered the losses are and how much front-wide events (weather, big offensives) move them.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>What day-to-day variation should we expect?</h3></div>
+    <div class="sim">
+      <div class="ctrls">
+        <div class="ctrl"><label for="r-front">Active front length <output id="o-front"></output></label><input type="range" id="r-front" min="600" max="1500" step="50" value="1100"><span class="hint">Independent maps ~1,000–1,100 km; Ukraine's command claims 1,200–1,250 km</span></div>
+        <div class="ctrl"><label for="r-sector">Width of one independent sector <output id="o-sector"></output></label><input type="range" id="r-sector" min="5" max="60" step="5" value="10"><span class="hint">Roughly a brigade's frontage</span></div>
+        <div class="ctrl"><label for="r-k">How clustered losses are <output id="o-k"></output></label><input type="range" id="r-k" min="0.2" max="5" step="0.1" value="0.6"><span class="hint">Low = a few mass assaults dominate. High = a steady trickle from drones and artillery.</span></div>
+        <div class="ctrl"><label for="r-shock">Front-wide daily swings <output id="o-shock"></output></label><input type="range" id="r-shock" min="0" max="40" step="1" value="15"><span class="hint">Shared shocks that hit every sector at once: weather, offensives, rotations</span></div>
+        <div class="ctrl"><label for="r-mu">Average daily losses <output id="o-mu"></output></label><input type="range" id="r-mu" min="400" max="2400" step="100" value="1300"></div>
+      </div>
+      <div class="sim-out">
+        <div class="sim-big"><span class="v num" id="sim-v">–</span><span class="sim-read">expected day-to-day variation</span></div>
+        <div class="chart" id="c-sim" style="height:160px"></div>
+        <p class="sim-read" id="sim-read"></p>
+      </div>
+    </div>
+    <p class="fig-note">Model: daily total = sum of N = front ÷ sector independent negative-binomial counts, times a shared lognormal daily shock. Coefficient of variation ≈ √(1/μ + 1/(N·k) + σ²). Observed values use the daily figure divided by its centred 29-day median, 2023–2026, so long-run trends do not count as variation.</p>
+  </div>
+
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed losses against ground changing hands, 2024–2026</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Claimed Russian losses</span><span><i class="sq" style="background:var(--s-indep)"></i>ISW, via AFP monthly analysis</span><span><i class="sq" style="background:var(--s-muted)"></i>DeepState (Ukrainian, shown for comparison)</span></div></div>
+    <div class="chart" id="c-loss-m" style="height:190px"></div>
+    <div class="chart" id="c-terr" style="height:190px"></div>
+    <p class="fig-note">ISW: AFP's monthly analyses of Institute for the Study of War maps. AFP reported gross Russian advances through early 2025 and net change after that, and excludes infiltration zones. "?" marks months AFP did not report (Feb–Apr 2024). September 2026 is ISW's own net figure. AFP's figures for January and May–July 2024, and ISW's September 2026 figure, were found only as relayed by Ukrainian outlets. DeepState: net monthly change computed by visua.no (CC BY 4.0). 2023 is left out because AFP did not publish monthly figures that year.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Smoothness is expected. Ignoring the battlefield is not.</span>
+    <p>A 1,100 km front explains about 15% day-to-day variation, but not summer's 7.5%. Monthly claims show no link to ISW's map changes in 2024–25 (ρ = 0.00). In 2026 they hit records while Russia gained about 80 km² net. Russia kept attacking elsewhere and drones hit defenders too, so lost ground alone does not prove inflation.</p>
+  </div>
+</section>
+
+<section id="s3" aria-labelledby="h3s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 3</span><span>Weather</span></span><h2 id="h3s">Does the weather move the number?</h2></div>
+  <div class="prose">
+    <p>Daily weather comes from five front-line towns (Pokrovsk, Bakhmut, Kupiansk, Orikhiv and Kherson) via the Open-Meteo historical archive. Each day's claim is compared with its own 29-day median, so the test looks only at day-to-day movement. Bars show how far above or below a typical day the claim sits in each weather band, with 95% confidence intervals.</p>
+  </div>
+  <div class="two">
+    <div class="figure"><h3>Rainfall</h3><div class="chart" id="w-precip" style="height:170px"></div></div>
+    <div class="figure"><h3>Snowfall</h3><div class="chart" id="w-snow" style="height:150px"></div></div>
+    <div class="figure"><h3>Mean temperature</h3><div class="chart" id="w-temp" style="height:170px"></div></div>
+    <div class="figure"><h3>Maximum wind speed</h3><div class="chart" id="w-wind" style="height:170px"></div></div>
+  </div>
+  <p class="fig-note">Correlation with the detrended daily claim (Spearman ρ, n = 1,404): rainfall −0.05, snowfall −0.08, temperature −0.02, cloud cover +0.04, wind −0.12. Rain against the next day's claim: −0.003, so a reporting lag does not hide the effect.</p>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Weather does not move the daily number.</span>
+    <p>Rain, snow and frost have no measurable effect. Wind, which grounds drones, shifts it by about 4%. The daily figure cannot support day-level analysis.</p>
+  </div>
+</section>
+
+<section id="s4" aria-labelledby="h4b">
+  <div class="sec-head"><span class="eyebrow"><span>Test 4</span><span>Key battles</span></span><h2 id="h4b">Do the big battles show up in the count?</h2></div>
+  <div class="prose">
+    <p>A real casualty count should jump when a set-piece battle peaks, and dip when a truce holds. Battle dates come from ISW, CNN, Al Jazeera, AFP, Meduza and other sources outside Ukraine. For each battle's most intense phase, the claimed daily average is compared with the six weeks before it, then ranked against every other stretch of the same length since June 2022.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed daily losses with battle peaks marked</h3><div class="legend"><span><i class="sq" style="background:var(--s-ru)"></i>Russian offensive</span><span><i class="sq" style="background:var(--s-ua)"></i>Ukrainian offensive</span><span><i style="background:var(--s-claims)"></i>30-day average</span></div></div>
+    <div class="chart" id="c-battle-daily" style="height:300px"></div>
+    <p class="fig-note">Shaded bands mark each battle's peak phase. Hover a band for the battle. Numbers match the chart below.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Change in claimed losses during each battle's peak, vs the six weeks before</h3></div>
+    <div class="chart" id="c-battle-bars"></div>
+    <p class="fig-note">Grey band: the middle 80% of changes seen across all stretches of the same length since June 2022, so a bar inside it is ordinary. Bars are ordered by date. Hover for the averages and the percentile.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Truces: did claimed losses fall?</h3></div>
+    <div class="chart" id="c-truce"></div>
+    <p class="fig-note">Every truce was reported as violated by both sides, so a full drop is not expected. A real count should still dip.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Since mid-2024, battles no longer show up in the count.</span>
+    <p>Before August 2024, 5 of 10 battles pushed claims into the top 10% of all periods. Since then none of 14 has, including Avdiivka, Kursk and Pokrovsk. Most truces left it flat too.</p>
+  </div>
+</section>
+
+<section id="s5" aria-labelledby="h5d">
+  <div class="sec-head"><span class="eyebrow"><span>Test 5</span><span>Doctrine and firepower</span></span><h2 id="h5d">Does the count follow who has the guns, and who is attacking?</h2></div>
+  <div class="prose">
+    <p>Two military explanations could make an honest count look strange. <strong>Firepower</strong>: Russian losses should rise when Ukraine's ability to kill rises. That ability went from a shell shortage in early 2024 to drone dominance in 2025–26. <strong>Posture</strong>: the old rule that attackers lose more is weaker than it sounds. Across hundreds of historical battles, the Dupuy Institute found attackers' losses are on average similar to defenders'. Only failed attacks cost the attacker clearly more, about 1.7 to 1. The famous 3:1 rule is about how many troops an attack needs, not about who loses more.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed losses across the war's firepower periods</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Claimed per day, 30-day average</span></div></div>
+    <div class="chart" id="c-eras" style="height:300px"></div>
+    <div class="table-scroll" id="t-eras"></div>
+    <p class="fig-note">Period boundaries and firepower figures: RUSI and Open Source Centre, CNN citing US and NATO officials, Estonian defence intelligence, Sky News citing Western officials, NYT, Latvian intelligence (SAB), CSIS. No source outside Ukraine gives artillery fire rates for 2025–26.</p>
+  </div>
+  <div class="two">
+    <div class="figure">
+      <div class="fig-head"><h3>Ground taken vs claimed losses, by year</h3><div class="legend"><span><i class="dot" style="background:var(--yr-1)"></i>2024</span><span><i class="dot" style="background:var(--yr-2)"></i>2025</span><span><i class="dot" style="background:var(--yr-3)"></i>2026</span></div></div>
+      <div class="chart" id="c-posture" style="height:300px"></div>
+      <p class="fig-note">Each dot is a month. Lines are each year's trend. ρ: 2024 +0.77, 2025 −0.62, 2026 −0.37.</p>
+    </div>
+    <div class="figure">
+      <div class="fig-head"><h3>Battle effect by who was attacking</h3></div>
+      <div class="chart" id="c-split"></div>
+      <p class="fig-note">Each dot is one battle from Test 4. Black tick: median.</p>
+    </div>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Doctrine explains the trend. It does not explain the blind spots.</span>
+    <p>The 2025 dip fits Russia's switch to 2–5-man infiltration groups, which exposed fewer men while taking more ground. The 2026 rise fits a drone kill zone that RUSI puts 30 km deep, which hits defenders as hard as attackers. Neither explains a count that stopped reacting to battles in 2024, or a 2026 rise that sits entirely outside the video-verified data. RUSI found that only about half of Ukraine's publicly claimed drone kills of Russian artillery were real destructions.</p>
+  </div>
+</section>
+
+<section id="s6" aria-labelledby="h4s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 6</span><span>Recruitment and mobilisation</span></span><h2 id="h4s">Can Russia replace what Ukraine says it loses?</h2></div>
+  <div class="prose">
+    <p>Russia mobilised 300,000 reservists in autumn 2022 and has relied on paid contract recruitment since. Official figures come from Dmitry Medvedev and the defence ministry. Independent estimates come from regional enlistment-bonus spending (Janis Kluge, SWP; iStories). Vladimir Putin has put the Russian force in the war zone at 617,000 (December 2023), almost 700,000 (June 2024), 700,000 (September and December 2025) and <strong>more than 700,000</strong> (June 2026). Since mid-2024, then, Russia's own figure has the force roughly flat.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Per month: losses Ukraine claims vs soldiers Russia recruits</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Claimed Russian losses</span><span><i class="sq" style="background:var(--s-recruit)"></i>Recruits, official Russian figure</span><span><i style="background:var(--ink)"></i>Recruits, independent estimate range</span></div></div>
+    <div class="chart" id="c-recruit" style="height:260px"></div>
+    <p class="fig-note">2026 claims run January to October. 2026 official recruits: 127,000 contract plus 10,000 volunteers in January–April (Medvedev). Independent 2026: 71,216 in Q1 (Kluge, federal budget) to ~30,000 a month in Q2; CSIS puts 2026 recruitment from all sources at about 27,000 a month. 2023 has no independent estimate; the official 540,000 includes soldiers re-signing existing contracts.</p>
+    <details><summary>Show data table</summary><div class="table-scroll" id="t-recruit"></div></details>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Claims matched Russian recruitment until 2026.</span>
+    <p>In 2024–25, claims of about 35,000 a month matched recruitment. In 2026 they average 38,000 and hit 54,200, against 24,000–30,000 recruits a month and a force Putin says held at about 700,000.</p>
+  </div>
+</section>
+
+<section id="s7" aria-labelledby="h5s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 7</span><span>Independent counts</span></span><h2 id="h5s">Cross-checking against Mediazona and Meduza</h2></div>
+  <div class="prose">
+    <p>Mediazona and BBC Russian confirm deaths one name at a time from obituaries, social media and leaked registries. It is a hard floor, and it lags by months. Separately, Mediazona and Meduza estimate total deaths from Russia's probate registry, which shows excess deaths among men of fighting age. Neither counts the wounded. Ukraine's figure does.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Cumulative Russian losses: claimed casualties vs independent death counts</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Ukraine General Staff (casualties)</span><span><i class="dot" style="background:var(--s-indep)"></i>Meduza/Mediazona probate estimate (deaths)</span><span><i class="dot" style="background:var(--surface);border:2px solid var(--s-indep)"></i>Mediazona named deaths (floor)</span><span><i class="dot" style="background:var(--ink)"></i>CSIS estimate</span></div></div>
+    <div class="chart" id="c-cum" style="height:320px"></div>
+    <p class="fig-note">The end-2025 probate estimate (352,000) adds 90,000 deaths recognised by courts or registered at least 180 days late; the standard-registration figure is 261,000. CSIS: about 1.2 million casualties and up to 325,000 deaths to December 2025 (January 2026 report); about 1.4 million casualties and up to 450,000 deaths to June 2026 (July 2026 report).</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>The ratio at matched dates</h3></div>
+    <div class="table-scroll" id="t-ratio"></div>
+    <p class="fig-note">Implied wounded per death assumes the General Staff figure is killed plus wounded, and ignores the small number captured. Historical wars typically run 2.5 to 4 wounded per death. Some analysts argue drone warfare pushes the ratio lower.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Against the right comparison, the total holds up.</span>
+    <p>Ukraine's figure stays 3.4–4.8 times Russian-sourced death estimates, a normal ratio for killed plus wounded. 1.6 million is casualties, not deaths, and 283,000 is a floor, not the toll. CSIS matches the total to within 1%, which may reflect shared inputs.</p>
+  </div>
+</section>
+
+<section id="s8" aria-labelledby="h7b">
+  <div class="sec-head"><span class="eyebrow"><span>Test 8</span><span>Officials' statements</span></span><h2 id="h7b">What officials said against what was published</h2></div>
+  <div class="prose">
+    <p>Ukrainian commanders and ministers regularly give their own figures for Russian losses, for a single battle, a month or a year. These statements are the thing being tested, so they come from Ukrainian officials by definition. Each is checked two ways: against the General Staff's own daily totals for the same dates, and against figures for the same battle from governments and researchers outside Ukraine.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>2026: the defence ministry's video-verified drone count vs the General Staff total</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>General Staff, all causes</span><span><i class="sq" style="background:var(--s-drone)"></i>Ministry of Defence, drone hits verified on video</span><span><i class="dot" style="background:var(--ink)"></i>Fedorov / Zelensky monthly "verified" figure</span></div></div>
+    <div class="chart" id="c-drone" style="height:260px"></div>
+    <p class="fig-note">Ministry of Defence drone series published 27 Oct 2026 (October covers 1–25 October, compared with the General Staff total for the same 25 days). Fedorov and Zelensky gave separate monthly "verified" figures for March (35,351), April (35,203) and May (31,530). Ukraine's officials said drones caused 96% of Russian casualties in March, as reported by Al Jazeera.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Single-battle claims as a share of everything claimed nationwide over the same dates</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Killed and wounded</span><span><i class="sq" style="background:var(--s-muted)"></i>Killed only</span></div></div>
+    <div class="chart" id="c-share"></div>
+    <p class="fig-note">Hover for the statement, its dates and the nationwide General Staff total for the same period.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Same battle, outside figure</h3></div>
+    <div class="table-scroll" id="t-disp"></div>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Officials echo the total. Their battle and drone figures do not add up.</span>
+    <p>Whole-war statements match the series to within 2%: the same number, not confirmation. Battle claims run 1.3–1.7 times US and UK estimates. In 2026 the ministry's video-verified drone count held at about 30,000 a month while the published total rose to 54,200.</p>
+  </div>
+</section>
+
+<section id="s9" aria-labelledby="h6s">
+  <div class="sec-head"><span class="eyebrow"><span>Test 9</span><span>Incentives</span></span><h2 id="h6s">What happens when the number becomes a target</h2></div>
+  <div class="prose">
+    <p>In January 2026 Ukraine's defence minister Mykhailo Fedorov named 50,000 Russian casualties a month a strategic goal, as reported by Business Insider and Al Jazeera. Under a points system, drone units earn credits, spent on new equipment, for each kill confirmed on video. Video confirmation is a real safeguard. A public target plus a reward for each counted kill is still the textbook setting for Goodhart's law: a measure that becomes a target stops being a good measure.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed Russian losses per month, 2025–2026</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Month total</span><span><i class="sq" style="background:var(--surface);border:1.5px solid var(--s-claims)"></i>November 2026 at its current daily pace</span></div></div>
+    <div class="chart" id="c-target" style="height:260px"></div>
+    <p class="fig-note">November 2026 covers 1–6 November (13,660), projected at 2,277 a day. The General Staff total covers all causes; the drone-unit points count is a subset of it.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The series cleared its new target in the first month it plausibly could.</span>
+    <p>First-half 2026 claims (32,600 a month) match CSIS's 30,000–34,000. From July they average 46,000, and no outside source covers those months yet. Treat them as claims, not findings.</p>
+  </div>
+</section>
+
+<section id="s10" aria-labelledby="h10">
+  <div class="sec-head"><span class="eyebrow"><span>Test 10</span><span>Footage verification</span></span><h2 id="h10">What if a share of the video-confirmed hits weren't hits?</h2></div>
+  <div class="prose">
+    <p>Since 2025, most of the figure rests on drone footage. Outside sources put drones behind 70–80% of casualties, and Ukraine's own video-verified drone count equals 63–107% of the monthly total in 2026. An FPV drone's video ends when its camera dies. That happens on a direct hit, but also when the drone strikes the ground a few metres short, is jammed in the last seconds, or the target dives clear. From the strike drone's own feed you cannot tell these apart, or tell killed from wounded. Only a second camera watching the aftermath settles it.</p>
+    <p>Ukraine's defence ministry says every counted strike is verified on video inside its own systems. It has not published the standard, and no outside party audits it. The one outside measurement comes from RUSI, which found that only about <strong>half</strong> of Ukraine's publicly claimed drone kills of Russian artillery were real destructions.</p>
+  </div>
+  <figure class="figure frames">
+    <div class="fig-head"><h3>Example: the last two frames of a published strike clip</h3></div>
+    <div class="frames-row">
+      <div class="frame"><img src="img/strike-frame-1.jpg" width="1200" height="649" loading="lazy" alt="FPV drone view of a soldier carrying a rifle along a treeline, a few metres ahead of the drone"><span class="frame-cap"><b>Frame 1.</b> Final approach. The target is a few metres away and still moving.</span></div>
+      <div class="frame"><img src="img/strike-frame-2.jpg" width="1200" height="649" loading="lazy" alt="The same feed breaking up into coloured video noise as the link fails"><span class="frame-cap"><b>Frame 2.</b> The video link breaks up and the clip ends. A hit, a near miss, jamming and a crash all end like this.</span></div>
+    </div>
+    <figcaption class="fig-note">Stills from a strike video published by a Ukrainian drone unit (unit logos top right). Nothing after frame 2 shows whether the soldier was killed, wounded or unhurt. Under the audit protocol below this clip is coded C (unconfirmed).</figcaption>
+  </figure>
+  <div class="figure">
+    <div class="fig-head"><h3>Set how many video-claimed drone hits were real casualties</h3></div>
+    <div class="sim">
+      <div class="ctrls">
+        <div class="ctrl"><label for="r-hit">Claimed drone hits that were real casualties <output id="o-hit"></output></label><input type="range" id="r-hit" min="20" max="100" step="5" value="100"><span class="hint">100% = take the footage at face value. RUSI's artillery finding ≈ 50%.</span></div>
+        <div class="ctrl"><label for="r-dshare">Drone share of casualties, 2025–26 <output id="o-dshare"></output></label><input type="range" id="r-dshare" min="50" max="96" step="1" value="75"><span class="hint">Latvian intelligence and Russian military medics: 70–80%. Ukraine's own claim: 96%. Earlier years are fixed: 5% (2022), 20% (2023), rising through 2024.</span></div>
+        <div class="fv-presets"><button type="button" data-hit="100">Face value</button><button type="button" data-hit="70">70%</button><button type="button" data-hit="50">RUSI rate (50%)</button><button type="button" data-hit="30">30%</button></div>
+      </div>
+      <div class="sim-out">
+        <div class="sim-big"><span class="v num" id="fv-now">–</span><span class="sim-read">Russian casualties today, adjusted<br><span id="fv-vs"></span></span></div>
+        <div class="fv-checks">
+          <div class="fv-check" id="fv-c1"><span class="eyebrow">Check 1 · Russia's own death records</span><b id="fv-c1v"></b><p id="fv-c1t"></p></div>
+          <div class="fv-check" id="fv-c2"><span class="eyebrow">Check 2 · Russian recruitment</span><b id="fv-c2v"></b><p id="fv-c2t"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed and adjusted totals against Russian death records</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Claimed (Ukraine MOD)</span><span><i style="background:var(--accent)"></i>Adjusted for your hit rate</span><span><i class="dot" style="background:var(--s-indep)"></i>Deaths, Russian probate records</span><span><i class="sq" style="background:var(--s-indep);opacity:.25"></i>Minimum casualties those deaths imply (×2.3 to ×3.3)</span></div></div>
+    <div class="chart" id="c-fv" style="height:300px"></div>
+    <p class="fig-note">The shaded band multiplies each probate death estimate by 2.3–3.3 (1.3–2.3 wounded per death, the low end of published ratios for a drone war). An adjusted line inside or below the band is hard to square with Russia's own death records. Probate deaths: Mediazona/Meduza.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Audit protocol: measure the hit rate yourself</h3></div>
+    <div class="prose"><p>Sample strike videos posted by Ukrainian unit channels and code every strike once. The share of A and B gives a measured hit rate to put in the slider. Published clips are each unit's best footage, so the result is an upper bound.</p></div>
+    <div class="table-scroll"><table class="dtable fv-proto">
+      <thead><tr><th>Code</th><th>What the clip shows</th><th>Counts as</th></tr></thead>
+      <tbody>
+        <tr><td class="hi">A</td><td>A second camera shows the aftermath: the person down, not moving, or being evacuated</td><td>Confirmed casualty</td></tr>
+        <tr><td class="hi">B</td><td>The strike feed shows detonation on or within about 1 m of the person; no aftermath shown</td><td>Probable casualty (count as half)</td></tr>
+        <tr><td class="hi">C</td><td>Feed ends on final approach with the target still moving or more than about 2 m away</td><td>Unconfirmed</td></tr>
+        <tr><td class="hi">D</td><td>Feed breaks up early (jamming) or the drone crashes before reaching the target</td><td>Miss</td></tr>
+        <tr><td class="hi">E</td><td>Same person, place and time as another clip already coded</td><td>Duplicate (exclude)</td></tr>
+      </tbody></table></div>
+    <p class="fig-note">Also record the unit, date, sector, drone type, the distance to the target in the last clear frame, and how many drones struck the same target. Hit rate ≈ (A + 0.5 × B) ÷ (A + B + C + D).</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The total is only as good as footage nobody outside Ukraine audits.</span>
+    <p>If half the video-claimed drone hits were real casualties, the rate RUSI found for artillery, Russian losses today would be about 1.15 million, not 1.6 million. Russia's own death records could not tell the difference: the ratio of wounded to dead would still be believable in a drone war. Russia's death records only rule out hit rates below about 30%. Treat the total as a range of about 1.15–1.6 million.</p>
+  </div>
+</section>
+
+<section aria-labelledby="h7s">
+  <div class="sec-head"><span class="eyebrow">For analysts</span><h2 id="h7s">Where the confirmation bias actually sits</h2></div>
+  <div class="lessons">
+    <div><h3>Quote it as a claim, with its definition</h3><p>"Ukraine's General Staff says Russia has lost about 1.6 million personnel killed, wounded or captured." Not "Russia has lost 1.6 million soldiers."</p></div>
+    <div><h3>Never analyse the daily number</h3><p>It is rounded, smoothed and blind to weather. Daily spikes and dips say more about reporting than about battles. Use monthly totals at the finest.</p></div>
+    <div><h3>Trace every number to its source</h3><p>A Western or think-tank total that matches Ukraine's may simply be Ukraine's. Ask where an estimate gets its data before counting it as confirmation.</p></div>
+    <div><h3>Compare like with like</h3><p>Casualties go against casualties (CSIS, UK Defence Intelligence). Deaths go against deaths (Mediazona, Meduza). Mixing them manufactures either a massacre or a cover-up.</p></div>
+    <div><h3>Treat the latest six months as provisional</h3><p>Independent counts lag. The months with no outside check are the months where incentives now act most strongly on the figure.</p></div>
+    <div><h3>Check it against the map</h3><p>Real losses should track real fighting. When claimed losses and ground changing hands move apart, ask why before quoting.</p></div>
+    <div><h3>Hold the sceptical case to the same standard</h3><p>The Ukrainian total has matched independent casualty estimates for three years. "Ukraine inflates everything" is as much a confirmation bias as "Ukraine's numbers are fact."</p></div>
+  </div>
+</section>
+
+<section id="camps" aria-labelledby="hc">
+  <div class="sec-head"><span class="eyebrow">Cross-reference</span><h2 id="hc">How the Ukrainian figure compares with everyone else's</h2></div>
+  <div class="prose">
+    <p>Russian losses are estimated by three kinds of source: governments and institutions that back Ukraine, independent researchers, and Russia itself. Each estimate below is set against the Ukrainian MOD's running total on the same day. Casualty estimates and death estimates are kept on separate charts, because mixing them is the most common error in this debate.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Casualty estimates (killed and wounded)</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Ukraine MOD</span><span><i class="dot" style="background:var(--c-west)"></i>Western / pro-Ukrainian</span><span><i class="dot" style="background:var(--s-indep)"></i>Independent</span><span><i class="dot" style="background:var(--c-ru)"></i>Russian / pro-Russian</span></div></div>
+    <div class="chart" id="c-camp-cas" style="height:320px"></div>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Death estimates</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims);opacity:.4"></i>Ukraine MOD total ÷ 3 to ÷ 4 (what it implies at 2–3 wounded per death)</span><span><i class="dot" style="background:var(--surface);border:2px solid var(--s-indep)"></i>Named-death floor</span></div></div>
+    <div class="chart" id="c-camp-dead" style="height:320px"></div>
+    <p class="fig-note">Ranges are plotted at their midpoint; hover for the range. The Russian MoD's only official figures (1,351 in March 2022, 5,937 in September 2022) sit on the baseline.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>The echo chamber: where each estimate gets its numbers</h3></div>
+    <div class="echo">
+      <div class="echo-col echo-1">
+        <span class="eyebrow">Uses Ukraine's figure directly</span>
+        <ul>
+          <li><b>UK Defence Intelligence</b> builds its daily and annual Russian casualty rates on Ukrainian General Staff data.</li>
+          <li><b>UK Chief of Defence Staff</b> (Sep 2026): his "1.5 million" was Ukraine's own total, quoted as a British figure.</li>
+          <li><b>ISW</b> casualty-per-km² figures divide Ukraine's claims by ISW's map.</li>
+          <li><b>Officials' statements</b> (Test 8) read out the same series.</li>
+        </ul>
+      </div>
+      <div class="echo-col echo-2">
+        <span class="eyebrow">Built partly on estimates that use it</span>
+        <ul>
+          <li><b>CSIS</b> compiles US and UK government estimates with satellite imagery. Its totals match Ukraine's to within 1% at three dates.</li>
+          <li><b>The Economist</b> model averages more than 200 published estimates, many of them from the column on the left.</li>
+          <li><b>NATO briefings</b> give no method. Their totals move in step with Ukraine's.</li>
+        </ul>
+      </div>
+      <div class="echo-col echo-3">
+        <span class="eyebrow">Built without it</span>
+        <ul>
+          <li><b>Mediazona / BBC Russian</b> named deaths, checked one by one.</li>
+          <li><b>Probate and mortality records</b> from Russia's own registries (Mediazona, Meduza, Kobak).</li>
+          <li><b>Russian state budget</b>, Prigozhin and war bloggers.</li>
+          <li><b>Early US and UK estimates</b> (2022–23), which ran 15–55% <i>above</i> Ukraine's figure.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fig-note">The timing tells the story. Western casualty totals were independent and higher than Ukraine's in 2022–23. They converged on it exactly once UK Defence Intelligence began reporting Ukraine's daily data. Every source built entirely outside the loop counts deaths, not wounded, so none can confirm or refute the total on its own.</p>
+  </div>
+  <div class="campcards">
+    <article class="campcard" style="--cc:var(--c-west)">
+      <span class="eyebrow">Western / pro-Ukrainian</span>
+      <h3>UK, US, NATO, France, IISS, CSIS</h3>
+      <div class="cc-stat"><b>92–155%</b> of the MOD figure in 2022–23 · <b>96–104%</b> since 2025</div>
+      <p><strong>How it fares:</strong> early Western totals ran well above Ukraine's. They converged on it from 2024 and now match it almost exactly. Their death estimates (300,000–500,000) imply 2–4 wounded per death against the MOD total.</p>
+      <p><strong>Why it's trusted:</strong> intelligence access (intercepts, imagery, liaison) and regular dated totals that split out deaths.</p>
+      <p><strong>Watch for:</strong> the echo. UK Defence Intelligence builds its daily rates on Ukrainian data, and the UK defence chief's 1.5 million was Ukraine's own number. CSIS and NATO build on these. Agreement since 2025 is largely circular, and many figures come from anonymous briefings with no method.</p>
+      <p class="cc-use"><strong>Use it for</strong> early-war totals and death estimates.</p>
+    </article>
+    <article class="campcard" style="--cc:var(--s-indep)">
+      <span class="eyebrow">Independent</span>
+      <h3>Mediazona, BBC Russian, Meduza, The Economist, demographers</h3>
+      <div class="cc-stat">Casualties <b>99–112%</b> of MOD · MOD is <b>3.4–4.8×</b> their death estimates</div>
+      <p><strong>How it fares:</strong> The Economist's model now puts casualties at 1.42–2.09 million, centred above the MOD's 1.6 million. Death counts from Russia's own registries sit at a steady fraction of the MOD total, a normal ratio for killed plus wounded.</p>
+      <p><strong>Why it's trusted:</strong> names that can be checked one by one, Russia's own probate and mortality records, and published methods. The Economist's code is public.</p>
+      <p><strong>Watch for:</strong> the named list is a lagging floor that jumps when leaks are processed. Probate data runs six months or more behind and misses occupied-territory fighters and foreigners. The Economist's model averages published estimates, many of which echo Ukraine's figure, so its casualty total is not fully independent. Its death-only inputs from Russian registries are.</p>
+      <p class="cc-use"><strong>Use it for</strong> deaths, and as the only check built outside both governments.</p>
+    </article>
+    <article class="campcard" style="--cc:var(--c-ru)">
+      <span class="eyebrow">Russian / pro-Russian</span>
+      <h3>Russian MoD, Kremlin, Prigozhin, war bloggers, state budget</h3>
+      <div class="cc-stat">Official deaths: MOD figure <b>9–12×</b> higher · FSB internal count <b>74%</b> of MOD (2023)</div>
+      <p><strong>How it fares:</strong> the last official figure was 5,937 dead in September 2022, frozen since. Russia's own internal signals point far higher: the 2024 budget funded survivor pensions for about 100,000 war dead, Prigozhin admitted 20,000 Wagner dead at Bakhmut alone, and an FSB count leaked in 2023 put casualties at 110,000.</p>
+      <p><strong>Why it's trusted:</strong> Russia holds the actual records, and insiders saw specific battles first-hand. Budget and pension data are hard to fake at scale.</p>
+      <p><strong>Watch for:</strong> official figures are deliberately suppressed. Insiders had feuds to settle. The FSB count reached the public through leaked US documents and is unverified. Purported Russian documents released by Ukrainian intelligence are excluded from this page.</p>
+      <p class="cc-use"><strong>Use it for</strong> single-battle checks (Bakhmut, Avdiivka) and budget-based floors. Never for totals.</p>
+    </article>
+  </div>
+  <details><summary>Show all estimates</summary><div class="table-scroll" id="t-camps"></div><p class="fig-note">† Found only through a Ukrainian outlet relaying a non-Ukrainian source.</p></details>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The figure looks like a consensus because much of the consensus is the figure.</span>
+    <p>Since 2025 the main Western casualty totals either use Ukraine's data directly or build on estimates that do, which is why they match it to within 1%. Those totals are an echo, not a confirmation. The only casualty totals built without it, the 2022–23 US and UK estimates, ran higher than Ukraine's. Sources fully outside the loop count deaths only: 285,000 named, and 352,000 from Russia's probate records to end-2025.</p>
+  </div>
+</section>
+
+<section id="sources" aria-labelledby="h8s">
+  <div class="sec-head"><span class="eyebrow">Method</span><h2 id="h8s">Data and sources</h2></div>
+  <div class="prose"><p>All statistics were computed from the raw series: 1,716 daily General Staff figures (24 Feb 2022 – 6 Nov 2026), Open-Meteo daily weather averaged over five front-line towns, and AFP's monthly analyses of ISW maps (2024–2026). The General Staff series and officials' statements are the subject under test, so they are necessarily Ukrainian. Every other input comes from outside Ukraine; DeepState appears only as a comparison. Purported Russian documents released by Ukrainian intelligence (an alleged Kremlin loss assessment, March 2026, and an alleged Russian loss sheet, October 2025) are excluded, because their provenance runs through a party to the war. Daily tests use 2023 onward, after the war of movement ended. Correlations are Spearman rank correlations. Recruitment, death and battle figures are as published by their sources and carry their sources' uncertainty.</p></div>
+  <ol class="sources">
+    <li><span class="eyebrow">Subject under test</span> General Staff of the Armed Forces of Ukraine, daily bulletins, compiled at <a href="https://github.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset" target="_blank" rel="noopener">PetroIvaniuk/2022-Ukraine-Russia-War-Dataset</a></li>
+    <li><span class="eyebrow">Subject under test</span> Ministry of Defence of Ukraine: <a href="https://mod.gov.ua/en/news/russian-casualties-from-drones-302000-in-2026" target="_blank" rel="noopener">drone casualties by month, 2026</a></li>
+    <li><span class="eyebrow">Weather</span>  <a href="https://open-meteo.com/en/docs/historical-weather-api" target="_blank" rel="noopener">Open-Meteo historical weather archive</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Moscow Times: <a href="https://www.themoscowtimes.com/2024/12/02/russias-november-advance-in-ukraine-largest-since-march-2022-afp-analysis-a87202" target="_blank" rel="noopener">Oct–Nov 2024</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Arab News: <a href="https://www.arabnews.com/node/2592291/world" target="_blank" rel="noopener">Dec 2024 – Feb 2025</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Fakti/BTA: <a href="https://fakti.bg/en/world/990418-after-a-winter-break-in-july-the-russian-army-accelerated-its-advance-in-ukraine-for-the-fourth-consecutive-month" target="_blank" rel="noopener">Apr–Jul 2025</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Moscow Times: <a href="https://www.themoscowtimes.com/2026/01/02/russian-army-makes-biggest-territorial-gains-in-2025-since-first-year-of-full-scale-invasion-a91601" target="_blank" rel="noopener">2025 year-end</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Free Malaysia Today: <a href="https://www.freemalaysiatoday.com/category/world/2026/04/03/russia-made-no-territorial-gains-in-ukraine-in-march" target="_blank" rel="noopener">Jan–Mar 2026</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Moscow Times: <a href="https://www.themoscowtimes.com/2026/05/04/russia-lost-ground-in-ukraine-in-april-a-first-since-mid-2023-afp-analysis-a92679" target="_blank" rel="noopener">April 2026</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via Euronews: <a href="https://www.euronews.com/2026/07/03/ukraine-frontline-frozen-in-june-as-russian-momentum-falters-june-analysis-shows" target="_blank" rel="noopener">June 2026</a></li>
+    <li><span class="eyebrow">Territory</span> AFP/ISW via France 24: <a href="https://www.france24.com/en/europe/20261102-live-russia-and-ukraine-trade-blame-cyber-attacks-fragile-ceasefire-ends" target="_blank" rel="noopener">October 2026</a></li>
+    <li><span class="eyebrow">Comparison only</span> DeepState via <a href="https://visua.no/en/charts/deepstate-gross-flows/" target="_blank" rel="noopener">visua.no</a></li>
+    <li><span class="eyebrow">Battles</span> ISW assessments (criticalthreats.org): <a href="https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-february-25-2026" target="_blank" rel="noopener">Pokrovsk</a></li>
+    <li><span class="eyebrow">Battles</span> Al Jazeera: <a href="https://www.aljazeera.com/news/2024/2/17/ukraine-troops-withdraw-from-frontline-city-of-avdiivka-army-chief-says" target="_blank" rel="noopener">Avdiivka</a></li>
+    <li><span class="eyebrow">Battles</span> CNN: <a href="https://www.cnn.com/2025/12/01/europe/russia-ukraine-pokrovsk-capture-claim-latam-intl" target="_blank" rel="noopener">Pokrovsk claim</a></li>
+    <li><span class="eyebrow">Battles</span> Meduza: <a href="https://meduza.io/en/feature/2025/03/11/pushback-in-kursk" target="_blank" rel="noopener">Kursk</a></li>
+    <li><span class="eyebrow">Battles</span> Euronews: <a href="https://www.euronews.com/2026/10/09/ukraines-operation-vivaldi-foils-russias-plan-to-encircle-the-donbas-isw-analysis-shows" target="_blank" rel="noopener">Operation Vivaldi</a></li>
+    <li><span class="eyebrow">Truces</span> Al Jazeera: <a href="https://www.aljazeera.com/news/2026/5/8/trump-announces-three-day-ceasefire-in-russia-ukraine-war" target="_blank" rel="noopener">May 2026 ceasefire</a></li>
+    <li><span class="eyebrow">Deaths</span> Mediazona: <a href="https://en.zona.media/article/2026/10/23/casualties_eng-trl" target="_blank" rel="noopener">updated count, 23 Oct 2026</a></li>
+    <li><span class="eyebrow">Deaths</span> Mediazona & Meduza: <a href="https://en.zona.media/article/2026/05/09/losses" target="_blank" rel="noopener">352,000 estimate</a></li>
+    <li><span class="eyebrow">Deaths</span> Meduza: <a href="https://meduza.io/en/feature/2025/08/29/the-deadliest-year-yet" target="_blank" rel="noopener">the deadliest year yet</a></li>
+    <li><span class="eyebrow">Deaths</span> Mediazona & Meduza: <a href="https://zona.media/article/2024/02/24/75k" target="_blank" rel="noopener">75,000 by end of 2023</a></li>
+    <li><span class="eyebrow">Deaths</span> Mediazona & Meduza: <a href="https://en.zona.media/article/2023/07/10/stats" target="_blank" rel="noopener">47,000 by mid-2023</a></li>
+    <li><span class="eyebrow">Deaths</span> Moscow Times: <a href="https://www.themoscowtimes.com/2025/12/02/verified-russian-deaths-in-ukraine-war-surpass-150k-independent-tally" target="_blank" rel="noopener">150,000 named</a></li>
+    <li><span class="eyebrow">Deaths</span> Meduza: <a href="https://meduza.io/en/feature/2024/06/10/new-investigation-shows-that-yevgeny-prigozhin-s-wagner-group-lost-almost-20-000-men-in-the-battle-for-bakhmut-and-paid-their-families-more-than-a-billion-dollars-in-compensation" target="_blank" rel="noopener">Wagner losses at Bakhmut</a></li>
+    <li><span class="eyebrow">Casualties</span> ABC News/AP on CSIS: <a href="https://abcnews.go.com/international/wirestory/new-report-warns-combined-war-casualties-russias-war-129628462" target="_blank" rel="noopener">1.2 million to Dec 2025</a></li>
+    <li><span class="eyebrow">Casualties</span> CSIS via ecoi.net: <a href="https://www.ecoi.net/en/document/2142510.html" target="_blank" rel="noopener">Russian Blood and Treasure, Jul 2026</a></li>
+    <li><span class="eyebrow">Casualties</span> Meduza on UK MoD: <a href="https://meduza.io/en/news/2023/06/18/u-k-defense-ministry-russia-taking-heaviest-losses-since-battle-for-bakhmut-in-southern-ukraine" target="_blank" rel="noopener">Bakhmut</a></li>
+    <li><span class="eyebrow">Casualties</span> The Insider: <a href="https://theins.press/en/politics/270061" target="_blank" rel="noopener">US intelligence and BBC Russian on Avdiivka</a></li>
+    <li><span class="eyebrow">Casualties</span> Meduza: <a href="https://meduza.io/en/feature/2024/02/21/russian-war-blogger-reportedly-dies-by-suicide-after-saying-16-000-russian-troops-lost-in-battle-for-avdiivka" target="_blank" rel="noopener">Murz on Avdiivka</a></li>
+    <li><span class="eyebrow">Casualties</span> Euronews: <a href="https://www.euronews.com/2025/04/30/about-600-north-korean-soldiers-killed-in-russias-war-against-ukraine-seoul-says" target="_blank" rel="noopener">South Korea NIS on North Korean dead</a></li>
+    <li><span class="eyebrow">Casualties</span> Yahoo/Bloomberg: <a href="https://www.yahoo.com/news/world/articles/russia-lost-over-50-000-021146312.html" target="_blank" rel="noopener">NATO official, September 2026</a></li>
+    <li><span class="eyebrow">Casualties</span> Yahoo/Bloomberg: <a href="https://www.yahoo.com/news/articles/russian-losses-january-exceeded-number-051300694.html" target="_blank" rel="noopener">Western officials, Dec 2025 – Jan 2026</a></li>
+    <li><span class="eyebrow">Statements</span> Reuters via Yahoo: <a href="https://ca.news.yahoo.com/ukraines-zelenskiy-more-1-100-190500142.html" target="_blank" rel="noopener">Zelensky on Bakhmut</a></li>
+    <li><span class="eyebrow">Statements</span> Telegraph via Yahoo: <a href="https://www.yahoo.com/news/russia-loses-17-000-men-142801861.html" target="_blank" rel="noopener">Lykhovyi on Avdiivka</a></li>
+    <li><span class="eyebrow">Statements</span> Euronews: <a href="https://www.euronews.com/2023/10/27/ukraine-war-in-maps-kyiv-says-russian-forces-have-suffered-heavy-losses-near-avdiivka-and-" target="_blank" rel="noopener">Shtupun on Avdiivka</a></li>
+    <li><span class="eyebrow">Statements</span> Reuters via The Star: <a href="https://thestar.com.my/news/world/2025/01/07/ukraine039s-zelenskiy-says-nearly-15000-russians-have-been-killed-in-kursk-region" target="_blank" rel="noopener">Zelensky on Kursk</a></li>
+    <li><span class="eyebrow">Statements</span> Washington Post: <a href="https://www.washingtonpost.com/world/2025/07/23/ukraine-syrsky-interview-war-trump/" target="_blank" rel="noopener">Syrskyi on Kursk</a></li>
+    <li><span class="eyebrow">Statements</span> The Defense Post: <a href="https://thedefensepost.com/2026/11/03/russia-lost-record-troops-october/" target="_blank" rel="noopener">October 2026</a></li>
+    <li><span class="eyebrow">Statements</span> Al Jazeera: <a href="https://www.aljazeera.com/news/2026/4/10/ukraine-says-russia-suffers-record-losses-of-soldiers" target="_blank" rel="noopener">March 2026, drones 96%</a></li>
+    <li><span class="eyebrow">Statements</span> Business Insider: <a href="https://www.businessinsider.com/ukraine-russia-tipping-point-battlefield-kills-mykhailo-fedorov-2026-1" target="_blank" rel="noopener">Fedorov's 50,000 target</a></li>
+    <li><span class="eyebrow">Recruitment</span> Moscow Times: <a href="https://www.themoscowtimes.com/2025/12/24/russian-army-recruited-417k-contract-soldiers-in-2025-medvedev-claims-a91536" target="_blank" rel="noopener">Medvedev 2025</a></li>
+    <li><span class="eyebrow">Recruitment</span> TASS: <a href="https://tass.com/defense/1903743/amp" target="_blank" rel="noopener">~450,000 in 2024</a></li>
+    <li><span class="eyebrow">Recruitment</span> iStories: <a href="https://istories.media/en/stories/2025/05/30/up-to-407k-russians-signed-contracts-in-2024/" target="_blank" rel="noopener">up to 407,000 in 2024</a></li>
+    <li><span class="eyebrow">Recruitment</span> Janis Kluge: <a href="https://janiskluge.substack.com/p/federal-budget-data-shows-71216-new" target="_blank" rel="noopener">Q1 2026</a></li>
+    <li><span class="eyebrow">Recruitment</span> Reuters via Yahoo: <a href="https://www.yahoo.com/news/articles/russias-medvedev-says-127-000-163833493.html" target="_blank" rel="noopener">127,000 in 2026</a></li>
+    <li><span class="eyebrow">Force size</span> TASS: <a href="https://tass.com/defense/2145875" target="_blank" rel="noopener">Putin: over 700,000</a></li>
+    <li><span class="eyebrow">Force size</span> Reuters via Yahoo: <a href="https://www.yahoo.com/news/putin-says-nearly-700-000-201847175.html" target="_blank" rel="noopener">Putin: nearly 700,000 (2024)</a></li>
+    <li><span class="eyebrow">Front length</span> AP via Yahoo: <a href="https://www.yahoo.com/news/articles/ukraines-front-line-grows-bigger-103359957.html" target="_blank" rel="noopener">citing Ukraine's command</a></li>
+    <li><span class="eyebrow">Method</span>  <a href="https://www.gov.uk/government/publications/the-professional-head-of-intelligence-assessment-phia-probability-yardstick" target="_blank" rel="noopener">UK PHIA probability yardstick</a></li>
+    <li><span class="eyebrow">Firepower</span> RUSI: <a href="https://www.rusi.org/explore-our-research/publications/special-resources/tactical-developments-third-year-russo-ukrainian-war" target="_blank" rel="noopener">Tactical developments in the third year (Feb 2025)</a></li>
+    <li><span class="eyebrow">Firepower</span> RUSI: <a href="https://static.rusi.org/emergent-approaches-combined-arms-manoeuvre-ukraine-oct-25.pdf" target="_blank" rel="noopener">Emergent approaches to combined arms manoeuvre (Oct 2025)</a></li>
+    <li><span class="eyebrow">Firepower</span> CNN via KVIA: <a href="https://kvia.com/politics/cnn-us-politics/2023/01/10/russian-artillery-fire-down-nearly-75-us-officials-say-in-latest-sign-of-struggles-for-moscow/" target="_blank" rel="noopener">Russian artillery fire down 75% (Jan 2023)</a></li>
+    <li><span class="eyebrow">Firepower</span> ERR: <a href="https://news.err.ee/1609139906/edf-colonel-russia-still-has-four-million-artillery-shells-left" target="_blank" rel="noopener">Estonian intelligence on Russian fire rates</a></li>
+    <li><span class="eyebrow">Firepower</span> CNN: <a href="https://edition.cnn.com/2024/03/10/politics/russia-artillery-shell-production-us-europe-ukraine" target="_blank" rel="noopener">5:1 shell ratio (Mar 2024)</a></li>
+    <li><span class="eyebrow">Firepower</span> Business Insider via Yahoo: <a href="https://www.yahoo.com/news/russias-artillery-advantage-shrinking-glide-125653856.html" target="_blank" rel="noopener">ratio narrows to 1.5:1 (Dec 2024)</a></li>
+    <li><span class="eyebrow">Firepower</span> NYT via NZ Herald: <a href="https://nzherald.co.nz/world/the-new-war-in-ukraine-a-thousand-snipers-in-the-sky/NQPUP6COP5FZZJMPWR42YN3AVM" target="_blank" rel="noopener">drones become the main killer (Mar 2025)</a></li>
+    <li><span class="eyebrow">Firepower</span> iStories: <a href="https://istories.media/en/news/2025/03/25/uavs-injures/" target="_blank" rel="noopener">Russian military medics: >75% of injuries from drones</a></li>
+    <li><span class="eyebrow">Firepower</span> Politico via Azvision: <a href="https://en.azvision.az/news/196259/news.html" target="_blank" rel="noopener">Latvian intelligence: drones cause 70–80% of casualties</a></li>
+    <li><span class="eyebrow">Firepower</span> CNN via KEYT: <a href="https://keyt.com/news/national-world/cnn-world/2026/07/02/bloodier-than-stalingrad-number-of-casualties-in-russias-war-on-ukraine-reaches-2-million/" target="_blank" rel="noopener">CSIS: exchange ratio ~8:1 in H1 2026</a></li>
+    <li><span class="eyebrow">Doctrine</span> Dupuy Institute: <a href="https://dupuyinstitute.org/2016/06/17/trevor-n-dupuys-combat-attrition-verities/" target="_blank" rel="noopener">combat attrition verities</a></li>
+    <li><span class="eyebrow">Doctrine</span> Dupuy Institute: <a href="https://dupuyinstitute.org/2018/12/14/comparing-force-ratios-to-casualty-exchange-ratios/" target="_blank" rel="noopener">force ratios vs casualty exchange ratios</a></li>
+    <li><span class="eyebrow">Doctrine</span> Dupuy Institute: <a href="https://dupuyinstitute.org/2024/04/30/analysis-of-force-ratios-using-the-campaign-data-base-cadb-second-continuation/" target="_blank" rel="noopener">loss exchange by battle outcome</a></li>
+    <li><span class="eyebrow">Doctrine</span> War on the Rocks: <a href="https://warontherocks.com/2026/04/update-from-the-battlefield-drones-distance-and-diminishing-returns-for-russia/" target="_blank" rel="noopener">Kofman & Evans, Apr 2026</a></li>
+    <li><span class="eyebrow">Doctrine</span> AP via ADN: <a href="https://www.adn.com/nation-world/2025/08/17/high-tech-drones-turn-ukraines-front-line-into-a-deadly-kill-zone-complicating-evacuations/" target="_blank" rel="noopener">drone kill zone delays evacuation</a></li>
+  </ol>
+</section>
+
+<footer>Charts and data refresh on the 1st of each month; data currently to <span data-asof>6 Nov 2026</span>. Written findings last reviewed <span id="reviewed">6 Nov 2026</span>. Statistics computed for this page from the sources above. Figures from either side's government are claims, not verified counts.</footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/;
+
+const NS = "http://www.w3.org/2000/svg";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = n => Math.round(n).toLocaleString("en-GB");
+const fmtK = n => (Math.abs(n) >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : Math.abs(n) >= 1000 ? Math.round(n / 1000) + "k" : String(Math.round(n)));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const dlabel = d => `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+const mlabel = d => `${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+const D = s => new Date(s.length === 7 ? s + "-01T00:00:00Z" : s + "T00:00:00Z");
+
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(parent, x, y, s, attrs = {}) { const t = el("text", { x, y, ...attrs }, parent); t.textContent = s; return t; }
+function niceTicks(max, n = 4) {
+  const raw = max / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw);
+  const out = [0]; while (out[out.length - 1] < max - 1e-9) out.push(out[out.length - 1] + step); return { ticks: out, top: out[out.length - 1] };
+}
+function setup(id, m = { t: 12, r: 12, b: 26, l: 46 }) {
+  const box = document.getElementById(id); box.innerHTML = "";
+  const W = box.clientWidth, H = box.clientHeight;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img" }, box);
+  const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; box.appendChild(tip);
+  return { box, svg, tip, W, H, m, iw: W - m.l - m.r, ih: H - m.t - m.b };
+}
+function showTip(c, x, y, html) {
+  c.tip.innerHTML = html; c.tip.hidden = false;
+  const w = c.tip.offsetWidth; const cx = Math.max(w / 2 + 2, Math.min(c.W - w / 2 - 2, x));
+  c.tip.style.left = cx + "px"; c.tip.style.top = y + "px";
+}
+function yAxis(c, ticks, ys, f = fmtK) {
+  ticks.forEach(v => { const y = ys(v); el("line", { x1: c.m.l, x2: c.W - c.m.r, y1: y, y2: y, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, c.m.l - 6, y + 3.5, f(v), { "text-anchor": "end" }); });
+}
+function yearAxis(c, xs, d0, d1) {
+  for (let y = d0.getUTCFullYear(); y <= d1.getUTCFullYear(); y++) {
+    const d = new Date(Date.UTC(y, 0, 1)); if (d < d0) continue; const x = xs(d);
+    el("line", { x1: x, x2: x, y1: c.m.t + c.ih, y2: c.m.t + c.ih + 4, class: "axis" }, c.svg);
+    txt(c.svg, x + 3, c.m.t + c.ih + 16, String(y));
+  }
+}
+
+/* 1. Daily series */
+function drawDaily() {
+  const c = setup("c-daily", { t: 12, r: 14, b: 24, l: 46 });
+  const rows = DATA.daily.map(r => [D(r[0]), r[1], r[2]]);
+  const d0 = rows[0][0], d1 = rows[rows.length - 1][0];
+  const { ticks, top } = niceTicks(3200, 4);
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  const p1 = rows.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1]).toFixed(1)).join("");
+  el("path", { d: p1, fill: "none", stroke: css("--s-muted"), "stroke-width": 1, "stroke-opacity": 0.8 }, c.svg);
+  const area = rows.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[2]).toFixed(1)).join("");
+  el("path", { d: area + `L${xs(d1)},${ys(0)}L${xs(d0)},${ys(0)}Z`, fill: css("--s-claims"), "fill-opacity": 0.08 }, c.svg);
+  el("path", { d: area, fill: "none", stroke: css("--s-claims"), "stroke-width": 2, "stroke-linejoin": "round" }, c.svg);
+  const last = rows[rows.length - 1];
+  el("circle", { cx: xs(last[0]), cy: ys(last[2]), r: 4, fill: css("--s-claims"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+  txt(c.svg, xs(last[0]) - 8, ys(last[2]) - 9, fmt(last[2]) + "/day", { class: "lbl-strong", "text-anchor": "end" });
+  const mar = rows.find(r => r[1] === 3160);
+  if (mar) txt(c.svg, xs(mar[0]) + 6, ys(3160) + 10, "3,160 on " + dlabel(mar[0]), { class: "lbl" });
+  const cross = el("line", { y1: c.m.t, y2: c.m.t + c.ih, stroke: css("--ink-3"), "stroke-width": 1, visibility: "hidden" }, c.svg);
+  const dot = el("circle", { r: 4, fill: css("--s-claims"), stroke: css("--surface"), "stroke-width": 2, visibility: "hidden" }, c.svg);
+  const hit = el("rect", { x: c.m.l, y: c.m.t, width: c.iw, height: c.ih, fill: "transparent" }, c.svg);
+  const move = e => {
+    const r0 = c.svg.getBoundingClientRect(); const px = (e.clientX - r0.left) * c.W / r0.width;
+    const t = d0.getTime() + (px - c.m.l) / c.iw * (d1 - d0); const i = Math.max(0, Math.min(rows.length - 1, Math.round((t - d0) / 864e5)));
+    const r = rows[i], x = xs(r[0]);
+    cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", x); dot.setAttribute("cy", ys(r[2])); dot.setAttribute("visibility", "visible");
+    showTip(c, x * r0.width / c.W, ys(Math.max(r[1], r[2])) * r0.height / c.H, `${dlabel(r[0])}<br><span class="k">Claimed that day</span> <b>${fmt(r[1])}</b><br><span class="k">30-day average</span> <b>${fmt(r[2])}</b>`);
+  };
+  hit.addEventListener("pointermove", move);
+  hit.addEventListener("pointerleave", () => { c.tip.hidden = true; cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); });
+}
+
+/* 1b. Season heatmap */
+function drawHeat() {
+  const t = document.getElementById("heat"); const seasons = ["Winter", "Spring", "Summer", "Autumn"];
+  const by = {}; DATA.seasons.forEach(([y, s, m, cv, n]) => { (by[y] = by[y] || {})[s] = { m, cv, n }; });
+  const ramp = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"];
+  let h = "<thead><tr><th>Year</th>" + seasons.map(s => `<th>${s}</th>`).join("") + "</tr></thead><tbody>";
+  Object.keys(by).forEach(y => {
+    h += `<tr><td class="row">${y}</td>`;
+    seasons.forEach(s => {
+      const v = by[y][s];
+      if (!v || v.n < 20) { h += `<td class="na">–</td>`; return; }
+      const k = Math.min(6, Math.max(0, Math.floor(v.m / 2000 * 7)));
+      const fg = k >= 3 ? "#ffffff" : "#0b1f33";
+      h += `<td style="background:${ramp[k]};color:${fg}" title="${s} ${y}: ${fmt(v.m)} a day on average, day-to-day variation ${Math.round(v.cv * 100)}%">${fmt(v.m)}<small>±${Math.round(v.cv * 100)}%</small></td>`;
+    });
+    h += "</tr>";
+  });
+  t.innerHTML = h + "</tbody>";
+}
+
+/* 2. Simulator */
+const relSeries = (() => {
+  const rows = DATA.daily.filter(r => r[0] >= "2023-01-01").map(r => r[1]);
+  const out = [];
+  for (let i = 0; i < rows.length; i++) {
+    const w = rows.slice(Math.max(0, i - 14), i + 15).slice().sort((a, b) => a - b);
+    out.push(rows[i] / w[Math.floor(w.length / 2)]);
+  }
+  const mean = out.reduce((a, b) => a + b, 0) / out.length;
+  const sd = Math.sqrt(out.reduce((a, b) => a + (b - mean) ** 2, 0) / out.length) / mean;
+  const big = out.filter(v => Math.abs(v / mean - 1) > 0.2).length / out.length;
+  return { sd, big };
+})();
+const SUMMER_CV = 0.075;
+function sim() {
+  const g = id => +document.getElementById(id).value;
+  const front = g("r-front"), sector = g("r-sector"), k = g("r-k"), shock = g("r-shock") / 100, mu = g("r-mu");
+  document.getElementById("o-front").textContent = fmt(front) + " km";
+  document.getElementById("o-sector").textContent = sector + " km";
+  document.getElementById("o-k").textContent = k.toFixed(1);
+  document.getElementById("o-shock").textContent = "±" + Math.round(shock * 100) + "%";
+  document.getElementById("o-mu").textContent = fmt(mu) + "/day";
+  const N = front / sector;
+  const cv = Math.sqrt(1 / mu + 1 / (N * k) + shock * shock);
+  document.getElementById("sim-v").textContent = "±" + (cv * 100).toFixed(1) + "%";
+  const pBig = 2 * (1 - normCdf(0.2 / cv));
+  const obs = relSeries.sd;
+  let read;
+  if (cv < SUMMER_CV) read = `With these settings the model expects a steadier number than even the summer figures. Real losses would need to be very evenly spread and almost untouched by front-wide events.`;
+  else if (cv < obs - 0.02) read = `Expected variation is between the summer level (±${(SUMMER_CV * 100).toFixed(0)}%) and the overall level (±${(obs * 100).toFixed(1)}%). Under these settings the series is about as steady as a real count could be.`;
+  else if (cv < obs + 0.03) read = `This matches the overall series (±${(obs * 100).toFixed(1)}%). It does not match the summer months (±${(SUMMER_CV * 100).toFixed(0)}%), which are steadier than this model allows.`;
+  else read = `The model expects more variation than the series ever shows. About ${Math.round(pBig * 100)}% of days should differ from their monthly norm by more than 20%; in the official series ${Math.round(relSeries.big * 100)}% do.`;
+  document.getElementById("sim-read").textContent = read;
+  drawSimBar(cv, obs);
+}
+function normCdf(z) { const t = 1 / (1 + 0.2316419 * Math.abs(z)); const d = 0.3989423 * Math.exp(-z * z / 2); const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - p : p; }
+function drawSimBar(cv, obs) {
+  const c = setup("c-sim", { t: 44, r: 16, b: 34, l: 16 });
+  const max = 0.45, xs = v => c.m.l + Math.min(v, max) / max * c.iw, y = c.m.t + 18;
+  el("rect", { x: c.m.l, y: y - 4, width: c.iw, height: 8, rx: 4, fill: css("--grid") }, c.svg);
+  el("rect", { x: c.m.l, y: y - 4, width: Math.max(4, xs(cv) - c.m.l), height: 8, rx: 4, fill: css("--accent") }, c.svg);
+  [0, 0.1, 0.2, 0.3, 0.4].forEach(v => txt(c.svg, xs(v), y + 26, "±" + Math.round(v * 100) + "%", { "text-anchor": "middle" }));
+  const mark = (v, label, lift, color) => {
+    const x = xs(v);
+    el("line", { x1: x, x2: x, y1: y - 10 - lift, y2: y + 4, stroke: color, "stroke-width": 2 }, c.svg);
+    txt(c.svg, x - 3, y - 14 - lift, label, { class: "lbl-strong", "text-anchor": "start" });
+  };
+  mark(SUMMER_CV, "Summers 2024–26", 22, css("--s-claims"));
+  mark(obs, "All days", 4, css("--s-claims"));
+  el("circle", { cx: xs(cv), cy: y, r: 6, fill: css("--accent"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+  txt(c.svg, c.m.l, c.H - 2, "Blue ticks: official series, 2023–2026. Dot: model.", { class: "lbl" });
+}
+
+/* 2b. Monthly claims vs territory (ISW via AFP, DeepState for comparison) */
+function drawMonthly() {
+  const terr = Object.fromEntries(DATA.terr.map(r => [r[0], r]));
+  const ds = Object.fromEntries(DATA.monthly.map(r => [r[0], r[4] + r[5]]));
+  const rows = DATA.monthly.filter(r => r[0] >= "2024-01").map(r => ({ k: r[0], d: D(r[0]), sum: r[1], isw: terr[r[0]] ? terr[r[0]][1] : null, basis: terr[r[0]] ? terr[r[0]][2] : null, ds: ds[r[0]] }));
+  const n = rows.length;
+  const bandX = (c, i) => c.m.l + i / n * c.iw, bw = c => c.iw / n;
+  const yearTicks = c => rows.forEach((r, i) => { if (r.d.getUTCMonth() === 0) txt(c.svg, bandX(c, i) + 2, c.m.t + c.ih + 15, String(r.d.getUTCFullYear())); });
+  const tipAll = r => `${mlabel(r.d)}<br><span class="k">Claimed Russian losses</span> <b>${fmt(r.sum)}</b><br><span class="k">ISW (via AFP)</span> <b>${r.isw === null ? "not reported" : (r.isw > 0 ? "+" : "") + fmt(r.isw) + " km²"}</b>${r.basis ? ` <span class="k">${r.basis}</span>` : ""}<br><span class="k">DeepState, net</span> <b>${(r.ds > 0 ? "+" : "") + fmt(r.ds)} km²</b>`;
+  const hover = c => {
+    const hit = el("rect", { x: c.m.l, y: c.m.t, width: c.iw, height: c.ih, fill: "transparent" }, c.svg);
+    const hl = el("rect", { y: c.m.t, height: c.ih, width: bw(c), fill: css("--ink"), "fill-opacity": 0.06, visibility: "hidden" }, c.svg);
+    c.svg.insertBefore(hl, c.svg.firstChild);
+    hit.addEventListener("pointermove", e => {
+      const r0 = c.svg.getBoundingClientRect(); const px = (e.clientX - r0.left) * c.W / r0.width;
+      const i = Math.max(0, Math.min(n - 1, Math.floor((px - c.m.l) / bw(c))));
+      hl.setAttribute("x", bandX(c, i)); hl.setAttribute("visibility", "visible");
+      showTip(c, (bandX(c, i) + bw(c) / 2) * r0.width / c.W, c.m.t * r0.height / c.H + 10, tipAll(rows[i]));
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; hl.setAttribute("visibility", "hidden"); });
+  };
+  {
+    const c = setup("c-loss-m", { t: 18, r: 12, b: 20, l: 46 });
+    const { ticks, top } = niceTicks(55000, 3); const ys = v => c.m.t + c.ih - v / top * c.ih;
+    yAxis(c, ticks, ys); txt(c.svg, c.m.l, 10, "Claimed Russian losses per month (Ukraine General Staff)", { class: "lbl" });
+    rows.forEach((r, i) => el("path", { d: bar(bandX(c, i) + 1, ys(r.sum), bw(c) - 2, ys(0) - ys(r.sum)), fill: css("--s-claims") }, c.svg));
+    yearTicks(c); hover(c);
+  }
+  {
+    const c = setup("c-terr", { t: 18, r: 12, b: 20, l: 46 });
+    const top = 800, bot = -400; const ys = v => c.m.t + (top - v) / (top - bot) * c.ih;
+    yAxis(c, [-400, 0, 400, 800], ys, v => (v > 0 ? "+" : "") + v);
+    txt(c.svg, c.m.l, 10, "Net ground taken by Russia per month (km²)", { class: "lbl" });
+    rows.forEach((r, i) => {
+      const x = bandX(c, i) + 1, w = (bw(c) - 3) / 2;
+      if (r.isw === null) txt(c.svg, x + w / 2, ys(0) - 4, "?", { "text-anchor": "middle", class: "lbl" });
+      else if (r.isw >= 0) el("path", { d: bar(x, ys(r.isw), w, ys(0) - ys(r.isw)), fill: css("--s-indep") }, c.svg);
+      else el("path", { d: barDown(x, ys(0), w, ys(r.isw) - ys(0)), fill: css("--s-indep") }, c.svg);
+      const x2 = x + w + 1;
+      if (r.ds >= 0) el("path", { d: bar(x2, ys(r.ds), w, ys(0) - ys(r.ds)), fill: css("--s-muted") }, c.svg);
+      else el("path", { d: barDown(x2, ys(0), w, ys(r.ds) - ys(0)), fill: css("--s-muted") }, c.svg);
+    });
+    yearTicks(c); hover(c);
+  }
+}
+function bar(x, y, w, h) { const r = Math.min(3, w / 2, Math.max(0, h)); if (h <= 0) return ""; return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`; }
+function barDown(x, y, w, h) { const r = Math.min(3, w / 2, Math.max(0, h)); if (h <= 0) return ""; return `M${x},${y}V${y + h - r}Q${x},${y + h} ${x + r},${y + h}H${x + w - r}Q${x + w},${y + h} ${x + w},${y + h - r}V${y}Z`; }
+function barRight(x, y, w, h) { const r = Math.min(3, h / 2, Math.max(0, w)); if (w <= 0) return ""; return `M${x},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h - r}Q${x + w},${y + h} ${x + w - r},${y + h}H${x}Z`; }
+function barLeft(x, y, w, h) { const r = Math.min(3, h / 2, Math.max(0, w)); if (w <= 0) return ""; return `M${x},${y}H${x - w + r}Q${x - w},${y} ${x - w},${y + r}V${y + h - r}Q${x - w},${y + h} ${x - w + r},${y + h}H${x}Z`; }
+
+/* 3. Weather bands */
+function drawWeather(id, key) {
+  const rows = DATA.weather[key];
+  const base = rows.reduce((a, r) => a + (100 + r[1]) * r[3], 0) / rows.reduce((a, r) => a + r[3], 0);
+  const vals = rows.map(r => ({ l: r[0], v: (100 + r[1]) / base * 100 - 100, ci: r[2], n: r[3] }));
+  const narrow = document.getElementById(id).clientWidth < 360;
+  const c = setup(id, { t: 6, r: 14, b: 22, l: narrow ? 96 : 112 });
+  const lim = 12, xs = v => c.m.l + (Math.max(-lim, Math.min(lim, v)) + lim) / (2 * lim) * c.iw;
+  const rh = c.ih / vals.length;
+  [-10, -5, 0, 5, 10].forEach(v => { el("line", { x1: xs(v), x2: xs(v), y1: c.m.t, y2: c.m.t + c.ih, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, xs(v), c.H - 6, (v > 0 ? "+" : "") + v + "%", { "text-anchor": "middle" }); });
+  vals.forEach((r, i) => {
+    const y = c.m.t + i * rh, bh = Math.min(14, rh - 8), by = y + (rh - bh) / 2;
+    txt(c.svg, c.m.l - 8, by + bh / 2 + 4, r.l, { class: "lbl", "text-anchor": "end" });
+    const x0 = xs(0), x1 = xs(r.v);
+    const color = css("--s-claims");
+    el("path", { d: r.v >= 0 ? barRight(x0, by, x1 - x0, bh) : barLeft(x0, by, x0 - x1, bh), fill: color, "fill-opacity": r.n < 50 ? 0.45 : 1 }, c.svg);
+    const lo = xs(r.v - r.ci), hi = xs(r.v + r.ci), cy = by + bh / 2;
+    el("line", { x1: lo, x2: hi, y1: cy, y2: cy, stroke: css("--ink"), "stroke-width": 1.2 }, c.svg);
+    el("line", { x1: lo, x2: lo, y1: cy - 4, y2: cy + 4, stroke: css("--ink"), "stroke-width": 1.2 }, c.svg);
+    el("line", { x1: hi, x2: hi, y1: cy - 4, y2: cy + 4, stroke: css("--ink"), "stroke-width": 1.2 }, c.svg);
+    const hit = el("rect", { x: 0, y, width: c.W, height: rh, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, xs(r.v) * r0.width / c.W, by * r0.height / c.H, `${r.l}<br><span class="k">vs typical day</span> <b>${r.v >= 0 ? "+" : ""}${r.v.toFixed(1)}%</b> <span class="k">±${r.ci.toFixed(1)}</span><br><span class="k">Days</span> <b>${fmt(r.n)}</b>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+
+
+/* 4. Battles */
+function drawBattleDaily() {
+  const c = setup("c-battle-daily", { t: 26, r: 14, b: 24, l: 46 });
+  const rows = DATA.daily.map(r => [D(r[0]), r[1], r[2]]);
+  const d0 = rows[0][0], d1 = rows[rows.length - 1][0];
+  const top = 2600, ticks = [0, 500, 1000, 1500, 2000, 2500];
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  const B = DATA.battles.filter(b => b.kind === "battle");
+  B.forEach((b, i) => {
+    const x0 = xs(D(b.ps)), x1 = Math.max(x0 + 3, xs(D(b.pe)) + 1);
+    const col = css(b.side === "RU" ? "--s-ru" : "--s-ua");
+    el("rect", { x: x0, y: c.m.t, width: x1 - x0, height: c.ih, fill: col, "fill-opacity": 0.18 }, c.svg);
+    el("rect", { x: x0, y: c.m.t - 3, width: x1 - x0, height: 3, fill: col }, c.svg);
+    txt(c.svg, (x0 + x1) / 2, c.m.t - 7 - (i % 2) * 10, String(i + 1), { "text-anchor": "middle" });
+  });
+  const p1 = rows.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1]).toFixed(1)).join("");
+  el("path", { d: p1, fill: "none", stroke: css("--s-muted"), "stroke-width": 1, "stroke-opacity": 0.7 }, c.svg);
+  const p2 = rows.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[2]).toFixed(1)).join("");
+  el("path", { d: p2, fill: "none", stroke: css("--s-claims"), "stroke-width": 2, "stroke-linejoin": "round" }, c.svg);
+  B.forEach((b, i) => {
+    const x0 = xs(D(b.ps)), x1 = Math.max(x0 + 6, xs(D(b.pe)) + 1);
+    const hit = el("rect", { x: x0 - 2, y: c.m.t - 24, width: x1 - x0 + 4, height: c.ih + 24, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, (x0 + x1) / 2 * r0.width / c.W, (c.m.t + 30) * r0.height / c.H, `${i + 1}. ${b.name}<br><span class="k">${dlabel(D(b.ps))} – ${dlabel(D(b.pe))}</span><br><span class="k">Claimed per day</span> <b>${fmt(b.win)}</b> <span class="k">vs ${fmt(b.pre)} before</span>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function eventBars(id, list, numbered) {
+  const box = document.getElementById(id);
+  const rh = 26; box.style.height = (list.length * rh + 30) + "px";
+  const narrow = box.clientWidth < 480;
+  const c = setup(id, { t: 4, r: 52, b: 24, l: narrow ? 150 : 230 });
+  const lo = -40, hi = 90, xs = v => c.m.l + (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * c.iw;
+  [-25, 0, 25, 50, 75].forEach(v => { el("line", { x1: xs(v), x2: xs(v), y1: c.m.t, y2: c.m.t + c.ih, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, xs(v), c.H - 6, (v > 0 ? "+" : "") + v + "%", { "text-anchor": "middle" }); });
+  list.forEach((b, i) => {
+    const y = c.m.t + i * rh, bh = 12, by = y + (rh - bh) / 2;
+    if (b.band) el("rect", { x: xs(b.band[0]), y: y + 3, width: xs(b.band[1]) - xs(b.band[0]), height: rh - 6, fill: css("--grid"), rx: 2 }, c.svg);
+    const label = (numbered ? (b.n + ". ") : "") + b.name;
+    txt(c.svg, c.m.l - 8, by + bh / 2 + 4, label.length > (narrow ? 22 : 34) ? label.slice(0, narrow ? 21 : 33) + "…" : label, { class: "lbl", "text-anchor": "end" });
+    const x0 = xs(0), x1 = xs(b.chg), col = css(b.side === "RU" ? "--s-ru" : b.side === "UA" ? "--s-ua" : "--s-muted");
+    el("path", { d: b.chg >= 0 ? barRight(x0, by, x1 - x0, bh) : barLeft(x0, by, x0 - x1, bh), fill: col }, c.svg);
+    const outside = b.pct > 90 || b.pct < 10;
+    txt(c.svg, b.chg >= 0 ? x1 + 5 : x0 + 5, by + bh / 2 + 4, (b.chg > 0 ? "+" : "") + Math.round(b.chg) + "%", { class: outside ? "lbl-strong" : "lbl" });
+    const hit = el("rect", { x: 0, y, width: c.W, height: rh, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, Math.max(xs(b.chg), xs(0)) * r0.width / c.W, by * r0.height / c.H, `${b.name}<br><span class="k">${dlabel(D(b.ps))} – ${dlabel(D(b.pe))} (${b.days} days)</span><br><span class="k">Claimed per day</span> <b>${fmt(b.win)}</b> <span class="k">vs ${fmt(b.pre)} in the 6 weeks before</span><br><span class="k">Bigger change than</span> <b>${b.pct}%</b> <span class="k">of ordinary stretches</span>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawBattles() {
+  const B = DATA.battles.filter(b => b.kind === "battle").map((b, i) => ({ ...b, n: i + 1, band: DATA.bands[b.days] }));
+  eventBars("c-battle-bars", B, true);
+  eventBars("c-truce", DATA.battles.filter(b => b.kind === "truce").map(b => ({ ...b, band: DATA.bands[b.days] })), false);
+}
+
+
+/* 5. Doctrine and firepower */
+function drawPostureScatter() {
+  const c = setup("c-posture", { t: 14, r: 16, b: 38, l: 50 });
+  const terr = DATA.terr, mon = Object.fromEntries(DATA.monthly.map(r => [r[0], r]));
+  const pts = terr.map(r => ({ k: r[0], y: r[0].slice(0, 4), gain: r[1], perday: mon[r[0]][2], basis: r[2] }));
+  const xlo = -320, xhi = 800, ylo = 800, yhi = 1800;
+  const xs = v => c.m.l + (v - xlo) / (xhi - xlo) * c.iw, ys = v => c.m.t + c.ih - (v - ylo) / (yhi - ylo) * c.ih;
+  [800, 1000, 1200, 1400, 1600, 1800].forEach(v => { el("line", { x1: c.m.l, x2: c.W - c.m.r, y1: ys(v), y2: ys(v), class: "grid" }, c.svg); txt(c.svg, c.m.l - 6, ys(v) + 3.5, fmt(v), { "text-anchor": "end" }); });
+  [-200, 0, 200, 400, 600, 800].forEach(v => { el("line", { x1: xs(v), x2: xs(v), y1: c.m.t, y2: c.m.t + c.ih, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, xs(v), c.m.t + c.ih + 15, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(c.svg, c.m.l + c.iw / 2, c.H - 4, "Net km² taken by Russia that month (ISW via AFP)", { class: "lbl", "text-anchor": "middle" });
+  txt(c.svg, xs(-310), ys(1780), "Claimed per day", { class: "lbl" });
+  const col = { "2024": css("--yr-1"), "2025": css("--yr-2"), "2026": css("--yr-3") };
+  ["2024", "2025", "2026"].forEach(y => {
+    const P = pts.filter(p => p.y === y); if (P.length < 3) return;
+    const mx = P.reduce((a, p) => a + p.gain, 0) / P.length, my = P.reduce((a, p) => a + p.perday, 0) / P.length;
+    const sl = P.reduce((a, p) => a + (p.gain - mx) * (p.perday - my), 0) / P.reduce((a, p) => a + (p.gain - mx) ** 2, 0);
+    const x0 = Math.min(...P.map(p => p.gain)), x1 = Math.max(...P.map(p => p.gain));
+    el("line", { x1: xs(x0), x2: xs(x1), y1: ys(my + sl * (x0 - mx)), y2: ys(my + sl * (x1 - mx)), stroke: col[y], "stroke-width": 2, "stroke-opacity": 0.8 }, c.svg);
+    txt(c.svg, xs(x1) + 4, ys(my + sl * (x1 - mx)) + 4, y, { class: "lbl-strong" });
+  });
+  pts.forEach(p => {
+    const cx = xs(p.gain), cy = ys(p.perday);
+    el("circle", { cx, cy, r: 5, fill: col[p.y], stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+    const hit = el("circle", { cx, cy, r: 11, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, cx * r0.width / c.W, cy * r0.height / c.H, `${mlabel(D(p.k))}<br><span class="k">Russia took (ISW)</span> <b>${(p.gain > 0 ? "+" : "") + fmt(p.gain)} km²</b><br><span class="k">Claimed per day</span> <b>${fmt(p.perday)}</b>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawPostureSplit() {
+  const B = DATA.battles.filter(b => b.kind === "battle");
+  const groups = [["RU", "before Aug 2024"], ["RU", "since Aug 2024"], ["UA", "before Aug 2024"], ["UA", "since Aug 2024"]];
+  const box = document.getElementById("c-split"); const rh = 40; box.style.height = (groups.length * rh + 30) + "px";
+  const narrow = box.clientWidth < 480;
+  const c = setup("c-split", { t: 4, r: 16, b: 24, l: narrow ? 120 : 190 });
+  const lo = -25, hi = 95, xs = v => c.m.l + (v - lo) / (hi - lo) * c.iw;
+  [-20, 0, 20, 40, 60, 80].forEach(v => { el("line", { x1: xs(v), x2: xs(v), y1: c.m.t, y2: c.m.t + c.ih, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, xs(v), c.H - 6, (v > 0 ? "+" : "") + v + "%", { "text-anchor": "middle" }); });
+  groups.forEach(([side, era], gi) => {
+    const y = c.m.t + gi * rh + rh / 2;
+    const L = B.filter(b => b.side === side && (era.startsWith("before") ? b.ps < "2024-08-01" : b.ps >= "2024-08-01"));
+    txt(c.svg, c.m.l - 8, y - 2, side === "RU" ? "Russia attacking" : "Ukraine attacking", { class: "lbl-strong", "text-anchor": "end" });
+    txt(c.svg, c.m.l - 8, y + 12, era + ` (${L.length})`, { class: "lbl", "text-anchor": "end" });
+    const med = L.map(b => b.chg).sort((a, b) => a - b)[Math.floor(L.length / 2)];
+    if (L.length) { el("line", { x1: xs(med), x2: xs(med), y1: y - 12, y2: y + 12, stroke: css("--ink"), "stroke-width": 2 }, c.svg); }
+    L.forEach(b => {
+      const cx = xs(Math.max(lo, Math.min(hi, b.chg)));
+      el("circle", { cx, cy: y, r: 6, fill: css(side === "RU" ? "--s-ru" : "--s-ua"), "fill-opacity": 0.85, stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+      const hit = el("circle", { cx, cy: y, r: 10, fill: "transparent" }, c.svg);
+      hit.addEventListener("pointerenter", () => { const r0 = c.svg.getBoundingClientRect(); showTip(c, cx * r0.width / c.W, (y - 6) * r0.height / c.H, `${b.name}<br><b>${b.chg > 0 ? "+" : ""}${b.chg}%</b> <span class="k">vs 6 weeks before</span>`); });
+      hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+    });
+  });
+}
+
+function drawEras() {
+  const c = setup("c-eras", { t: 44, r: 14, b: 24, l: 46 });
+  const rows = DATA.daily.filter(r => r[0] >= "2023-01-01").map(r => [D(r[0]), r[2]]);
+  const d0 = rows[0][0], d1 = rows[rows.length - 1][0];
+  const top = 2000, xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  DATA.eras.forEach((e, i) => {
+    const x0 = xs(D(e.a)), x1 = xs(D(e.b));
+    el("rect", { x: x0, y: c.m.t, width: x1 - x0, height: c.ih, fill: css("--ink"), "fill-opacity": i % 2 ? 0.07 : 0.025 }, c.svg);
+    el("line", { x1: x0, x2: x1, y1: ys(e.mean), y2: ys(e.mean), stroke: css("--ink"), "stroke-width": 1.5 }, c.svg);
+    txt(c.svg, (x0 + x1) / 2, ys(e.mean) - 6, fmt(e.mean), { class: "lbl-strong", "text-anchor": "middle" });
+    txt(c.svg, (x0 + x1) / 2, c.m.t - 8 - (i % 2) * 14, String(i + 1), { "text-anchor": "middle", class: "lbl-strong" });
+  });
+  yAxis(c, [0, 500, 1000, 1500, 2000], ys); yearAxis(c, xs, d0, d1);
+  const p = rows.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1]).toFixed(1)).join("");
+  el("path", { d: p, fill: "none", stroke: css("--s-claims"), "stroke-width": 2, "stroke-linejoin": "round" }, c.svg);
+  DATA.eras.forEach((e, i) => {
+    const x0 = xs(D(e.a)), x1 = xs(D(e.b));
+    const hit = el("rect", { x: x0, y: c.m.t - 30, width: x1 - x0, height: c.ih + 30, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => { const r0 = c.svg.getBoundingClientRect(); showTip(c, (x0 + x1) / 2 * r0.width / c.W, ys(e.mean) * r0.height / c.H, `${i + 1}. ${e.name}<br><span class="k">${e.note}</span><br><span class="k">Claimed per day</span> <b>${fmt(e.mean)}</b>`); });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+  document.getElementById("t-eras").innerHTML = `<table class="dtable" style="margin-top:6px"><thead><tr><th>Period</th><th>Firepower (outside sources)</th><th>Claimed per day</th><th>Change</th></tr></thead><tbody>` +
+    DATA.eras.map((e, i) => `<tr><td>${i + 1}. ${e.name}</td><td style="text-align:left;white-space:normal;min-width:22ch">${e.note}</td><td>${fmt(e.mean)}</td><td class="hi">${i ? ((e.mean / DATA.eras[i - 1].mean - 1) * 100 > 0 ? "+" : "") + Math.round((e.mean / DATA.eras[i - 1].mean - 1) * 100) + "%" : "–"}</td></tr>`).join("") + "</tbody></table>";
+}
+
+/* 6. Recruitment */
+const RECRUIT = [
+  { y: "2023", claims: 253270 / 12, off: 540000 / 12, lo: null, hi: null },
+  { y: "2024", claims: 430320 / 12, off: 450000 / 12, lo: 374200 / 12, hi: 407200 / 12 },
+  { y: "2025", claims: 418360 / 12, off: 422704 / 12, lo: 29000, hi: 31000 },
+  { y: "2026", claims: DATA.recruit26.avg, off: 137000 / 4, lo: 71216 / 3, hi: 30000 },
+];
+function drawRecruit() {
+  const c = setup("c-recruit", { t: 14, r: 12, b: 26, l: 46 });
+  const { ticks, top } = niceTicks(50000, 5); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  const gw = c.iw / RECRUIT.length, bwid = Math.min(46, gw * 0.32);
+  RECRUIT.forEach((r, i) => {
+    const cx = c.m.l + gw * i + gw / 2;
+    const xa = cx - bwid - 1, xb = cx + 1;
+    el("path", { d: bar(xa, ys(r.claims), bwid, ys(0) - ys(r.claims)), fill: css("--s-claims") }, c.svg);
+    el("path", { d: bar(xb, ys(r.off), bwid, ys(0) - ys(r.off)), fill: css("--s-recruit") }, c.svg);
+    txt(c.svg, xa + bwid / 2, ys(r.claims) - 5, fmtK(r.claims), { class: "lbl-strong", "text-anchor": "middle" });
+    if (r.lo) {
+      const x = xb + bwid / 2 + bwid * 0.7;
+      el("line", { x1: x, x2: x, y1: ys(r.lo), y2: ys(r.hi), stroke: css("--ink"), "stroke-width": 2 }, c.svg);
+      [r.lo, r.hi].forEach(v => el("line", { x1: x - 4, x2: x + 4, y1: ys(v), y2: ys(v), stroke: css("--ink"), "stroke-width": 2 }, c.svg));
+    }
+    txt(c.svg, cx, c.m.t + c.ih + 17, r.y + (r.y === "2026" ? " (" + DATA.recruit26.label + ")" : ""), { class: "lbl", "text-anchor": "middle" });
+    const hit = el("rect", { x: cx - gw / 2, y: c.m.t, width: gw, height: c.ih, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, cx * r0.width / c.W, ys(Math.max(r.claims, r.off)) * r0.height / c.H, `${r.y}, per month<br><span class="k">Claimed losses</span> <b>${fmt(r.claims)}</b><br><span class="k">Recruits (official)</span> <b>${fmt(r.off)}</b>` + (r.lo ? `<br><span class="k">Recruits (independent)</span> <b>${fmt(r.lo)}–${fmt(r.hi)}</b>` : ""));
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+  document.getElementById("t-recruit").innerHTML = `<table class="dtable"><thead><tr><th>Year</th><th>Claimed losses / month</th><th>Official recruits / month</th><th>Independent estimate / month</th></tr></thead><tbody>` +
+    RECRUIT.map(r => `<tr><td>${r.y}</td><td>${fmt(r.claims)}</td><td>${fmt(r.off)}</td><td>${r.lo ? fmt(r.lo) + "–" + fmt(r.hi) : "–"}</td></tr>`).join("") + "</tbody></table>";
+}
+
+/* 5. Cumulative vs independent */
+const PROBATE = [["2023-05-27", 47000, "Jul 2023 study"], ["2023-12-31", 75000, "Feb 2024 study"], ["2024-12-31", 165000, "Feb 2025 study"], ["2025-06-30", 220000, "Aug 2025 study"], ["2025-12-31", 352000, "May 2026 study"]];
+const NAMED = [["2025-11-29", 150000], ["2026-02-24", 200186], ["2026-06-15", 223000], ["2026-10-23", 283000]];
+const CSIS = [["2025-12-31", 1200000, "casualties", "Jan 2026 report"], ["2025-12-31", 325000, "deaths (upper)", "Jan 2026 report"], ["2026-06-30", 1400000, "casualties", "Jul 2026 report"], ["2026-06-30", 450000, "deaths (upper)", "Jul 2026 report"]];
+function cumAt(s) { let t = 0; for (const r of DATA.daily) { if (r[0] > s) break; t += r[1]; } return t; }
+function drawCum() {
+  const c = setup("c-cum", { t: 14, r: 16, b: 24, l: 50 });
+  const rows = []; let t = 0; DATA.daily.forEach(r => { t += r[1]; rows.push([D(r[0]), t]); });
+  const d0 = rows[0][0], d1 = rows[rows.length - 1][0];
+  const { ticks, top } = niceTicks(1700000, 4);
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  const p = rows.filter((r, i) => i % 3 === 0 || i === rows.length - 1).map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1]).toFixed(1)).join("");
+  el("path", { d: p, fill: "none", stroke: css("--s-claims"), "stroke-width": 2, "stroke-linejoin": "round" }, c.svg);
+  const last = rows[rows.length - 1];
+  txt(c.svg, xs(last[0]) - 6, ys(last[1]) - 8, fmt(last[1]), { class: "lbl-strong", "text-anchor": "end" });
+  const pts = [];
+  PROBATE.forEach(([d, v, s]) => pts.push({ d: D(d), v, kind: "Probate estimate (deaths)", s, fill: css("--s-indep"), stroke: css("--surface") }));
+  NAMED.forEach(([d, v]) => pts.push({ d: D(d), v, kind: "Named deaths (floor)", s: "Mediazona/BBC", fill: css("--surface"), stroke: css("--s-indep") }));
+  CSIS.forEach(([d, v, s, rep]) => pts.push({ d: D(d), v, kind: "CSIS " + s, s: rep, fill: css("--ink"), stroke: css("--surface") }));
+  let pd = ""; PROBATE.forEach(([d, v], i) => pd += (i ? "L" : "M") + xs(D(d)) + "," + ys(v));
+  el("path", { d: pd, fill: "none", stroke: css("--s-indep"), "stroke-width": 1.5, "stroke-opacity": 0.6 }, c.svg);
+  pts.forEach(pt => {
+    const x = xs(pt.d), y = ys(pt.v);
+    const dot = el("circle", { cx: x, cy: y, r: 5, fill: pt.fill, stroke: pt.stroke, "stroke-width": 2 }, c.svg);
+    const hit = el("circle", { cx: x, cy: y, r: 12, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect(); const ua = cumAt(pt.d.toISOString().slice(0, 10));
+      showTip(c, x * r0.width / c.W, y * r0.height / c.H, `${pt.kind}<br><span class="k">${dlabel(pt.d)} · ${pt.s}</span><br><b>${fmt(pt.v)}</b><br><span class="k">Ukraine's claim that day</span> <b>${fmt(ua)}</b> <span class="k">(${(ua / pt.v).toFixed(1)}×)</span>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+  txt(c.svg, xs(D("2025-12-31")) - 10, ys(1200000) - 10, "CSIS casualty estimates", { class: "lbl", "text-anchor": "end" });
+  txt(c.svg, xs(D("2026-10-23")) - 6, ys(283000) + 22, "283,000 named", { class: "lbl", "text-anchor": "end" });
+}
+function drawRatio() {
+  const R = [
+    ["27 May 2023", 206200, 47000, "Probate estimate"],
+    ["31 Dec 2023", 359230, 75000, "Probate estimate"],
+    ["31 Dec 2024", 789550, 165000, "Probate estimate"],
+    ["30 Jun 2025", 1020010, 220000, "Probate estimate (approx. date)"],
+    ["29 Nov 2025", 1171700, 150000, "Named deaths"],
+    ["31 Dec 2025", 1207910, 352000, "Probate incl. late registrations"],
+    ["31 Dec 2025", 1207910, 325000, "CSIS deaths (upper)"],
+    ["24 Feb 2026", 1261420, 200186, "Named deaths"],
+    ["30 Jun 2026", 1403550, 450000, "CSIS deaths (upper)"],
+    ["23 Oct 2026", 1574620, 283000, "Named deaths"],
+  ];
+  document.getElementById("t-ratio").innerHTML = `<table class="dtable"><thead><tr><th>Date</th><th>Independent figure</th><th>Deaths</th><th>Ukraine's claim</th><th>Ratio</th><th>Implied wounded per death</th></tr></thead><tbody>` +
+    R.map(([d, ua, ind, k]) => { const ratio = ua / ind; return `<tr><td>${d}</td><td>${k}</td><td>${fmt(ind)}</td><td>${fmt(ua)}</td><td class="hi">${ratio.toFixed(1)}×</td><td>${k.startsWith("Named") ? "<span style='color:var(--ink-3)'>n/a, floor</span>" : (ratio - 1).toFixed(1)}</td></tr>`; }).join("") + "</tbody></table>";
+}
+
+
+/* 7. Officials' statements */
+function drawDrone() {
+  const c = setup("c-drone", { t: 14, r: 12, b: 26, l: 46 });
+  const rows = DATA.statements.drone;
+  const { ticks, top } = niceTicks(50000, 5); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  const gw = c.iw / rows.length, w = Math.min(22, gw * 0.36);
+  rows.forEach((r, i) => {
+    const cx = c.m.l + gw * i + gw / 2;
+    el("path", { d: bar(cx - w - 1, ys(r.gs), w, ys(0) - ys(r.gs)), fill: css("--s-claims") }, c.svg);
+    el("path", { d: bar(cx + 1, ys(r.drone), w, ys(0) - ys(r.drone)), fill: css("--s-drone") }, c.svg);
+    if (r.fed) el("circle", { cx: cx + 1 + w / 2, cy: ys(r.fed), r: 4.5, fill: css("--ink"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+    if (r.share > 100) txt(c.svg, cx, ys(Math.max(r.drone, r.fed || 0)) - 9, r.share.toFixed(0) + "%", { class: "lbl-strong", "text-anchor": "middle" });
+    txt(c.svg, cx, c.m.t + c.ih + 16, MON[+r.m.slice(5) - 1] + (r.m === "2026-10" ? "*" : ""), { "text-anchor": "middle" });
+    const hit = el("rect", { x: cx - gw / 2, y: c.m.t, width: gw, height: c.ih, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, cx * r0.width / c.W, ys(Math.max(r.gs, r.drone)) * r0.height / c.H, `${MON[+r.m.slice(5) - 1]} 2026${r.m === "2026-10" ? " (1–25 Oct)" : ""}<br><span class="k">General Staff, all causes</span> <b>${fmt(r.gs)}</b><br><span class="k">Drone hits on video</span> <b>${fmt(r.drone)}</b> <span class="k">(${r.share}% of total)</span>` + (r.fed ? `<br><span class="k">Fedorov/Zelensky "verified"</span> <b>${fmt(r.fed)}</b>` : ""));
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawShare() {
+  const rows = DATA.statements.battle;
+  const box = document.getElementById("c-share"); const rh = 30; box.style.height = (rows.length * rh + 30) + "px";
+  const narrow = box.clientWidth < 480;
+  const c = setup("c-share", { t: 4, r: 48, b: 24, l: narrow ? 150 : 250 });
+  const xs = v => c.m.l + Math.min(v, 100) / 100 * c.iw;
+  [0, 25, 50, 75, 100].forEach(v => { el("line", { x1: xs(v), x2: xs(v), y1: c.m.t, y2: c.m.t + c.ih, class: v === 0 ? "axis" : "grid" }, c.svg); txt(c.svg, xs(v), c.H - 6, v + "%", { "text-anchor": "middle" }); });
+  rows.forEach((r, i) => {
+    const y = c.m.t + i * rh, bh = 12, by = y + (rh - bh) / 2;
+    const killed = r.defn === "killed";
+    const lab = r.battle + " · " + r.who.replace(/, killed only/, "");
+    txt(c.svg, c.m.l - 8, by + bh / 2 + 4, lab.length > (narrow ? 22 : 38) ? lab.slice(0, narrow ? 21 : 37) + "…" : lab, { class: "lbl", "text-anchor": "end" });
+    el("path", { d: barRight(xs(0), by, xs(r.share) - xs(0), bh), fill: css(killed ? "--s-muted" : "--s-claims") }, c.svg);
+    txt(c.svg, xs(r.share) + 5, by + bh / 2 + 4, Math.round(r.share) + "%", { class: "lbl" });
+    const hit = el("rect", { x: 0, y, width: c.W, height: rh, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, xs(r.share) * r0.width / c.W, by * r0.height / c.H, `${r.battle}: ${r.who}<br><span class="k">${dlabel(D(r.a))} – ${dlabel(D(r.b))}</span><br><span class="k">Claimed (${r.defn})</span> <b>${fmt(r.fig)}</b><br><span class="k">General Staff, all fronts, same dates</span> <b>${fmt(r.gs)}</b>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawDisp() {
+  const R = [
+    ["Bakhmut, killed + wounded", "~100,000 (Cherevaty, Aug 2022 – May 2023)", ">60,000 (UK Ministry of Defence, May 2022 – Jun 2023)", "1.7×"],
+    ["Bakhmut, Wagner killed", "–", "~20,000 (Prigozhin) · 19,547 named in Wagner records (Mediazona/BBC Russian)", "Russian sources agree"],
+    ["Avdiivka, killed + wounded", "~20,000 (Shtupun, 10 Oct – 20 Dec 2023)", "13,000 (US intelligence, Oct – Dec 2023)", "1.5×"],
+    ["Avdiivka, killed", "17,000 (Lykhovyi, to 17 Feb 2024)", "~16,000 (Russian war blogger Murz) · 6,641 named (BBC Russian, floor)", "1.1×"],
+    ["North Koreans, killed", "4,000 (Zelensky, 21 Jan 2025)", "~300 (South Korea NIS, 13 Jan 2025)", "13×"],
+    ["North Koreans, killed + wounded", "4,000 (Zelensky, 9 Jan 2025)", "~3,000 (South Korea NIS, 13 Jan 2025)", "1.3×"],
+    ["North Koreans, killed", "~2,700 (Zelensky: two-thirds of 4,000, Feb 2025)", "~600 (NIS, Apr 2025) · ~2,000 (NIS, Sep 2025)", "4.5× → 1.4×"],
+    ["All fronts, December 2025", "35,050 (General Staff)", "~35,000 (Western officials to Bloomberg)", "1.0×"],
+    ["All fronts, September 2026", "45,770 (General Staff)", ">50,000, ≥28,000 killed (NATO official to Bloomberg)", "0.9×"],
+  ];
+  document.getElementById("t-disp").innerHTML = `<table class="dtable"><thead><tr><th>Battle or period</th><th>Ukrainian figure</th><th>Outside figure</th><th>Ukrainian ÷ outside</th></tr></thead><tbody>` +
+    R.map(r => `<tr><td>${r[0]}</td><td style="text-align:left;white-space:normal;min-width:16ch">${r[1]}</td><td style="text-align:left;white-space:normal;min-width:20ch">${r[2]}</td><td class="hi">${r[3]}</td></tr>`).join("") + "</tbody></table>";
+}
+
+
+/* 10. Source camps */
+const CAMP = { west: { name: "Western / pro-Ukrainian", tok: "--c-west" }, indep: { name: "Independent", tok: "--s-indep" }, ru: { name: "Russian / pro-Russian", tok: "--c-ru" } };
+function drawCampPanel(id, kind) {
+  const c = setup(id, { t: 16, r: 18, b: 24, l: 52 });
+  const rows = []; let t = 0; DATA.daily.forEach(r => { t += r[1]; rows.push([D(r[0]), t]); });
+  const d0 = D("2022-02-24"), d1 = rows[rows.length - 1][0];
+  const pts = DATA.camps.filter(p => p.counted === kind);
+  const maxV = kind === "cas" ? 1700000 : Math.max(500000, ...pts.map(p => p.fig)) * 1.05;
+  const { ticks, top } = niceTicks(maxV, 4);
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  const thin = rows.filter((r, i) => i % 3 === 0 || i === rows.length - 1);
+  if (kind === "cas") {
+    el("path", { d: thin.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1]).toFixed(1)).join(""), fill: "none", stroke: css("--s-claims"), "stroke-width": 2 }, c.svg);
+    txt(c.svg, xs(d1) - 6, ys(rows[rows.length - 1][1]) - 8, "Ukraine MOD", { class: "lbl-strong", "text-anchor": "end" });
+  } else {
+    const up = thin.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1] / 3).toFixed(1)).join("");
+    const lo = thin.slice().reverse().map(r => "L" + xs(r[0]).toFixed(1) + "," + ys(r[1] / 4).toFixed(1)).join("");
+    el("path", { d: up + lo + "Z", fill: css("--s-claims"), "fill-opacity": 0.16 }, c.svg);
+    el("path", { d: up, fill: "none", stroke: css("--s-claims"), "stroke-width": 1 }, c.svg);
+    txt(c.svg, xs(d1) - 6, ys(rows[rows.length - 1][1] / 3) - 8, "Ukraine MOD ÷ 3 to ÷ 4", { class: "lbl-strong", "text-anchor": "end" });
+  }
+  pts.forEach(p => {
+    const x = xs(D(p.date)), y = ys(p.fig), col = css(CAMP[p.camp].tok);
+    const shape = p.floor ? el("circle", { cx: x, cy: y, r: 5, fill: css("--surface"), stroke: col, "stroke-width": 2 }, c.svg)
+      : el("circle", { cx: x, cy: y, r: 5.5, fill: col, stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+    const hit = el("circle", { cx: x, cy: y, r: 11, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect(); const ua = cumAt(p.date);
+      const cmp = kind === "cas" ? `<br><span class="k">Ukraine MOD that day</span> <b>${fmt(ua)}</b> <span class="k">(${(p.fig / ua * 100).toFixed(0)}% of it)</span>` : `<br><span class="k">Ukraine MOD that day ÷ this</span> <b>${(ua / p.fig).toFixed(1)}×</b>`;
+      showTip(c, x * r0.width / c.W, y * r0.height / c.H, `${p.source}<br><span class="k">${dlabel(D(p.date))} · ${p.what}</span><br><b>${fmt(p.fig)}</b>${cmp}`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawCampTable() {
+  const rows = DATA.camps.slice().sort((a, b) => (a.camp > b.camp ? 1 : a.camp < b.camp ? -1 : a.date < b.date ? -1 : 1));
+  document.getElementById("t-camps").innerHTML = `<table class="dtable"><thead><tr><th>Camp</th><th>Source</th><th>Date</th><th>Figure</th><th>Counts</th><th>Ukraine MOD same day</th><th>Ratio</th></tr></thead><tbody>` +
+    rows.map(p => { const ua = cumAt(p.date); return `<tr><td>${CAMP[p.camp].name}</td><td style="text-align:left;white-space:normal;min-width:18ch"><a href="${p.url}" target="_blank" rel="noopener">${p.source}</a>${p.via_ua ? " †" : ""}</td><td>${dlabel(D(p.date))}</td><td>${fmt(p.fig)}</td><td style="text-align:left">${p.what}</td><td>${fmt(ua)}</td><td class="hi">${p.counted === "cas" ? (p.fig / ua * 100).toFixed(0) + "% of MOD" : "MOD " + (ua / p.fig).toFixed(1) + "×"}</td></tr>`; }).join("") + "</tbody></table>";
+}
+
+
+/* 10. Footage verification */
+const FV = (() => {
+  const m = {}; DATA.daily.forEach(r => { const k = r[0].slice(0, 7); m[k] = (m[k] || 0) + r[1]; });
+  return Object.entries(m).sort();
+})();
+function droneShare(k, S) {
+  const y = +k.slice(0, 4), mo = +k.slice(5, 7);
+  if (y === 2022) return 0.05; if (y === 2023) return 0.2;
+  if (y === 2024) return 0.3 + (S - 0.3) * (mo - 1) / 11;
+  return S;
+}
+function fvCalc(p, S) {
+  let cum = 0; const series = []; let c25 = 0; let m26 = 0, n26 = 0;
+  FV.forEach(([k, v]) => { const a = v * (1 - droneShare(k, S) * (1 - p)); cum += a; series.push([k, cum]); if (k <= "2025-12") c25 = cum; if (k >= "2026-01" && k <= "2026-10") { m26 += a; n26++; } });
+  return { series, now: cum, c25, mo26: m26 / n26 };
+}
+function fvUpdate() {
+  const p = +document.getElementById("r-hit").value / 100, S = +document.getElementById("r-dshare").value / 100;
+  document.getElementById("o-hit").textContent = Math.round(p * 100) + "%";
+  document.getElementById("o-dshare").textContent = Math.round(S * 100) + "%";
+  document.querySelectorAll(".fv-presets button").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.hit === Math.round(p * 100))));
+  const r = fvCalc(p, S), claimed = fvCalc(1, S).now;
+  document.getElementById("fv-now").textContent = (r.now / 1e6).toFixed(2) + "M";
+  document.getElementById("fv-vs").textContent = p < 1 ? `vs ${(claimed / 1e6).toFixed(2)}M claimed (−${fmt(claimed - r.now)})` : "the claimed figure";
+  const w = r.c25 / 352000 - 1, c1 = document.getElementById("fv-c1");
+  document.getElementById("fv-c1v").textContent = w.toFixed(1) + " wounded per death";
+  c1.className = "fv-check " + (w >= 2 ? "ok" : w >= 1.3 ? "edge" : "bad");
+  document.getElementById("fv-c1t").textContent = w >= 2 ? "Inside the historical range (2–4). Russia's death records fit this easily." : w >= 1.3 ? "Below historical norms, but believable in a drone war where evacuations take days. Death records cannot rule this out." : "Below every published estimate for this war. Hard to square with 352,000 deaths by end-2025.";
+  const gap = r.mo26 - 27000, c2 = document.getElementById("fv-c2");
+  document.getElementById("fv-c2v").textContent = fmt(r.mo26) + " a month in 2026";
+  c2.className = "fv-check " + (Math.abs(gap) <= 4000 ? "ok" : gap > 0 ? "edge" : "ok");
+  document.getElementById("fv-c2t").textContent = Math.abs(gap) <= 4000 ? "Roughly equal to Russia's recruitment of about 27,000 a month (CSIS), which fits a force Putin says has held at about 700,000." : gap > 0 ? `About ${fmt(gap)} a month more than Russia recruits (about 27,000, CSIS). Possible only if many of the wounded return to duty, since Putin says the force has held at about 700,000.` : `About ${fmt(-gap)} a month below recruitment, so Russia's force would be growing. Possible, but Putin claims it has held steady.`;
+  drawFv(r);
+}
+function drawFv(r) {
+  const c = setup("c-fv", { t: 14, r: 18, b: 24, l: 52 });
+  const d0 = D("2022-02-01"), d1 = D("2026-11-30");
+  const { ticks, top } = niceTicks(1700000, 4);
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  const P = DATA.camps.filter(x => x.source.startsWith("Mediazona/Meduza probate"));
+  let band = P.map((x, i) => (i ? "L" : "M") + xs(D(x.date)) + "," + ys(x.fig * 3.3)).join("");
+  band += P.slice().reverse().map(x => "L" + xs(D(x.date)) + "," + ys(x.fig * 2.3)).join("") + "Z";
+  el("path", { d: band, fill: css("--s-indep"), "fill-opacity": 0.22 }, c.svg);
+  const claimed = fvCalc(1, 0.75).series;
+  const line = (S, col, w) => el("path", { d: S.map(([k, v], i) => (i ? "L" : "M") + xs(D(k)).toFixed(1) + "," + ys(v).toFixed(1)).join(""), fill: "none", stroke: col, "stroke-width": w, "stroke-linejoin": "round" }, c.svg);
+  line(claimed, css("--s-claims"), 2);
+  line(r.series, css("--accent"), 2.5);
+  const lk = r.series[r.series.length - 1];
+  el("circle", { cx: xs(D(lk[0])), cy: ys(lk[1]), r: 4.5, fill: css("--accent"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+  txt(c.svg, xs(D(lk[0])) - 8, ys(lk[1]) + 16, (lk[1] / 1e6).toFixed(2) + "M adjusted", { class: "lbl-strong", "text-anchor": "end" });
+  P.forEach(x => { el("circle", { cx: xs(D(x.date)), cy: ys(x.fig), r: 4.5, fill: css("--s-indep"), stroke: css("--surface"), "stroke-width": 2 }, c.svg); });
+}
+
+/* 8. Target */
+function drawTarget() {
+  const c = setup("c-target", { t: 18, r: 12, b: 26, l: 46 });
+  const rows = DATA.monthly_all.filter(r => r[0] >= "2025-01").map(r => ({ d: D(r[0]), sum: r[1], mean: r[2] }));
+  const lastR = rows[rows.length - 1]; lastR.partial = true; lastR.proj = lastR.mean * 30;
+  const { ticks, top } = niceTicks(72000, 4); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  const n = rows.length, bw = c.iw / n;
+  rows.forEach((r, i) => {
+    const x = c.m.l + i * bw + 2, w = bw - 4;
+    if (r.partial) {
+      el("path", { d: bar(x + 0.75, ys(r.proj), w - 1.5, ys(0) - ys(r.proj)), fill: "none", stroke: css("--s-claims"), "stroke-width": 1.5 }, c.svg);
+      el("path", { d: bar(x, ys(r.sum), w, ys(0) - ys(r.sum)), fill: css("--s-claims") }, c.svg);
+    } else el("path", { d: bar(x, ys(r.sum), w, ys(0) - ys(r.sum)), fill: css("--s-claims"), "fill-opacity": r.d < D("2026-01") ? 0.45 : 1 }, c.svg);
+    if (r.d.getUTCMonth() % 3 === 0) txt(c.svg, x + w / 2, c.m.t + c.ih + 15, MON[r.d.getUTCMonth()] + (r.d.getUTCMonth() === 0 ? " " + String(r.d.getUTCFullYear()).slice(2) : ""), { "text-anchor": "middle" });
+    const hit = el("rect", { x: x - 2, y: c.m.t, width: bw, height: c.ih, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, (x + w / 2) * r0.width / c.W, ys(r.proj || r.sum) * r0.height / c.H, `${mlabel(r.d)}<br><span class="k">Claimed losses</span> <b>${fmt(r.sum)}</b>` + (r.partial ? `<br><span class="k">1–6 Nov; at this pace</span> <b>${fmt(r.proj)}</b>` : `<br><span class="k">Per day</span> <b>${fmt(r.mean)}</b>`));
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+  const y50 = ys(50000);
+  el("line", { x1: c.m.l, x2: c.W - c.m.r, y1: y50, y2: y50, stroke: css("--ink"), "stroke-width": 1.5 }, c.svg);
+  txt(c.svg, c.m.l + 4, y50 - 6, "50,000 a month: Fedorov's stated goal", { class: "lbl-strong" });
+  const jan = rows.findIndex(r => r.d.toISOString().startsWith("2026-01"));
+  const xj = c.m.l + jan * bw;
+  el("line", { x1: xj, x2: xj, y1: y50 + 6, y2: c.m.t + c.ih, stroke: css("--ink-3"), "stroke-width": 1 }, c.svg);
+  txt(c.svg, xj + 4, y50 + 20, "Goal announced", { class: "lbl" });
+  const oct = rows.findIndex(r => r.d.toISOString().startsWith("2026-10"));
+  txt(c.svg, c.m.l + oct * bw + bw / 2, ys(rows[oct].sum) - 6, "54.2k", { class: "lbl-strong", "text-anchor": "middle" });
+}
+
+/* Yardstick */
+function drawYard() {
+  const terms = [["Remote", 2.5], ["Highly unlikely", 15], ["Unlikely", 30], ["Realistic possibility", 45], ["Likely", 65], ["Highly likely", 85], ["Almost certain", 97.5]];
+  const lab = document.getElementById("ylabels");
+  lab.innerHTML = terms.map(([t, p]) => `<span style="left:${p}%">${t}</span>`).join("");
+  const pins = document.getElementById("pins");
+  pins.innerHTML = [["A", 85], ["B", 65], ["C", 45], ["D", 97.5]].map(([k, p]) => `<span class="pin" style="left:${p}%">${k}</span>`).join("");
+}
+
+function drawAll() {
+  drawDaily(); drawMonthly(); sim(); drawBattleDaily(); drawBattles(); drawEras(); drawPostureScatter(); drawPostureSplit(); drawRecruit(); drawCum(); drawTarget(); drawDrone(); drawShare(); fvUpdate(); drawCampPanel("c-camp-cas", "cas"); drawCampPanel("c-camp-dead", "dead");
+  [["w-precip", "precip"], ["w-snow", "snow"], ["w-temp", "temp"], ["w-wind", "wind"]].forEach(a => drawWeather(...a));
+}
+document.querySelectorAll("[data-asof]").forEach(e => { e.textContent = dlabel(D(DATA.asof)); });
+document.getElementById("kpi-total").textContent = fmt(DATA.total);
+drawHeat(); drawRatio(); drawDisp(); drawCampTable(); drawYard(); drawAll();
+["r-front", "r-sector", "r-k", "r-shock", "r-mu"].forEach(id => document.getElementById(id).addEventListener("input", sim));
+["r-hit", "r-dshare"].forEach(id => document.getElementById(id).addEventListener("input", fvUpdate));
+document.querySelectorAll(".fv-presets button").forEach(b => b.addEventListener("click", () => { document.getElementById("r-hit").value = b.dataset.hit; fvUpdate(); }));
+let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(drawAll, 120); }).observe(document.querySelector(".wrap"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+if (document.fonts) document.fonts.ready.then(drawAll);
+</script>

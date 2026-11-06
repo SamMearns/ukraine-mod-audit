@@ -1,0 +1,37 @@
+[
+ {
+  "k": "art",
+  "name": "Russian artillery dominance",
+  "a": "2023-01-01",
+  "b": "2023-09-30",
+  "note": "~10,000 RU shells/day vs 6,000\u20137,000 UA"
+ },
+ {
+  "k": "famine",
+  "name": "Ukraine's shell famine",
+  "a": "2023-10-01",
+  "b": "2024-04-20",
+  "note": "5:1 or worse; UA below 1,800/day"
+ },
+ {
+  "k": "cross",
+  "name": "Crossover to drones",
+  "a": "2024-04-21",
+  "b": "2025-02-28",
+  "note": "ratio narrows to 1.5:1; FPVs take 2/3 of tank kills"
+ },
+ {
+  "k": "drone",
+  "name": "Drones the main killer",
+  "a": "2025-03-01",
+  "b": "2025-12-31",
+  "note": "drones ~70% of casualties"
+ },
+ {
+  "k": "drone26",
+  "name": "Drone kill zone widens",
+  "a": "2026-01-01",
+  "b": "today",
+  "note": "drones 70\u201380%; CSIS exchange ~8:1"
+ }
+]

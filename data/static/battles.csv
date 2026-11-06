@@ -1,0 +1,30 @@
+id,name,side,start,peak_start,peak_end,end,kind,url
+mariupol,Azovstal surrender,RU,2022-02-24,2022-05-16,2022-05-20,2022-05-20,battle,https://www.aljazeera.com/news/2022/5/21/russia-azovstal-siege-over-full-control-ukraines-mariupol
+sievierodonetsk,Sievierodonetsk–Lysychansk,RU,2022-04-18,2022-06-24,2022-07-03,2022-07-03,battle,https://www.aljazeera.com/news/2022/7/3/russia-claims-capture-of-lysychansk-luhansk-region-ukraine
+kharkiv22,Kharkiv counteroffensive,UA,2022-09-06,2022-09-06,2022-09-12,2022-10-02,battle,https://www.aljazeera.com/news/2022/9/13/ukraines-counteroffensive-explained-in-maps
+kherson22,Kherson withdrawal,UA,2022-08-29,2022-11-09,2022-11-11,2022-11-11,battle,https://www.npr.org/2022/11/11/1135997015/in-a-major-blow-to-putin-russia-says-it-has-fully-withdrawn-from-kherson
+bakhmut,Bakhmut final phase,RU,2022-08-01,2023-01-16,2023-05-20,2023-05-20,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-may-21-2023
+vuhledar23,Vuhledar winter assault,RU,2023-01-24,2023-02-06,2023-02-10,2023-02-15,battle,https://www.cnn.com/2023/02/13/europe/russia-ukraine-vuhledar-donetsk-fiasco-intl/index.html
+ua23,2023 UA counteroffensive,UA,2023-06-04,2023-06-08,2023-08-28,2023-11-01,battle,https://www.aljazeera.com/news/2023/6/9/ukraine-counteroffensive-against-russia-under-way-think-tank
+avdiivka1,Avdiivka first wave,RU,2023-10-10,2023-10-10,2023-10-20,2024-02-17,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-12-2023
+avdiivka2,Avdiivka final phase,RU,2023-10-10,2024-01-20,2024-02-17,2024-02-17,battle,https://www.aljazeera.com/news/2024/2/17/ukraine-troops-withdraw-from-frontline-city-of-avdiivka-army-chief-says
+kharkiv24,Russian Kharkiv offensive,RU,2024-05-10,2024-05-10,2024-05-24,2024-06-01,battle,https://www.aljazeera.com/news/2024/5/10/russia-attempts-ground-offensive-into-ukraines-kharkiv
+kursk,Kursk incursion,UA,2024-08-06,2024-08-06,2024-08-20,2025-03-13,battle,https://en.wikipedia.org/wiki/2024_Kursk_offensive
+vuhledar24,Vuhledar falls,RU,2024-08-25,2024-09-22,2024-10-01,2024-10-02,battle,https://www.aljazeera.com/news/2024/10/2/russia-reportedly-captures-key-town-of-vuhledar-in-eastern-ukraine
+kurakhove,Kurakhove,RU,2024-10-16,2024-12-15,2025-01-06,2025-01-06,battle,https://www.cnn.com/2025/01/07/europe/russia-claims-capture-eastern-ukrainian-town-intl/index.html
+sudzha,Russia retakes Sudzha,RU,2024-09-10,2025-03-08,2025-03-13,2025-04-26,battle,https://meduza.io/en/feature/2025/03/11/pushback-in-kursk
+sumy25,Russian Sumy offensive,RU,2025-05-20,2025-05-25,2025-06-26,2025-06-26,battle,https://www.cnn.com/2025/06/03/europe/russia-forces-advance-northern-ukraine-sumy-intl
+dobropillia,Dobropillia breakthrough,RU,2025-08-11,2025-08-11,2025-08-20,2025-10-06,battle,https://www.cnn.com/2025/08/12/europe/russia-ukraine-donetsk-dobropillia-trump-putin-intl
+pokrovsk,Pokrovsk city assault,RU,2025-07-22,2025-10-26,2025-12-01,2026-01-28,battle,https://www.cnn.com/2025/12/01/europe/russia-ukraine-pokrovsk-capture-claim-latam-intl
+kupiansk,Ukraine retakes Kupiansk,UA,2025-11-16,2025-12-12,2025-12-17,2025-12-17,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-december-12-2025
+siversk,Siversk falls,RU,2025-09-01,2025-12-11,2025-12-23,2025-12-23,battle,https://www.aljazeera.com/news/2025/12/24/russian-forces-seize-embattled-siversk-town-as-ukrainian-troops-withdraw
+ua26a,2026 UA southern push (phase 1),UA,2026-01-29,2026-02-11,2026-03-27,2026-04-06,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-march-10-2026
+ru26,Russian spring 2026 offensive,RU,2026-03-21,2026-03-21,2026-04-20,,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-march-23-2026
+ua26b,2026 UA southern push (phase 2),UA,2026-05-29,2026-07-01,2026-08-12,2026-08-12,battle,https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-august-12-2026
+kost,Kostiantynivka assault,RU,2025-10-25,2026-06-01,2026-07-22,,battle,https://meduza.io/en/feature/2026/07/08/russia-says-kostiantynivka-has-fallen-kyiv-claims-it-still-holds-the-city-both-are-wrong
+vivaldi,Lyman counteroffensive (Vivaldi),UA,2026-05-25,2026-09-15,2026-10-14,2026-10-14,battle,https://www.euronews.com/2026/10/09/ukraines-operation-vivaldi-foils-russias-plan-to-encircle-the-donbas-isw-analysis-shows
+xmas23,Orthodox Christmas truce,NONE,2023-01-06,2023-01-06,2023-01-07,2023-01-07,truce,https://www.npr.org/2023/01/05/1147081581/putin-ceasefire-russia-ukraine
+easter25,Easter truce 2025,NONE,2025-04-19,2025-04-20,2025-04-20,2025-04-21,truce,https://www.cbsnews.com/amp/news/russia-ukraine-accuse-breaking-easter-ceasefire
+vday25,Victory Day truce 2025,NONE,2025-05-08,2025-05-08,2025-05-10,2025-05-10,truce,https://meduza.io/amp/en/news/2025/04/28/kremlin-announces-ceasefire-from-may-8-10-to-mark-russia-s-victory-day-holiday
+easter26,Easter truce 2026,NONE,2026-04-11,2026-04-12,2026-04-12,2026-04-13,truce,https://www.aljazeera.com/news/2026/4/11/russia-ukraine-orthodox-easter-ceasefire-begins
+may26,US-brokered 3-day ceasefire,NONE,2026-05-09,2026-05-09,2026-05-11,2026-05-11,truce,https://www.aljazeera.com/news/2026/5/8/trump-announces-three-day-ceasefire-in-russia-ukraine-war

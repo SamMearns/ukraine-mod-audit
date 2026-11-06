@@ -1,0 +1,220 @@
+{
+ "battle": [
+  {
+   "battle": "Bakhmut",
+   "who": "Cherevaty (May 2023)",
+   "a": "2022-08-01",
+   "b": "2023-05-08",
+   "fig": 100000,
+   "defn": "losses"
+  },
+  {
+   "battle": "Avdiivka",
+   "who": "Tarnavskyi (Feb 2024)",
+   "a": "2023-10-10",
+   "b": "2024-02-17",
+   "fig": 47186,
+   "defn": "killed + wounded"
+  },
+  {
+   "battle": "Avdiivka",
+   "who": "Lykhovyi (Feb 2024), killed only",
+   "a": "2023-10-10",
+   "b": "2024-02-17",
+   "fig": 17000,
+   "defn": "killed"
+  },
+  {
+   "battle": "Kharkiv offensive",
+   "who": "Zelensky (Jul 2024), killed only",
+   "a": "2024-05-10",
+   "b": "2024-07-18",
+   "fig": 20000,
+   "defn": "killed"
+  },
+  {
+   "battle": "Kursk",
+   "who": "Syrskyi (Nov 2024)",
+   "a": "2024-08-06",
+   "b": "2024-11-05",
+   "fig": 20842,
+   "defn": "killed + wounded + captured"
+  },
+  {
+   "battle": "Kursk",
+   "who": "General Staff summary (Apr 2025)",
+   "a": "2024-08-06",
+   "b": "2025-04-26",
+   "fig": 62400,
+   "defn": "killed + wounded"
+  },
+  {
+   "battle": "Kursk",
+   "who": "Syrskyi to Washington Post (Jul 2025)",
+   "a": "2024-08-06",
+   "b": "2025-07-23",
+   "fig": 80000,
+   "defn": "killed + wounded"
+  },
+  {
+   "battle": "Pokrovsk direction",
+   "who": "Syrskyi (Feb 2025)",
+   "a": "2025-01-01",
+   "b": "2025-01-31",
+   "fig": 15000,
+   "defn": "losses"
+  },
+  {
+   "battle": "Pokrovsk + Dobropillia",
+   "who": "Zelensky (Oct 2025)",
+   "a": "2025-08-21",
+   "b": "2025-10-08",
+   "fig": 12000,
+   "defn": "casualties"
+  }
+ ],
+ "periodic": [
+  {
+   "who": "Syrskyi",
+   "scope": "2024 to 30 Dec",
+   "a": "2024-01-01",
+   "b": "2024-12-30",
+   "fig": 427000
+  },
+  {
+   "who": "Syrskyi",
+   "scope": "2025 to 3 Jun",
+   "a": "2025-01-01",
+   "b": "2025-06-03",
+   "fig": 200000
+  },
+  {
+   "who": "Syrskyi",
+   "scope": "2025 to 31 Aug",
+   "a": "2025-01-01",
+   "b": "2025-08-31",
+   "fig": 290000
+  },
+  {
+   "who": "Zelensky (Axios)",
+   "scope": "2025 to 27 Oct",
+   "a": "2025-01-01",
+   "b": "2025-10-27",
+   "fig": 346000
+  },
+  {
+   "who": "Syrskyi (Le Monde)",
+   "scope": "All of 2025",
+   "a": "2025-01-01",
+   "b": "2025-12-31",
+   "fig": 418000
+  },
+  {
+   "who": "Fedorov",
+   "scope": "Dec 2025 (\"killed\")",
+   "a": "2025-12-01",
+   "b": "2025-12-31",
+   "fig": 35000
+  },
+  {
+   "who": "Syrskyi",
+   "scope": "2026 to 20 May",
+   "a": "2026-01-01",
+   "b": "2026-05-20",
+   "fig": 141500
+  },
+  {
+   "who": "Zelensky",
+   "scope": "2026 to 22 May",
+   "a": "2026-01-01",
+   "b": "2026-05-22",
+   "fig": 145000
+  },
+  {
+   "who": "Palisa",
+   "scope": "Jul 2026",
+   "a": "2026-07-01",
+   "b": "2026-07-31",
+   "fig": 43000
+  },
+  {
+   "who": "Zelensky",
+   "scope": "Oct 2026",
+   "a": "2026-10-01",
+   "b": "2026-10-31",
+   "fig": 54400
+  }
+ ],
+ "drone": [
+  {
+   "m": "2026-01",
+   "drone": 29572,
+   "fed": null,
+   "a": "2026-01-01",
+   "b": "2026-01-31"
+  },
+  {
+   "m": "2026-02",
+   "drone": 26204,
+   "fed": null,
+   "a": "2026-02-01",
+   "b": "2026-02-28"
+  },
+  {
+   "m": "2026-03",
+   "drone": 33989,
+   "fed": 35351,
+   "a": "2026-03-01",
+   "b": "2026-03-31"
+  },
+  {
+   "m": "2026-04",
+   "drone": 33961,
+   "fed": 35203,
+   "a": "2026-04-01",
+   "b": "2026-04-30"
+  },
+  {
+   "m": "2026-05",
+   "drone": 30548,
+   "fed": 31530,
+   "a": "2026-05-01",
+   "b": "2026-05-31"
+  },
+  {
+   "m": "2026-06",
+   "drone": 27072,
+   "fed": null,
+   "a": "2026-06-01",
+   "b": "2026-06-30"
+  },
+  {
+   "m": "2026-07",
+   "drone": 30272,
+   "fed": null,
+   "a": "2026-07-01",
+   "b": "2026-07-31"
+  },
+  {
+   "m": "2026-08",
+   "drone": 29554,
+   "fed": null,
+   "a": "2026-08-01",
+   "b": "2026-08-31"
+  },
+  {
+   "m": "2026-09",
+   "drone": 32739,
+   "fed": null,
+   "a": "2026-09-01",
+   "b": "2026-09-30"
+  },
+  {
+   "m": "2026-10",
+   "drone": 27829,
+   "fed": null,
+   "a": "2026-10-01",
+   "b": "2026-10-25"
+  }
+ ]
+}
