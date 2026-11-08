@@ -1,0 +1,17 @@
+{
+  "leak_asof": "2026-08-28",
+  "leak_total": 450100,
+  "leak_combat_only": 393881,
+  "leak_lag_missing": 54180,
+  "leak": {"2022": 18877, "2023": 42365, "2024": 109683, "2025": 182264, "2026": 39296},
+  "probate": {"2022": 20000, "2023": 50000, "2024": 93000},
+  "named_total": 286000,
+  "named_asof": "2026-11-06",
+  "results": {
+    "2022": ["Consistent", "good", "Russia's register misses occupied-territory militias before annexation in October 2022, so the true ratio is likely lower."],
+    "2023": ["MOD runs high", "warn", "The widest gap of the war: 5 wounded per death, above the historical 2.5–4. Some 2023 deaths may sit in 2025's count after late court declarations."],
+    "2024": ["Consistent", "good", "Inside the historical range. Mediazona and Meduza's probate estimate (about 93,000) agrees with the leak."],
+    "2025": ["MOD runs low", "warn", "Courts declared tens of thousands of soldiers missing since 2022–24 dead during 2025 (Meduza), inflating this year's register. Pooled with 2024 the ratio is 2.9×."],
+    "2026": ["Consistent so far", "good", "3.0× once registration lag is corrected. The record months of September to November are not yet in the leak."]
+  }
+}

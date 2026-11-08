@@ -24,6 +24,7 @@ Fetches the General Staff series, Open-Meteo weather and DeepState flows, and re
 |---|---|
 | `isw.csv` | Last month's Russian net gain from AFP's monthly ISW analysis (France 24, Moscow Times, Euronews, Al Jazeera, Barron's). Note gross/net. |
 | `camps.json` | New dated estimates of Russian losses: Mediazona/BBC named count, Mediazona/Meduza probate releases, The Economist model (github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates), CSIS, UK/US/NATO, IISS, Russian official or budget figures. Fields: camp, source, date, fig, counted (cas/dead), what, url, floor, via_ua. |
+| `yearly.json` | New releases of the leaked Rosstat register (rosstat-leaks.com: year-of-death counts, lag estimate, cut-off date) and any new Mediazona/Meduza per-year probate estimates. Update the per-year result text if a ratio moves. |
 | `battles.csv` | Battles or truces whose peak phase ended last month (dates from ISW, wires, Meduza). |
 | `statements.json` | New Ukrainian officials' figures for a battle or period; new Ministry of Defence drone-series months. |
 | `eras.json` | Only if outside sources report a clear change in the weapon mix. |

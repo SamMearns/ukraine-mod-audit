@@ -180,6 +180,23 @@ def main():
         c["ua"] = int(cum[:c["date"]].iloc[-1])
     data["camps"] = camps
 
+    # Year by year: MOD against the leaked Rosstat register and Mediazona/Meduza probate estimates
+    yl = json.load(open(STATIC / "yearly.json"))
+    def mod_between(x, y):
+        return int(cum[:y].iloc[-1] - (cum[:x].iloc[-1] if x else 0))
+    years = []
+    for y in ["2022", "2023", "2024", "2025", "2026"]:
+        end = yl["leak_asof"] if y == "2026" else f"{y}-12-31"
+        start = None if y == "2022" else f"{int(y) - 1}-12-31"
+        mod = int(cum[:end].iloc[-1]) if y == "2022" else mod_between(start, end)
+        deaths = yl["leak"][y] + (yl["leak_lag_missing"] if y == "2026" else 0)
+        years.append(dict(year=y, mod=mod, leak=yl["leak"][y], leak_adj=deaths, probate=yl["probate"].get(y),
+                          ratio=round(mod / deaths, 2), result=yl["results"][y]))
+    mod_cum = int(cum[:yl["leak_asof"]].iloc[-1])
+    data["yearly"] = dict(years=years, mod_cum=mod_cum, leak_total=yl["leak_total"], leak_combat=yl["leak_combat_only"],
+                          leak_asof=yl["leak_asof"], named_total=yl["named_total"], named_asof=yl["named_asof"],
+                          ratio_cum=round(mod_cum / yl["leak_total"], 2))
+
     # 2026 monthly average over complete months, for the recruitment chart
     this_month = asof.strftime("%Y-%m")
     full26 = [r for r in data["monthly_all"] if r[0].startswith("2026") and r[0] != this_month]

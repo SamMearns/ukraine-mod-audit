@@ -625,5 +625,16 @@
   "url": "https://thedailybeast.com/russia-fsb-accused-defense-ministry-of-hiding-casualty-numbers-us-intel-leak-says",
   "floor": false,
   "via_ua": false
+ },
+ {
+  "camp": "ru",
+  "source": "Rosstat death register (leaked by Belarusian Cyber Partisans / Silent Crow)",
+  "date": "2026-08-28",
+  "fig": 450100,
+  "counted": "dead",
+  "what": "military-related deaths registered (393,881 coded to military operations); unverified",
+  "url": "https://rosstat-leaks.com/",
+  "floor": false,
+  "via_ua": false
  }
 ]

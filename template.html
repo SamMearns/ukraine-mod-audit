@@ -233,6 +233,11 @@ footer { font-size: 0.8rem; color: var(--ink-3); border-top: 1px solid var(--rul
 .frame-cap { font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
 .frame-cap b { color: var(--ink); font-weight: 500; }
 
+.yt td.yt-res { white-space: normal; text-align: left; min-width: 30ch; line-height: 1.45; color: var(--ink-2); }
+.yt td.yt-res .chip { margin-bottom: 4px; }
+.yt th { vertical-align: bottom; }
+.yt td { vertical-align: top; }
+
 /* ---- Editorial monochrome layer ---- */
 body { font-size: 15.5px; line-height: 1.55; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
 .wrap { max-width: 1180px; gap: 112px; padding-block: 0 96px; }
@@ -310,7 +315,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 <div class="wrap">
 
 <header>
-  <nav class="topnav" aria-label="Sections"><span>Ukraine MOD Claims Audit</span><span class="links"><a class="plus" href="#judgements">Key judgements</a><a class="plus" href="#s1">Tests</a><a class="plus" href="#camps">Cross-reference</a><a class="plus" href="#sources">Sources</a></span></nav>
+  <nav class="topnav" aria-label="Sections"><span>Ukraine MOD Claims Audit</span><span class="links"><a class="plus" href="#judgements">Key judgements</a><a class="plus" href="#s1">Tests</a><a class="plus" href="#camps">Cross-reference</a><a class="plus" href="#years">Year by year</a><a class="plus" href="#sources">Sources</a></span></nav>
   <div class="classif eyebrow"><span>Open-source reliability assessment</span><span>Data to <span data-asof>6 Nov 2026</span></span><span>1,716 daily reports tested</span></div>
   <h1><span class="h-muted">Can Ukraine's count of Russian losses</span> be trusted?</h1>
   <p class="lede">Ten tests of the Russian-loss figure Ukraine publishes every day, using only data from outside Ukraine.</p>
@@ -342,7 +347,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
     </div>
     <ol class="judgements">
       <li><span class="key">A</span><p>It is <span class="yard-term">highly likely</span> that the daily figure is <b>not a day-by-day measurement</b> of Russian losses. It does not move with rain, snow, cold or a lagged day, and on the most variable test (wind) the effect is about 4%. Since mid-2024 none of 14 major battles, including Avdiivka's final assault, Kursk and Pokrovsk, pushed it outside an ordinary month's range. Using it for daily, weather or single-battle analysis builds conclusions on numbers that cannot carry them.</p></li>
-      <li><span class="key">B</span><p>It is <span class="yard-term">likely</span> that the <b>cumulative total is the right order of magnitude</b> for killed plus wounded. It sits 3.1 to 4.8 times above Russian-sourced and CSIS death estimates at every matched date, which implies 2.1 to 3.8 wounded per death, inside the normal historical range. Western estimates that match it almost exactly are mostly an echo, because they draw on Ukrainian data. The fully independent check, deaths from Russia's own registries, is consistent with anything from about 1.15 to 1.6 million today, depending on how many video-claimed drone hits were real (Test 10).</p></li>
+      <li><span class="key">B</span><p>It is <span class="yard-term">likely</span> that the <b>cumulative total is the right order of magnitude</b> for killed plus wounded. It sits 3.1 to 4.8 times above Russian-sourced and CSIS death estimates at every matched date, which implies 2.1 to 3.8 wounded per death, inside the normal historical range. Western estimates that match it almost exactly are mostly an echo, because they draw on Ukrainian data. The fully independent check, deaths from Russia's own registries (including a leaked Rosstat register of 450,100 deaths), is consistent with anything from about 1.15 to 1.6 million today, depending on how many video-claimed drone hits were real (Test 10).</p></li>
       <li><span class="key">C</span><p>It is a <span class="yard-term">realistic possibility</span> that <b>figures since mid-2026 are inflated</b>. Claimed losses reached records while ISW shows Russia gaining about 80 km² net in ten months. The defence ministry's own video-verified drone count stayed flat at about 30,000 a month while the published total rose to 54,200, and October became the first month to clear the 50,000 target set in January. Against this, a NATO official put September's Russian losses even higher than the General Staff did.</p></li>
       <li><span class="key">D</span><p>It is <span class="yard-term">almost certain</span> that <b>comparing 1.6 million to Mediazona's 283,000 as like for like is an error</b>, in either direction. One counts casualties, the other counts named dead, and the gap between them is mostly the wounded.</p></li>
     </ol>
@@ -364,6 +369,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
       <tr><td><a href="#s9">9 · Incentives</a></td><td>A public 50,000-a-month target and a points-for-kills system now sit upstream of the figure.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag</span></td></tr>
 <tr><td><a href="#s10">10 · Footage verification</a></td><td>Since 2025 about three-quarters of the figure rests on drone footage that ends at impact, verified only inside Ukraine's own systems. At RUSI's 50% hit rate the total would be about 1.15M, and Russian death records could not tell the difference.</td><td><span class="chip crit"><svg viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" rx="1" fill="currentColor"/></svg>Red flag (unaudited)</span></td></tr>
       <tr><td><a href="#camps">Cross-reference</a></td><td>Western casualty totals now match the MOD within 1%, but mostly because they use its data. Only death counts from Russian registries are fully independent.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Echo chamber</span></td></tr>
+    <tr><td><a href="#years">Year by year</a></td><td>Against Russia's own leaked death register, Ukraine's total is 3.3 claimed casualties per death across the war: high in 2022–23, low in 2025, consistent overall.</td><td><span class="chip good"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="currentColor"/></svg>Holds up (scale)</span></td></tr>
         </tbody>
   </table>
   </div>
@@ -725,11 +731,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
     <article class="campcard" style="--cc:var(--c-ru)">
       <span class="eyebrow">Russian / pro-Russian</span>
       <h3>Russian MoD, Kremlin, Prigozhin, war bloggers, state budget</h3>
-      <div class="cc-stat">Official deaths: MOD figure <b>9–12×</b> higher · FSB internal count <b>74%</b> of MOD (2023)</div>
+      <div class="cc-stat">Official deaths: MOD figure <b>9–12×</b> higher · FSB internal count <b>74%</b> of MOD (2023) · MOD is <b>3.3×</b> the leaked Rosstat death register</div>
       <p><strong>How it fares:</strong> the last official figure was 5,937 dead in September 2022, frozen since. Russia's own internal signals point far higher: the 2024 budget funded survivor pensions for about 100,000 war dead, Prigozhin admitted 20,000 Wagner dead at Bakhmut alone, and an FSB count leaked in 2023 put casualties at 110,000.</p>
       <p><strong>Why it's trusted:</strong> Russia holds the actual records, and insiders saw specific battles first-hand. Budget and pension data are hard to fake at scale.</p>
       <p><strong>Watch for:</strong> official figures are deliberately suppressed. Insiders had feuds to settle. The FSB count reached the public through leaked US documents and is unverified. Purported Russian documents released by Ukrainian intelligence are excluded from this page.</p>
-      <p class="cc-use"><strong>Use it for</strong> single-battle checks (Bakhmut, Avdiivka) and budget-based floors. Never for totals.</p>
+      <p class="cc-use"><strong>Use it for</strong> single-battle checks (Bakhmut, Avdiivka), budget floors and, if it holds up, the leaked Rosstat register (450,100 deaths to 28 Aug 2026). Never the official figures.</p>
     </article>
   </div>
   <details><summary>Show all estimates</summary><div class="table-scroll" id="t-camps"></div><p class="fig-note">† Found only through a Ukrainian outlet relaying a non-Ukrainian source.</p></details>
@@ -737,6 +743,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
     <span class="eyebrow">Assessment</span>
     <span class="claim">The figure looks like a consensus because much of the consensus is the figure.</span>
     <p>Since 2025 the main Western casualty totals either use Ukraine's data directly or build on estimates that do, which is why they match it to within 1%. Those totals are an echo, not a confirmation. The only casualty totals built without it, the 2022–23 US and UK estimates, ran higher than Ukraine's. Sources fully outside the loop count deaths only: 285,000 named, and 352,000 from Russia's probate records to end-2025.</p>
+  </div>
+</section>
+
+<section id="years" aria-labelledby="hy">
+  <div class="sec-head"><span class="eyebrow"><span>Year by year</span><span>Ukraine MOD · Mediazona · Rosstat leak</span></span><h2 id="hy">Each year of the war, three counts side by side</h2></div>
+  <div class="prose">
+    <p>In November 2026, two hacker groups opposed to the Kremlin, Belarusian Cyber Partisans and Silent Crow, published what they say is Rosstat's internal register of death certificates up to 28 August 2026. It counts <strong>450,100</strong> military-related deaths, 393,881 of them explicitly coded to military operations. Rosstat admits a cyberattack but denies any data was taken. The Moscow Times checked a sample of names against Mediazona's list but could not verify the whole set. The leak did not come through Ukrainian intelligence, but it is unverified, and its war-death code also covers some civilians killed by shelling inside Russia.</p>
+    <p>Ukraine's figure counts killed, wounded and captured. The leak and Mediazona count deaths. So the result for each year is the ratio between them: how many claimed casualties there are for each registered death. Historically, wars run at 3.5 to 5 casualties per death. In a drone war, where the wounded wait days to be evacuated, the ratio can fall lower.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed casualties and registered deaths, by year</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Ukraine MOD, killed + wounded + captured</span><span><i class="sq" style="background:var(--c-ru)"></i>Rosstat leak, deaths by year of death</span><span><i class="sq" style="background:var(--s-indep)"></i>Mediazona/Meduza probate estimate</span></div></div>
+    <div class="chart" id="c-years" style="height:300px"></div>
+    <p class="fig-note">2026 runs to 28 August, the leak's cut-off. Its leak bar adds the 54,180 records Silent Crow estimates have not yet reached the register (outlined part). Mediazona and Meduza have not published a separate 2025 or 2026 estimate.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed casualties per registered death</h3><div class="legend"><span><i class="sq" style="background:var(--grid)"></i>Historical range (2.5–4 wounded per death)</span></div></div>
+    <div class="chart" id="c-yratio" style="height:220px"></div>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>The result, year by year</h3></div>
+    <div class="table-scroll" id="t-years"></div>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">Russia's own leaked death register backs the scale of Ukraine's figure.</span>
+    <p>Across the whole war, Ukraine's total is 3.3 times the deaths in the leaked register, or 2.3 wounded per death, a believable rate for a drone war. Year by year it runs high in 2022–23 and low in 2025. That shape fits deaths being registered late, through court declarations, not steady inflation by the MOD. The leak ends in August 2026, before the record months that remain the open question.</p>
   </div>
 </section>
 
@@ -809,6 +841,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
     <li><span class="eyebrow">Doctrine</span> Dupuy Institute: <a href="https://dupuyinstitute.org/2024/04/30/analysis-of-force-ratios-using-the-campaign-data-base-cadb-second-continuation/" target="_blank" rel="noopener">loss exchange by battle outcome</a></li>
     <li><span class="eyebrow">Doctrine</span> War on the Rocks: <a href="https://warontherocks.com/2026/04/update-from-the-battlefield-drones-distance-and-diminishing-returns-for-russia/" target="_blank" rel="noopener">Kofman & Evans, Apr 2026</a></li>
     <li><span class="eyebrow">Doctrine</span> AP via ADN: <a href="https://www.adn.com/nation-world/2025/08/17/high-tech-drones-turn-ukraines-front-line-into-a-deadly-kill-zone-complicating-evacuations/" target="_blank" rel="noopener">drone kill zone delays evacuation</a></li>
+    <li><span class="eyebrow">Rosstat leak</span> Silent Crow: <a href="https://rosstat-leaks.com/" target="_blank" rel="noopener">Russia's combat losses in the data of Rosstat (data to 28 Aug 2026)</a></li>
+    <li><span class="eyebrow">Rosstat leak</span> Yahoo News: <a href="https://www.yahoo.com/news/world/articles/russian-data-leak-reveals-death-154116267.html" target="_blank" rel="noopener">Russian data leak reveals death toll</a></li>
+    <li><span class="eyebrow">Rosstat leak</span> bne IntelliNews: <a href="https://www.intellinews.com/leaked-rosstat-records-put-russia-s-war-dead-at-450-000-482881/" target="_blank" rel="noopener">Leaked Rosstat records put Russia's war dead at 450,000</a></li>
+    <li><span class="eyebrow">Rosstat leak</span> Cybernews: <a href="https://cybernews.com/security/rosstat-russia-hack-war-casualty-figures/" target="_blank" rel="noopener">Rosstat breach: hackers claim leak shows Russia's true war losses</a></li>
+    <li><span class="eyebrow">Deaths</span> Meduza: <a href="https://meduza.io/en/feature/2026/02/25/western-analysts-say-russia-is-losing-50-000-soldiers-a-month-a-meduza-investigation-suggests-those-estimates-are-based-on-manipulated-data" target="_blank" rel="noopener">court declarations and the 2025 spike (Feb 2026)</a></li>
   </ol>
 </section>
 
@@ -1435,6 +1472,55 @@ function drawFv(r) {
   P.forEach(x => { el("circle", { cx: xs(D(x.date)), cy: ys(x.fig), r: 4.5, fill: css("--s-indep"), stroke: css("--surface"), "stroke-width": 2 }, c.svg); });
 }
 
+
+/* Year by year */
+function drawYears() {
+  const Y = DATA.yearly.years;
+  const c = setup("c-years", { t: 14, r: 12, b: 26, l: 50 });
+  const { ticks, top } = niceTicks(Math.max(...Y.map(y => y.mod)), 4); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  const gw = c.iw / Y.length, w = Math.min(30, gw * 0.24);
+  Y.forEach((y, i) => {
+    const cx = c.m.l + gw * i + gw / 2, x0 = cx - 1.5 * w - 2;
+    el("path", { d: bar(x0, ys(y.mod), w, ys(0) - ys(y.mod)), fill: css("--s-claims") }, c.svg);
+    el("path", { d: bar(x0 + w + 2, ys(y.leak), w, ys(0) - ys(y.leak)), fill: css("--c-ru") }, c.svg);
+    if (y.leak_adj > y.leak) el("path", { d: bar(x0 + w + 2.75, ys(y.leak_adj), w - 1.5, ys(y.leak) - ys(y.leak_adj)), fill: "none", stroke: css("--c-ru"), "stroke-width": 1.5 }, c.svg);
+    if (y.probate) el("path", { d: bar(x0 + 2 * w + 4, ys(y.probate), w, ys(0) - ys(y.probate)), fill: css("--s-indep") }, c.svg);
+    txt(c.svg, x0 + w / 2, ys(y.mod) - 5, fmtK(y.mod), { class: "lbl-strong", "text-anchor": "middle" });
+    txt(c.svg, cx, c.m.t + c.ih + 17, y.year === "2026" ? "2026 (to 28 Aug)" : y.year, { class: "lbl", "text-anchor": "middle" });
+    const hit = el("rect", { x: cx - gw / 2, y: c.m.t, width: gw, height: c.ih, fill: "transparent" }, c.svg);
+    hit.addEventListener("pointerenter", () => {
+      const r0 = c.svg.getBoundingClientRect();
+      showTip(c, cx * r0.width / c.W, ys(y.mod) * r0.height / c.H, `${y.year === "2026" ? "2026, to 28 Aug" : y.year}<br><span class="k">Ukraine MOD</span> <b>${fmt(y.mod)}</b><br><span class="k">Rosstat leak</span> <b>${fmt(y.leak)}</b>${y.leak_adj > y.leak ? ` <span class="k">(${fmt(y.leak_adj)} lag-corrected)</span>` : ""}` + (y.probate ? `<br><span class="k">Probate estimate</span> <b>~${fmt(y.probate)}</b>` : "") + `<br><span class="k">MOD per death</span> <b>${y.ratio.toFixed(1)}×</b>`);
+    });
+    hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+  });
+}
+function drawYearRatio() {
+  const Y = DATA.yearly.years.concat([{ year: "All", ratio: DATA.yearly.ratio_cum }]);
+  const c = setup("c-yratio", { t: 14, r: 12, b: 26, l: 40 });
+  const top = 7, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  el("rect", { x: c.m.l, y: ys(5), width: c.iw, height: ys(3.5) - ys(5), fill: css("--grid") }, c.svg);
+  [0, 1, 2, 3, 4, 5, 6, 7].forEach(v => { el("line", { x1: c.m.l, x2: c.W - c.m.r, y1: ys(v), y2: ys(v), class: v ? "grid" : "axis", "stroke-opacity": 0.6 }, c.svg); txt(c.svg, c.m.l - 6, ys(v) + 3.5, v + "×", { "text-anchor": "end" }); });
+  const gw = c.iw / Y.length;
+  let d = "";
+  Y.slice(0, -1).forEach((y, i) => { d += (i ? "L" : "M") + (c.m.l + gw * i + gw / 2) + "," + ys(y.ratio); });
+  el("path", { d, fill: "none", stroke: css("--ink-3"), "stroke-width": 1.5 }, c.svg);
+  Y.forEach((y, i) => {
+    const cx = c.m.l + gw * i + gw / 2, all = y.year === "All";
+    el("circle", { cx, cy: ys(y.ratio), r: all ? 7 : 6, fill: css(all ? "--ink" : "--c-ru"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+    txt(c.svg, cx, ys(y.ratio) - 12, y.ratio.toFixed(1) + "×", { class: "lbl-strong", "text-anchor": "middle" });
+    txt(c.svg, cx, c.m.t + c.ih + 17, all ? "Whole war" : y.year, { class: "lbl", "text-anchor": "middle" });
+  });
+}
+function drawYearTable() {
+  const Y = DATA.yearly.years, tone = { good: "good", warn: "warn" };
+  const icon = k => k === "good" ? '<svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="currentColor"/></svg>' : '<svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>';
+  document.getElementById("t-years").innerHTML = `<table class="dtable yt"><thead><tr><th>Year</th><th>Ukraine MOD<br>casualties</th><th>Rosstat leak<br>deaths</th><th>Mediazona/Meduza<br>probate deaths</th><th>MOD per<br>death</th><th>Result</th></tr></thead><tbody>` +
+    Y.map(y => `<tr><td class="hi">${y.year === "2026" ? "2026<br><span style='font-weight:400;color:var(--ink-3)'>to 28 Aug</span>" : y.year}</td><td>${fmt(y.mod)}</td><td>${fmt(y.leak)}${y.leak_adj > y.leak ? `<br><span style="color:var(--ink-3)">${fmt(y.leak_adj)} lag-corrected</span>` : ""}</td><td>${y.probate ? "~" + fmt(y.probate) : "–"}</td><td class="hi">${y.ratio.toFixed(1)}×</td><td class="yt-res"><span class="chip ${tone[y.result[1]]}">${icon(y.result[1])}${y.result[0]}</span><br>${y.result[2]}</td></tr>`).join("") +
+    `<tr><td class="hi">Whole war<br><span style='font-weight:400;color:var(--ink-3)'>to 28 Aug 2026</span></td><td>${fmt(DATA.yearly.mod_cum)}</td><td>${fmt(DATA.yearly.leak_total)}</td><td>–</td><td class="hi">${DATA.yearly.ratio_cum.toFixed(1)}×</td><td class="yt-res"><span class="chip good">${icon("good")}Consistent</span><br>2.3 wounded per death, believable in a drone war. Mediazona's ${fmt(DATA.yearly.named_total)} named dead (${dlabel(D(DATA.yearly.named_asof))}) equal about 60% of the register, inside Mediazona's own coverage estimate.</td></tr></tbody></table>`;
+}
+
 /* 8. Target */
 function drawTarget() {
   const c = setup("c-target", { t: 18, r: 12, b: 26, l: 46 });
@@ -1478,12 +1564,12 @@ function drawYard() {
 }
 
 function drawAll() {
-  drawDaily(); drawMonthly(); sim(); drawBattleDaily(); drawBattles(); drawEras(); drawPostureScatter(); drawPostureSplit(); drawRecruit(); drawCum(); drawTarget(); drawDrone(); drawShare(); fvUpdate(); drawCampPanel("c-camp-cas", "cas"); drawCampPanel("c-camp-dead", "dead");
+  drawDaily(); drawMonthly(); sim(); drawBattleDaily(); drawBattles(); drawEras(); drawPostureScatter(); drawPostureSplit(); drawRecruit(); drawCum(); drawTarget(); drawDrone(); drawShare(); fvUpdate(); drawYears(); drawYearRatio(); drawCampPanel("c-camp-cas", "cas"); drawCampPanel("c-camp-dead", "dead");
   [["w-precip", "precip"], ["w-snow", "snow"], ["w-temp", "temp"], ["w-wind", "wind"]].forEach(a => drawWeather(...a));
 }
 document.querySelectorAll("[data-asof]").forEach(e => { e.textContent = dlabel(D(DATA.asof)); });
 document.getElementById("kpi-total").textContent = fmt(DATA.total);
-drawHeat(); drawRatio(); drawDisp(); drawCampTable(); drawYard(); drawAll();
+drawHeat(); drawRatio(); drawDisp(); drawCampTable(); drawYearTable(); drawYard(); drawAll();
 ["r-front", "r-sector", "r-k", "r-shock", "r-mu"].forEach(id => document.getElementById(id).addEventListener("input", sim));
 ["r-hit", "r-dshare"].forEach(id => document.getElementById(id).addEventListener("input", fvUpdate));
 document.querySelectorAll(".fv-presets button").forEach(b => b.addEventListener("click", () => { document.getElementById("r-hit").value = b.dataset.hit; fvUpdate(); }));
