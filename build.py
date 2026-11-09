@@ -185,6 +185,23 @@ def main():
     full26 = [r for r in data["monthly_all"] if r[0].startswith("2026") and r[0] != this_month]
     data["recruit26"] = {"avg": round(sum(r[1] for r in full26) / len(full26)), "label": f"Jan–{dt.date(2026, len(full26), 1):%b}"}
 
+    # Figures quoted in the page text, filled into [data-fig] elements at load
+    sg = lambda v: ("−" if v < 0 else "+") + f"{abs(v):.2f}"
+    x = a[["precipitation_sum", "rel"]].dropna()
+    nxt = a.assign(rn=a.rel.shift(-1))[["precipitation_sum", "rn"]].dropna()
+    cur = daily[asof.strftime("%Y-%m")]
+    days_in = calendar.monthrange(asof.year, asof.month)[1]
+    data["figs"] = {
+        "ndays": f"{len(daily):,}", "nround": f"{int((daily.astype(int) % 10 == 0).sum()):,}", "nwx": f"{len(x):,}",
+        "rho_precip": sg(data["weather"]["rho"]["precip"][0]), "rho_snow": sg(data["weather"]["rho"]["snow"][0]),
+        "rho_temp": sg(data["weather"]["rho"]["temp"][0]), "rho_cloud": sg(data["weather"]["rho"]["cloud"][0]),
+        "rho_wind": sg(data["weather"]["rho"]["wind"][0]),
+        "rho_next": ("−" if stats.spearmanr(nxt.iloc[:, 0], nxt.iloc[:, 1])[0] < 0 else "+") + f"{abs(stats.spearmanr(nxt.iloc[:, 0], nxt.iloc[:, 1])[0]):.3f}",
+        "cur_month": asof.strftime("%B"), "cur_span": f"1–{asof.day} {asof:%B}", "cur_sum": f"{int(cur.sum()):,}",
+        "cur_rate": f"{cur.mean():,.0f}", "cur_proj": f"{round(cur.mean() * days_in, -3):,.0f}",
+        "total_m": f"{data['total'] / 1e6:.1f} million",
+    }
+
     OUT.mkdir(exist_ok=True)
     html = (ROOT / "template.html").read_text().replace("/*__DATA__*/", json.dumps(data))
     page = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" '
