@@ -320,50 +320,6 @@
  },
  {
   "camp": "indep",
-  "source": "The Economist model",
-  "date": "2024-06-21",
-  "fig": 595000,
-  "counted": "cas",
-  "what": "killed + wounded (462\u2013728k)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2025-07-09",
-  "fig": 1100000,
-  "counted": "cas",
-  "what": "killed + wounded (0.9\u20131.3m)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2026-02-23",
-  "fig": 1250000,
-  "counted": "cas",
-  "what": "killed + wounded (1.1\u20131.4m)",
-  "url": "https://legrandcontinent.eu/fr/2026/02/25/depuis-2022-un-russe-sur-25-age-de-18-a-49-ans-aurait-ete-tue-ou-blesse-en-ukraine/",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2026-11-06",
-  "fig": 1724000,
-  "counted": "cas",
-  "what": "killed + wounded, central (1.42\u20132.09m)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
   "source": "Mediazona/BBC named",
   "date": "2023-04-14",
   "fig": 20000,
@@ -442,11 +398,11 @@
  {
   "camp": "indep",
   "source": "Mediazona/BBC named",
-  "date": "2026-10-30",
-  "fig": 285023,
+  "date": "2026-11-06",
+  "fig": 286000,
   "counted": "dead",
   "what": "named dead (floor)",
-  "url": "https://ru.themoscowtimes.com/2026/10/31/the-economist-rossiya-mogla-poteryat-v-ukraine-pogibshimi-770-000-chelovek-a210198",
+  "url": "https://en.zona.media/article/2026/11/06/casualties_eng-trl",
   "floor": true,
   "via_ua": false
  },
@@ -524,61 +480,6 @@
   "counted": "dead",
   "what": "deaths incl. court-declared",
   "url": "https://en.zona.media/article/2026/05/09/losses",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2024-06-21",
-  "fig": 123000,
-  "counted": "dead",
-  "what": "killed (106\u2013140k)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2025-07-09",
-  "fig": 270000,
-  "counted": "dead",
-  "what": "killed (190\u2013350k)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2026-02-23",
-  "fig": 330000,
-  "counted": "dead",
-  "what": "killed (230\u2013430k)",
-  "url": "https://legrandcontinent.eu/fr/2026/02/25/depuis-2022-un-russe-sur-25-age-de-18-a-49-ans-aurait-ete-tue-ou-blesse-en-ukraine/",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "The Economist model",
-  "date": "2026-11-06",
-  "fig": 543000,
-  "counted": "dead",
-  "what": "killed, central (374\u2013788k)",
-  "url": "https://github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates",
-  "floor": false,
-  "via_ua": false
- },
- {
-  "camp": "indep",
-  "source": "Mediazona/BBC extrapolation",
-  "date": "2026-10-30",
-  "fig": 590000,
-  "counted": "dead",
-  "what": "killed (518\u2013663k)",
-  "url": "https://ru.themoscowtimes.com/2026/10/31/the-economist-rossiya-mogla-poteryat-v-ukraine-pogibshimi-770-000-chelovek-a210198",
   "floor": false,
   "via_ua": false
  },

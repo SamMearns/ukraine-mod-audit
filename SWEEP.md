@@ -8,6 +8,8 @@ Run on the 1st of each month. Goal: bring every dataset up to the end of the pre
 - Do not use Ukrainian government, General Staff, DeepState or Ukrainian outlets (Kyiv Independent, Kyiv Post, Ukrainska Pravda, Ukrinform, UNN, NV, Euromaidan, Militarnyi) as data sources. DeepState stays as a comparison only.
 - If a Ukrainian figure is unavoidable, show it next to a non-Ukrainian figure.
 - **Exclude** purported Russian data whose provenance runs through Ukrainian intelligence (e.g. HUR-released "Kremlin" documents).
+- **Exclude** The Economist's casualty model in all forms.
+- **Hold** the leaked Rosstat register (rosstat-leaks.com) until the raw data is available to verify; do not add its figures from summaries.
 - Every new figure needs a URL where it was seen. Never estimate a missing month.
 
 ## 1. Automatic data
@@ -23,7 +25,7 @@ Fetches the General Staff series, Open-Meteo weather and DeepState flows, and re
 | File | Add |
 |---|---|
 | `isw.csv` | Last month's Russian net gain from AFP's monthly ISW analysis (France 24, Moscow Times, Euronews, Al Jazeera, Barron's). Note gross/net. |
-| `camps.json` | New dated estimates of Russian losses: Mediazona/BBC named count, Mediazona/Meduza probate releases, The Economist model (github.com/TheEconomist/the-economist-ukraine-war-dead-and-wounded-estimates), CSIS, UK/US/NATO, IISS, Russian official or budget figures. Fields: camp, source, date, fig, counted (cas/dead), what, url, floor, via_ua. |
+| `camps.json` | New dated estimates of Russian losses: Mediazona/BBC named count, Mediazona/Meduza probate releases, CSIS, UK/US/NATO, IISS, Russian official or budget figures. Fields: camp, source, date, fig, counted (cas/dead), what, url, floor, via_ua. |
 | `battles.csv` | Battles or truces whose peak phase ended last month (dates from ISW, wires, Meduza). |
 | `statements.json` | New Ukrainian officials' figures for a battle or period; new Ministry of Defence drone-series months. |
 | `eras.json` | Only if outside sources report a clear change in the weapon mix. |
