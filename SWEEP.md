@@ -27,6 +27,7 @@ Fetches the General Staff series, Open-Meteo weather and DeepState flows, and re
 | `isw.csv` | Last month's Russian net gain from AFP's monthly ISW analysis (France 24, Moscow Times, Euronews, Al Jazeera, Barron's). Note gross/net. |
 | `camps.json` | New dated estimates of Russian losses: Mediazona/BBC named count, Mediazona/Meduza probate releases, CSIS, UK/US/NATO, IISS, Russian official or budget figures. Fields: camp, source, date, fig, counted (cas/dead), what, url, floor, via_ua. |
 | `oryx.csv` | Append Oryx's Russian totals (tanks, the armoured-combat-vehicles line, self-propelled + towed artillery + rocket launchers) from https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html for the 1st of the month. |
+| `lostarmour_monthly.csv` | Re-collect the last six months from lostarmour.info (armour, mraps, auto, artd, mdst lists filtered by date; read the 'Всего' total), since recent months fill in late. Also update `oryx_ua.json` from Oryx's Ukrainian losses page. |
 | `armour_notes.json` | Update the Armour vs Manpower rises-and-dips cards and standout findings if last month moved a series by 40% or more, or new non-Ukrainian research appears. Update the claimed-vs-verified yearly table in `template.html`. |
 | `battles.csv` | Battles or truces whose peak phase ended last month (dates from ISW, wires, Meduza). |
 | `statements.json` | New Ukrainian officials' figures for a battle or period; new Ministry of Defence drone-series months. |

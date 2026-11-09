@@ -211,6 +211,11 @@ def main():
             ua = ec[:r.date].iloc[-1]
             rows.append(dict(date=r.date, tanks=r.tanks, acv=r.acv, art=r.art, ua_tanks=int(ua.tank), ua_acv=int(ua.tank + ua.APC), ua_art=int(ua.artillery), src=r.source))
         data["armour"]["oryx"] = rows
+    if (STATIC / "lostarmour_monthly.csv").exists():
+        la = pd.read_csv(STATIC / "lostarmour_monthly.csv")
+        data["armour"]["la"] = [[r.month, int(r.armour), int(r.mraps), int(r.auto), int(r.artd), int(r.mdst)] for r in la.itertuples()]
+    if (STATIC / "oryx_ua.json").exists():
+        data["armour"]["oryx_ua"] = json.load(open(STATIC / "oryx_ua.json"))
     if (STATIC / "armour_notes.json").exists():
         data["armour"]["notes"] = json.load(open(STATIC / "armour_notes.json"))
 

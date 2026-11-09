@@ -945,8 +945,35 @@ header { padding-top: 0; }
   </div>
 </section>
 
+<section id="ar-la" aria-labelledby="ar-lah">
+  <div class="sec-head"><span class="eyebrow"><span>05</span><span>Both sides</span></span><h2 id="ar-lah">Ukraine's armour losses, from the other side's count</h2></div>
+  <div class="prose">
+    <p>LostArmour is a Russian pro-war project that logs Ukrainian equipment losses from photos and video, each with a date and a link, much as Oryx does for Russia. As a pro-Russian source it has every reason to count generously, so its totals are checked against Oryx's own independent list of Ukrainian losses. On armour the two agree closely.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Armoured vehicles lost per month, both sides</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Russia, claimed by Ukraine</span><span><i style="background:var(--s-ru)"></i>Russia, photo-verified (Oryx)</span><span><i style="background:var(--s-ua)"></i>Ukraine, photo-verified (LostArmour)</span></div></div>
+    <div class="chart" id="c-ar-la" style="height:300px"></div>
+    <p class="fig-note">Oryx's Russian count is a monthly average between its archived snapshots. LostArmour's Ukrainian count covers its armour and armoured-car lists by date of loss; recent months fill in as footage is added. Self-propelled guns sit in LostArmour's armour list and outside Oryx's armoured-vehicle line, so the two are close but not identical.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Russian armour lost for each Ukrainian armoured vehicle lost</h3></div>
+    <div class="table-scroll" id="t-ar-la"></div>
+    <p class="fig-note">Verified ratio: Oryx's Russian count over LostArmour's Ukrainian count, both photo-based. Claimed ratio: Ukraine's General Staff claim over LostArmour's count.</p>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Checking LostArmour against Oryx's count of Ukrainian losses</h3></div>
+    <div class="table-scroll" id="t-ar-lacheck"></div>
+    <p class="fig-note">Whole war to 9 November 2026. Category boundaries differ between the two lists, so treat the match as approximate.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">On armour, the exchange has turned against Ukraine.</span>
+    <p>Through 2024 Russia lost two to three armoured vehicles for every Ukrainian one, on photo-verified counts from both sides. In 2025 the ratio fell below one, and in 2026 Ukraine has lost nearly six for every Russian one. Russia now attacks on foot while Ukraine still moves troops, supplies and wounded in armoured cars, which Russian drones hunt. LostArmour's armour total sits within 10% of Oryx's independent count, so the shift is not a pro-Russian inflation. Its vehicle count runs about four times Oryx's and is less reliable.</p>
+  </div>
+</section>
+
 <section id="ar5" aria-labelledby="ar5h">
-  <div class="sec-head"><span class="eyebrow"><span>05</span><span>From the research</span></span><h2 id="ar5h">What stands out</h2></div>
+  <div class="sec-head"><span class="eyebrow"><span>06</span><span>From the research</span></span><h2 id="ar5h">What stands out</h2></div>
   <ol class="ar-standout" id="ar-standout"></ol>
 </section>
 
@@ -966,6 +993,7 @@ header { padding-top: 0; }
     <li><span class="eyebrow">Losses</span> CIT: <a href="https://notes.citeam.org/dispatch-oct-27-30-2023" target="_blank" rel="noopener">Dispatch, 27–30 Oct 2023</a></li>
     <li><span class="eyebrow">Claims vs verified</span> Re:Russia: <a href="https://re-russia.net/en/analytics/0234/" target="_blank" rel="noopener">Russia's tank reserves (Jan 2025)</a></li>
     <li><span class="eyebrow">Oryx method</span> The Insider: <a href="https://theins.press/en/news/292986" target="_blank" rel="noopener">Oryx page size limit (May 2026)</a></li>
+    <li><span class="eyebrow">Ukrainian losses</span> <a href="https://lostarmour.info/armour" target="_blank" rel="noopener">LostArmour</a> (Russian, pro-war) monthly totals for armour, armoured cars, vehicles, artillery and rocket launchers; <a href="https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-ukrainian.html" target="_blank" rel="noopener">Oryx: Ukrainian equipment losses</a></li>
     <li><span class="eyebrow">Stocks</span> Defence24: <a href="https://defence24.com/armed-forces/what-are-the-equipment-reserves-russia-has-at-its-disposal-analysis" target="_blank" rel="noopener">Russia's equipment reserves (Apr 2024)</a></li>
     <li><span class="eyebrow">Stocks</span> Global Defense Corp: <a href="https://www.globaldefensecorp.com/2026/06/12/satellite-imagery-suggests-russias-t-55-t-72-and-t-80-tank-reserve-is-nearly-gone/" target="_blank" rel="noopener">Tank reserve satellite count (Jun 2026)</a></li>
     <li><span class="eyebrow">Stocks</span> European Security &amp; Defence: <a href="https://euro-sd.com/2025/02/major-news/42546/2025-military-balance-launch/" target="_blank" rel="noopener">IISS Military Balance 2025 launch</a></li>
@@ -1671,6 +1699,7 @@ function arOryx() {
   });
 }
 function armourStatic() {
+  laTables();
   const T = DATA.armour.totals, A = AR, last = A[A.length - 1];
   const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
   const OL = (DATA.armour.oryx || []).slice(-1)[0];
@@ -1688,6 +1717,56 @@ function armourStatic() {
   const so = document.getElementById("ar-standout");
   if (so && N.standout) so.innerHTML = N.standout.map((s, i) => `<li><span class="n">${String(i + 1).padStart(2, "0")}</span><div><p><b>${s.title}</b> ${s.text}</p><p class="src">${s.src}</p></div></li>`).join("");
 }
+
+/* Ukraine's losses per LostArmour, against Russia's */
+function laSeries() {
+  const LA = Object.fromEntries((DATA.armour.la || []).map(r => [r[0], r]));
+  const O = (DATA.armour.oryx || []).map(o => ({ d: D(o.date), acv: o.acv }));
+  O.unshift({ d: D("2022-02-24"), acv: 0 });
+  const oryxRate = d => { for (let i = 1; i < O.length; i++) if (d <= O[i].d) return (O[i].acv - O[i - 1].acv) / ((O[i].d - O[i - 1].d) / 864e5); return null; };
+  return AR.map(r => { const l = LA[r.k]; const mid = new Date(Date.UTC(r.d.getUTCFullYear(), r.d.getUTCMonth(), 15)); const days = new Date(Date.UTC(r.d.getUTCFullYear(), r.d.getUTCMonth() + 1, 0)).getUTCDate(); const rate = oryxRate(mid);
+    return { k: r.k, d: r.d, ruClaim: r.armour, ruVer: rate == null ? null : rate * days, ua: l ? l[1] + l[2] : null, uaVeh: l ? l[3] : null, uaArt: l ? l[4] + l[5] : null }; });
+}
+function drawLA() {
+  const S = laSeries(); if (!S.some(r => r.ua != null)) return;
+  const c = setup("c-ar-la", { t: 16, r: 14, b: 22, l: 46 });
+  const max = Math.max(...S.map(r => Math.max(r.ruClaim, r.ruVer || 0, r.ua || 0)));
+  const { ticks, top } = niceTicks(max, 4); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  const n = S.length, bw = c.iw / n, x = i => c.m.l + i * bw + bw / 2;
+  const line = (key, tok, w) => { let d = ""; S.forEach((r, i) => { if (r[key] == null) return; d += (d ? "L" : "M") + x(i).toFixed(1) + "," + ys(r[key]).toFixed(1); }); el("path", { d, fill: "none", stroke: css(tok), "stroke-width": w, "stroke-linejoin": "round" }, c.svg); };
+  line("ruClaim", "--s-claims", 1.5); line("ruVer", "--s-ru", 2.5); line("ua", "--s-ua", 2.5);
+  S.forEach((r, i) => { if (r.d.getUTCMonth() === 0) txt(c.svg, x(i) - bw / 2 + 2, c.m.t + c.ih + 15, String(r.d.getUTCFullYear())); });
+  const hit = el("rect", { x: c.m.l, y: c.m.t, width: c.iw, height: c.ih, fill: "transparent" }, c.svg);
+  const cross = el("line", { y1: c.m.t, y2: c.m.t + c.ih, stroke: css("--ink-3"), "stroke-width": 1, visibility: "hidden" }, c.svg);
+  hit.addEventListener("pointermove", e => {
+    const r0 = c.svg.getBoundingClientRect(), px = (e.clientX - r0.left) * c.W / r0.width;
+    const i = Math.max(0, Math.min(n - 1, Math.floor((px - c.m.l) / bw))), r = S[i];
+    cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("visibility", "visible");
+    showTip(c, x(i) * r0.width / c.W, c.m.t * r0.height / c.H + 8, `${mlabel(r.d)}<br><span class="k">Russia, claimed by Ukraine</span> <b>${fmt(r.ruClaim)}</b><br><span class="k">Russia, verified (Oryx, avg)</span> <b>${r.ruVer == null ? "–" : fmt(r.ruVer)}</b><br><span class="k">Ukraine (LostArmour)</span> <b>${r.ua == null ? "–" : fmt(r.ua)}</b>`);
+  });
+  hit.addEventListener("pointerleave", () => { c.tip.hidden = true; cross.setAttribute("visibility", "hidden"); });
+}
+function laTables() {
+  const LA = DATA.armour.la || []; if (!LA.length) return;
+  const O = DATA.armour.oryx || [];
+  const oAt = s => { let v = 0; O.forEach(o => { if (o.date <= s) v = o.acv; }); return v; };
+  const claimAt = s => { let v = 0; Object.entries(DATA.armour.cum).forEach(([k, a]) => { if (k <= s) v = a[1]; }); return v; };
+  const laSum = (a, b) => LA.filter(r => r[0] >= a && r[0] <= b).reduce((s, r) => s + r[1] + r[2], 0);
+  const lastO = O[O.length - 1].date;
+  const Y = [["2022", "2022-02-24", "2023-01-01", "2022-02", "2022-12"], ["2023", "2023-01-01", "2024-01-01", "2023-01", "2023-12"], ["2024", "2024-01-01", "2025-01-01", "2024-01", "2024-12"], ["2025", "2025-01-01", "2026-01-02", "2025-01", "2025-12"], ["2026 to date", "2026-01-02", lastO, "2026-01", "2026-12"]];
+  const rows = Y.map(([lab, a, b, ma, mb]) => { const rc = claimAt(b) - (a === "2022-02-24" ? 0 : claimAt(a)), rv = oAt(b) - oAt(a), ua = laSum(ma, mb); return { lab, rc, rv, ua }; });
+  const tot = { lab: "Whole war", rc: claimAt(lastO), rv: oAt(lastO), ua: laSum("2022-02", "2026-12") };
+  const f = (a, b) => b ? (a / b).toFixed(1) + "×" : "–";
+  document.getElementById("t-ar-la").innerHTML = `<table class="dtable stack-sm"><thead><tr><th>Year</th><th>Russia, claimed by Ukraine</th><th>Russia, verified (Oryx)</th><th>Ukraine (LostArmour)</th><th>Verified ratio</th><th>Claimed ratio</th></tr></thead><tbody>` +
+    rows.concat([tot]).map(r => `<tr><td class="hi">${r.lab}</td><td data-label="Russia, claimed by Ukraine">${fmt(r.rc)}</td><td data-label="Russia, verified (Oryx)">${fmt(r.rv)}</td><td data-label="Ukraine (LostArmour)">${fmt(r.ua)}</td><td data-label="Russian per Ukrainian, verified" class="hi">${f(r.rv, r.ua)}</td><td data-label="Russian per Ukrainian, claimed">${f(r.rc, r.ua)}</td></tr>`).join("") + "</tbody></table>";
+  const U = DATA.armour.oryx_ua; if (!U) return;
+  const all = k => LA.reduce((s, r) => s + r[k], 0);
+  const C = [["Armoured vehicles", all(1) + all(2), U.acv + U.imv + U.spa, "LostArmour armour and armoured cars; Oryx armoured combat vehicles, light armoured vehicles and self-propelled guns"], ["Trucks and other vehicles", all(3), U.trucks, "LostArmour vehicles; Oryx trucks"], ["Towed artillery and rocket launchers", all(4) + all(5), U.towed + U.rocket, "LostArmour artillery and rocket launchers; Oryx towed artillery and rocket artillery"]];
+  document.getElementById("t-ar-lacheck").innerHTML = `<table class="dtable stack-sm"><thead><tr><th>Ukrainian losses</th><th>LostArmour (pro-Russian)</th><th>Oryx (independent)</th><th>LostArmour ÷ Oryx</th></tr></thead><tbody>` +
+    C.map(r => `<tr><td>${r[0]}<br><span style="font-weight:400;color:var(--ink-3);font-size:.8rem">${r[3]}</span></td><td data-label="LostArmour (pro-Russian)">${fmt(r[1])}</td><td data-label="Oryx (independent)">${fmt(r[2])}</td><td data-label="LostArmour ÷ Oryx" class="hi">${(r[1] / r[2]).toFixed(2)}×</td></tr>`).join("") + "</tbody></table>";
+}
+
 function drawArmour() {
   arBars("c-ar-pers", [{ key: "pers", tok: "--s-claims" }], { title: "Claimed personnel losses per month", marks: [["2026-10", "54.2k"]] });
   arBars("c-ar-armour", [{ key: "tank", tok: "--s-ru" }, { key: "apc", tok: "--s-muted" }], { title: "Claimed tanks and other armoured vehicles per month", marks: [["2023-10", "Avdiivka 1,340"], ["2022-03", "1,383 in March 2022"]], marksShort: [["2023-10", "1,340"], ["2022-03", "1,383"]] });
@@ -1696,6 +1775,7 @@ function drawArmour() {
   arBars("c-ar-veh", [{ key: "veh", tok: "--s-recruit" }], { title: "Trucks, vehicles and fuel tankers" });
   arBars("c-ar-drone", [{ key: "drone", tok: "--s-drone" }], { title: "Drones shot down" });
   arOryx();
+  drawLA();
 }
 
 /* 8. Target */
