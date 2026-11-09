@@ -209,6 +209,7 @@ def main():
     (OUT / "index.html").write_text(page)
     (OUT / "artifact.html").write_text(html)
     shutil.copytree(ROOT / "img", OUT / "img", dirs_exist_ok=True)
+    (OUT / ".nojekyll").write_text("")
     print(f"Built docs/index.html — data to {data['asof']}, total {data['total']:,}")
 
 
