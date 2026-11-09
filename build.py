@@ -25,6 +25,7 @@ from scipy import stats
 ROOT = pathlib.Path(__file__).resolve().parent
 RAW, STATIC, OUT = ROOT / "data" / "raw", ROOT / "data" / "static", ROOT / "docs"
 
+EQUIPMENT_URL = "https://raw.githubusercontent.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json"
 PERSONNEL_URL = "https://raw.githubusercontent.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_personnel.json"
 DEEPSTATE_URL = "https://visua.no/data/deepstate-gross-flows.csv"
 TOWNS = {"pokrovsk": (48.28, 37.18), "bakhmut": (48.60, 38.00), "kupiansk": (49.71, 37.62),
@@ -40,6 +41,7 @@ def fetch(url, path):
 def fetch_all():
     RAW.mkdir(parents=True, exist_ok=True)
     fetch(PERSONNEL_URL, RAW / "personnel.json")
+    fetch(EQUIPMENT_URL, RAW / "equipment.json")
     fetch(DEEPSTATE_URL, RAW / "deepstate.csv")
     end = (dt.date.today() - dt.timedelta(days=3)).isoformat()
     for name, (lat, lon) in TOWNS.items():
@@ -184,6 +186,33 @@ def main():
     this_month = asof.strftime("%Y-%m")
     full26 = [r for r in data["monthly_all"] if r[0].startswith("2026") and r[0] != this_month]
     data["recruit26"] = {"avg": round(sum(r[1] for r in full26) / len(full26)), "label": f"Jan–{dt.date(2026, len(full26), 1):%b}"}
+
+    # Armour vs manpower: General Staff equipment claims, monthly, against Oryx photo-verified totals
+    eq = pd.DataFrame(json.load(open(RAW / "equipment.json")))
+    eq["date"] = pd.to_datetime(eq["date"])
+    eq = eq.set_index("date").sort_index()
+    eq["vehicles"] = eq["vehicles and fuel tanks"].fillna(eq["military auto"].fillna(0) + eq["fuel tank"].fillna(0))
+    eq["artillery"] = eq["field artillery"] + eq["MRL"]
+    ec = eq[["tank", "APC", "artillery", "vehicles", "drone"]].join(s.personnel, how="outer").ffill().asfreq("D").ffill()
+    me = ec.resample("ME").last()
+    mi = me.diff()
+    mi.iloc[0] = me.iloc[0]
+    eq_asof = eq.index[-1]
+    data["armour"] = {
+        "asof": eq_asof.strftime("%Y-%m-%d"),
+        "totals": {k: int(eq[k].iloc[-1]) for k in ["tank", "APC", "artillery", "vehicles", "drone"]},
+        "monthly": [[i.strftime("%Y-%m"), int(r.personnel), int(r.tank), int(r.APC), int(r.artillery), int(r.vehicles), int(r.drone)] for i, r in mi.iterrows()],
+        "cum": {i.strftime("%Y-%m-%d"): [int(r.tank), int(r.tank + r.APC), int(r.artillery), int(r.vehicles)] for i, r in me.iterrows()},
+    }
+    if (STATIC / "oryx.csv").exists():
+        ox = pd.read_csv(STATIC / "oryx.csv")
+        rows = []
+        for r in ox.itertuples():
+            ua = ec[:r.date].iloc[-1]
+            rows.append(dict(date=r.date, tanks=r.tanks, acv=r.acv, art=r.art, ua_tanks=int(ua.tank), ua_acv=int(ua.tank + ua.APC), ua_art=int(ua.artillery), src=r.source))
+        data["armour"]["oryx"] = rows
+    if (STATIC / "armour_notes.json").exists():
+        data["armour"]["notes"] = json.load(open(STATIC / "armour_notes.json"))
 
     # Figures quoted in the page text, filled into [data-fig] elements at load
     sg = lambda v: ("−" if v < 0 else "+") + f"{abs(v):.2f}"

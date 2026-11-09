@@ -1,0 +1,94 @@
+{
+ "events": [
+  {
+   "when": "February–March 2022",
+   "title": "The armoured invasion",
+   "nums": "1,383 armoured vehicles claimed in March · 9 personnel per armoured vehicle",
+   "text": "Columns of tanks and infantry carriers led the invasion. Oryx had photo-verified 2,330 Russian armoured vehicles by July 2022, the fastest verified loss rate of the war."
+  },
+  {
+   "when": "September 2022",
+   "title": "Kharkiv counteroffensive",
+   "nums": "Armour +82%, tanks +77% on the prior three months",
+   "text": "Russian units abandoned vehicles as they retreated. Both counts jumped together, as they should for a real event."
+  },
+  {
+   "when": "December 2022",
+   "title": "First split: infantry rises, armour falls",
+   "nums": "Armour −62%, tanks −63% · personnel +25%",
+   "text": "Wagner's convict infantry assaults at Bakhmut drove manpower claims up while armour claims halved. The first sign of the infantry-heavy war to come."
+  },
+  {
+   "when": "June 2023",
+   "title": "Ukraine's counteroffensive",
+   "nums": "Armour +50%, tanks +73%, artillery +84%",
+   "text": "Russian defenders lost armour and guns to counter-battery fire. The rise in artillery claims starts here and never reverses."
+  },
+  {
+   "when": "October 2023",
+   "title": "Avdiivka: the last massed armoured assault",
+   "nums": "1,340 armoured vehicles claimed (+127%) · tanks 520 (+140%)",
+   "text": "The biggest armour spike of the war. UK Defence Intelligence put Russian losses at about 200 armoured vehicles in the first month. Analysts date the end of massed Russian armour to this battle."
+  },
+  {
+   "when": "March–May 2024",
+   "title": "Sustained armour losses, then drones take over",
+   "nums": "1,080–1,310 armoured vehicles claimed a month",
+   "text": "Russia kept attacking with armour through spring 2024. 'Turtle tanks' covered in improvised cages appeared in April, and a NATO official said FPV drones caused more than two-thirds of recent Russian tank kills."
+  },
+  {
+   "when": "July–September 2025",
+   "title": "Armour collapses, manpower doesn't",
+   "nums": "Armour 150–231 a month (−47% to −56%) · personnel still 28,000–33,000",
+   "text": "The lowest armour claims of the war. Oryx shows the same: Russian tanks and armoured vehicles lost in summer 2025 were about a third of summer 2024. Small infantry groups on foot, motorbikes and buggies replaced armoured assaults."
+  },
+  {
+   "when": "June–July 2026",
+   "title": "Trucks surge, a brief return of tanks",
+   "nums": "Vehicles 12,900–13,900 a month (+85%, +51%) · tanks +104% in July",
+   "text": "Vehicle claims quadrupled from 2025 as drones reached further behind the line. The July tank spike lines up with the Kostiantynivka assault, when IISS notes Russia still made occasional mechanised pushes in poor visibility."
+  }
+ ],
+ "standout": [
+  {
+   "title": "Russia swapped armour for people.",
+   "text": "Claimed personnel losses per armoured vehicle rose from 12 in 2022 to about 30 in 2023–24 and over 100 from mid-2025, reaching 247 in October 2026. IISS, RUSI and Russian independent media all document the same shift: by 2025 assaults were made by groups of two to five men, and armoured attacks had become 'nearly impossible'.",
+   "src": "IISS, Apr 2026 · RUSI, Oct 2025 · iStories, Sep 2025 · Meduza, May 2026"
+  },
+  {
+   "title": "Armour claims follow battles; manpower claims stopped doing so.",
+   "text": "Armour claims spiked at Kharkiv, Avdiivka and Kostiantynivka. Since mid-2024 the manpower series has stayed flat through every battle (Claims audit, Test 4). The equipment count behaves like a record of events. The manpower count no longer does.",
+   "src": "Calculated from General Staff data"
+  },
+  {
+   "title": "Tank and armour claims ran a steady 2–3 times the photo-verified count, until 2026.",
+   "text": "From 2022 to 2025 Ukraine's tank claims stayed between 1.9 and 2.8 times Oryx's verified total, a gap Re:Russia called implausible in January 2025. In 2026 the yearly gap jumped to 6.5 times for tanks and 7.4 for all armour. Oryx's volunteers have slowed and its page hit a size limit in May 2026, so part of the gap is verification. Part may be inflation.",
+   "src": "Oryx · Re:Russia, Jan 2025 · The Insider, May 2026 · CIT, Oct 2023"
+  },
+  {
+   "title": "Artillery claims have left any verifiable range.",
+   "text": "Ukraine claims 54,000 Russian artillery systems destroyed. Oryx has verified about 2,300. The yearly gap has grown from 10 times in 2023 to 68 times in 2026. Satellite counts found about 9,700 guns in Russian storage in early 2024. Ukrainian analysts themselves told RUSI that only about half of claimed drone kills of Russian artillery are real destructions.",
+   "src": "Oryx · Defence24 (IISS baseline), Apr 2024 · RUSI, Oct 2025"
+  },
+  {
+   "title": "Russia's tank reserve is running down, but it is being held back as well as used up.",
+   "text": "Tanks in open storage fell from 7,342 before the war to 3,517 at the end of 2024 and about 2,088 in June 2026, with perhaps 850 usable. New production is roughly 150–300 a year. IISS warned in February 2025 that Russia lacked tanks for armour-led offensives beyond early 2026. Russia changed tactics instead, and in 2026 began refilling storage bases with new T-90Ms and refurbished T-72s.",
+   "src": "Re:Russia, Jan 2025 · Global Defense Corp (Jompy), Jun 2026 · IISS, Feb 2025 · Novaya Gazeta Europe, Oct 2026"
+  },
+  {
+   "title": "Drones did most of the killing.",
+   "text": "By early 2024 FPV drones accounted for more than two-thirds of Russian tank kills, according to a NATO official. RUSI put drones behind 60–70% of damaged or destroyed Russian systems. Destroying one tank takes about a dozen FPVs, and up-armoured vehicles have survived 10–15 hits.",
+   "src": "Foreign Policy, Apr 2024 · RUSI, Feb and Oct 2025 · iStories, Sep 2025"
+  },
+  {
+   "title": "The vehicle count is a different kind of number.",
+   "text": "Ukraine claims 172,000 Russian vehicles and fuel tankers, about 13,000 a month in 2026. Oryx has verified about 4,700 trucks. Russia now moves supplies on motorbikes, buggies and civilian cars, which Ukraine's count appears to include and Oryx rarely logs, so the two are not like for like.",
+   "src": "Calculated from General Staff claims and Oryx"
+  },
+  {
+   "title": "Independent sources back the shape, if not the size.",
+   "text": "IISS found Russian armour losses fell in 2025 as its use of armoured vehicles dropped, while casualties stayed at about 1,000 a day. That matches the direction of Ukraine's two series. The disagreement is over scale, and it is widest in the drone-verified categories: artillery, vehicles and 2026 armour.",
+   "src": "IISS, Apr 2026"
+  }
+ ]
+}

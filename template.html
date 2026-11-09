@@ -306,6 +306,32 @@ details summary::marker { color: var(--hi); }
 footer { border-top: 1px solid var(--rule); color: var(--ink-3); }
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline-color: var(--hi); border-radius: 0; }
 
+
+/* ---- Tabs ---- */
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--rule); margin-top: -64px; }
+@media (max-width: 600px) { .tabs { margin-top: -40px; } }
+.tabs button { font: inherit; font-size: 15px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink-3); background: none; border: 0; border-bottom: 2px solid transparent; padding: 12px 0; margin-right: 28px; margin-bottom: -1px; cursor: pointer; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--hi); }
+.tabpanel { display: grid; gap: 112px; }
+@media (max-width: 600px) { .tabpanel { gap: 72px; } }
+.topnav + .tabs { }
+header { padding-top: 0; }
+.ar-events { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+@media (max-width: 760px) { .ar-events { grid-template-columns: minmax(0, 1fr); } }
+.ar-ev { background: var(--surface); padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
+.ar-ev .ar-when { font-size: 0.85rem; color: var(--ink-3); font-weight: 500; }
+.ar-ev h3 { font-size: 1.1rem; letter-spacing: -0.03em; }
+.ar-ev .ar-nums { font-family: var(--f-mono); font-size: 0.82rem; color: var(--ink-2); }
+.ar-ev p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
+.ar-ev .up { color: var(--crit-ink); } .ar-ev .down { color: var(--good-ink); }
+.ar-standout { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.ar-standout li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
+.ar-standout .n { font-size: 0.9rem; font-weight: 500; color: var(--hi); }
+.ar-standout b { color: var(--ink); font-weight: 500; }
+.ar-standout p { color: var(--ink-2); max-width: 70ch; }
+.ar-standout .src { font-size: 0.8rem; color: var(--ink-3); margin-top: 4px; }
+
 /* ---- Phone layout ---- */
 @media (max-width: 640px) {
   .topnav .links { display: none; }
@@ -325,9 +351,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 </style>
 
 <div class="wrap">
+  <nav class="topnav" aria-label="Sections"><span>Ukraine MOD Claims Audit</span><span class="links"><a class="plus" href="#judgements">Key judgements</a><a class="plus" href="#s1">Tests</a><a class="plus" href="#camps">Cross-reference</a><a class="plus" href="#sources">Sources</a></span></nav>
+<div class="tabs" role="tablist" aria-label="Views">
+  <button type="button" role="tab" id="tabbtn-audit" aria-controls="tab-audit" aria-selected="true" data-tab="audit">Claims audit</button>
+  <button type="button" role="tab" id="tabbtn-armour" aria-controls="tab-armour" aria-selected="false" data-tab="armour">Armour vs manpower</button>
+</div>
+<div class="tabpanel" id="tab-audit" role="tabpanel" aria-labelledby="tabbtn-audit">
 
 <header>
-  <nav class="topnav" aria-label="Sections"><span>Ukraine MOD Claims Audit</span><span class="links"><a class="plus" href="#judgements">Key judgements</a><a class="plus" href="#s1">Tests</a><a class="plus" href="#camps">Cross-reference</a><a class="plus" href="#sources">Sources</a></span></nav>
   <div class="classif eyebrow"><span>Open-source reliability assessment</span><span>Data to <span data-asof>6 Nov 2026</span></span><span><span data-fig="ndays">1,716</span> daily reports tested</span></div>
   <h1><span class="h-muted">Can Ukraine's count of Russian losses</span> be trusted?</h1>
   <p class="lede">Ten tests of the Russian-loss figure Ukraine publishes every day, using only data from outside Ukraine.</p>
@@ -827,6 +858,123 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
     <li><span class="eyebrow">Doctrine</span> AP via ADN: <a href="https://www.adn.com/nation-world/2025/08/17/high-tech-drones-turn-ukraines-front-line-into-a-deadly-kill-zone-complicating-evacuations/" target="_blank" rel="noopener">drone kill zone delays evacuation</a></li>
   </ol>
 </section>
+
+</div>
+<div class="tabpanel" id="tab-armour" role="tabpanel" aria-labelledby="tabbtn-armour" hidden>
+<header>
+  <div class="classif eyebrow"><span>Equipment against manpower</span><span>Data to <span data-ar-asof>9 Nov 2026</span></span><span>Checked against Oryx photo-verified losses</span></div>
+  <h1><span class="h-muted">Armour vs</span> manpower</h1>
+  <p class="lede">How Russia's claimed equipment losses moved against its claimed manpower losses, month by month, and how both compare with losses verified from photos and video.</p>
+  <div class="kpis">
+    <div class="kpi"><span class="v" id="ar-k-tank">12,462</span><span class="l">Russian tanks claimed destroyed by Ukraine's General Staff</span><span class="src"><span id="ar-k-tank-v">4,456</span> photo-verified by Oryx</span></div>
+    <div class="kpi"><span class="v" id="ar-k-armour">38,145</span><span class="l">Tanks and other armoured vehicles claimed</span><span class="src"><span id="ar-k-armour-v">14,203</span> photo-verified by Oryx</span></div>
+    <div class="kpi"><span class="v" id="ar-k-art">54,375</span><span class="l">Artillery systems and rocket launchers claimed</span><span class="src"><span id="ar-k-art-v">2,334</span> photo-verified by Oryx</span></div>
+    <div class="kpi"><span class="v"><span id="ar-k-r22">12</span> → <span id="ar-k-rlast">247</span></span><span class="l">Claimed personnel losses per armoured vehicle, 2022 vs <span id="ar-k-rlastm">Oct 2026</span></span><span class="src">General Staff claims</span></div>
+  </div>
+</header>
+
+<section aria-labelledby="ar-bl">
+  <div class="sec-head"><span class="eyebrow">Bottom line</span><h2 id="ar-bl">Russia traded armour for infantry. Ukraine's count reflects it, with caveats.</h2></div>
+  <ol class="judgements">
+    <li><span class="key">A</span><p>It is <span class="yard-term">almost certain</span> that <b>Russia shifted from armoured assaults to infantry</b> from late 2023. Its own storage depletion, IISS, RUSI and Russian independent media all describe it, and both of Ukraine's series and Oryx's verified count show it.</p></li>
+    <li><span class="key">B</span><p>It is <span class="yard-term">likely</span> that <b>Ukraine's armour claims are inflated by a fairly steady factor</b>, around 2–3 times the photo-verified count through 2025. Some of that gap is losses Oryx never sees.</p></li>
+    <li><span class="key">C</span><p>It is <span class="yard-term">highly likely</span> that <b>Ukraine's artillery and 2026 armour claims are inflated beyond that</b>. Artillery runs 68 times the verified count in 2026, and these are the categories where drone footage does the confirming.</p></li>
+  </ol>
+</section>
+
+<section id="ar1" aria-labelledby="ar1h">
+  <div class="sec-head"><span class="eyebrow"><span>01</span><span>Manpower vs armour</span></span><h2 id="ar1h">Manpower claims rose as armour claims fell</h2></div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed losses per month</h3><div class="legend"><span><i class="sq" style="background:var(--s-claims)"></i>Personnel</span><span><i class="sq" style="background:var(--s-ru)"></i>Tanks</span><span><i class="sq" style="background:var(--s-muted)"></i>Other armoured vehicles</span></div></div>
+    <div class="chart" id="c-ar-pers" style="height:190px"></div>
+    <div class="chart" id="c-ar-armour" style="height:190px"></div>
+    <div class="chart" id="c-ar-ratio" style="height:210px"></div>
+    <p class="fig-note">Source: General Staff of the Armed Forces of Ukraine, daily bulletins. "Other armoured vehicles" is the General Staff's armoured combat vehicle category (infantry fighting vehicles, carriers and similar). The current month is left out until it is complete. Hover for the month's figures.</p>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The shape is real: Russia stopped attacking with armour.</span>
+    <p>Armour claims peaked at Avdiivka in October 2023 and fell to their lowest in summer 2025, while manpower claims kept climbing. Each armoured vehicle claimed now comes with more than 100 claimed casualties, against 12 in 2022. IISS and RUSI document the same switch to small infantry groups.</p>
+  </div>
+</section>
+
+<section id="ar2" aria-labelledby="ar2h">
+  <div class="sec-head"><span class="eyebrow"><span>02</span><span>Rises and dips</span></span><h2 id="ar2h">The months that stand out</h2></div>
+  <div class="prose"><p>Each month is compared with the average of the three before it. These are the largest moves in the armour series, with what was happening on the ground.</p></div>
+  <div class="ar-events" id="ar-events"></div>
+</section>
+
+<section id="ar3" aria-labelledby="ar3h">
+  <div class="sec-head"><span class="eyebrow"><span>03</span><span>Claimed vs verified</span></span><h2 id="ar3h">How the claims compare with photo-verified losses</h2></div>
+  <div class="prose"><p>Oryx, run by Dutch analysts and volunteers, counts only Russian equipment losses shown in photos or video, each linked to its source. It is a floor: it misses whatever goes unfilmed, and its pace has slowed since its main author stepped back in 2023. It is still the only item-by-item count of Russian equipment losses outside Ukraine's government.</p></div>
+  <div class="figure">
+    <div class="fig-head"><h3>Cumulative claims (lines) against Oryx's verified count (circles)</h3><div class="legend"><span><i style="background:var(--s-claims)"></i>Tanks</span><span><i style="background:var(--s-ru)"></i>All armoured vehicles</span><span><i class="dot" style="background:var(--surface);border:2px solid var(--ink-3)"></i>Oryx verified</span></div></div>
+    <div class="chart" id="c-ar-oryx" style="height:300px"></div>
+  </div>
+  <div class="figure">
+    <div class="fig-head"><h3>Claimed against verified, by year</h3></div>
+    <div class="table-scroll"><table class="dtable stack-sm">
+      <thead><tr><th>Year</th><th>Tanks</th><th>All armour</th><th>Artillery</th></tr></thead>
+      <tbody>
+        <tr><td>2023</td><td data-label="Tanks">2,952 / 1,008 <b>2.9×</b></td><td data-label="All armour">7,955 / 2,831 <b>2.8×</b></td><td data-label="Artillery">6,981 / 686 <b>10×</b></td></tr>
+        <tr><td>2024</td><td data-label="Tanks">3,689 / 1,060 <b>3.5×</b></td><td data-label="All armour">12,645 / 4,023 <b>3.1×</b></td><td data-label="Artillery">13,363 / 425 <b>31×</b></td></tr>
+        <tr><td>2025</td><td data-label="Tanks">1,822 / 640 <b>2.8×</b></td><td data-label="All armour">5,630 / 2,432 <b>2.3×</b></td><td data-label="Artillery">14,521 / 353 <b>41×</b></td></tr>
+        <tr><td>2026 to 9 Nov</td><td data-label="Tanks">968 / 148 <b>6.5×</b></td><td data-label="All armour">2,800 / 376 <b>7.4×</b></td><td data-label="Artillery">17,066 / 251 <b>68×</b></td></tr>
+      </tbody></table></div>
+    <p class="fig-note">Claimed by Ukraine's General Staff / verified by Oryx, between Wayback Machine snapshots of Oryx's page nearest each year end. Artillery: Oryx self-propelled and towed artillery plus rocket launchers, against the General Staff's artillery systems plus rocket launchers. Oryx renamed its rocket-launcher category in 2025 and restructured its page in May 2026; tanks and armoured vehicles are unaffected.</p>
+    <details><summary>Show every snapshot</summary><div class="table-scroll" id="t-ar-oryx"></div></details>
+  </div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">A steady gap through 2025, a widening one since.</span>
+    <p>Tank and armour claims held at 2–3 times the verified count for three years, a gap Re:Russia called implausible. In 2026 the yearly gap more than doubled, and artillery claims now run 68 times anything verified. Slower verification explains some of that. It does not explain a factor of 68.</p>
+  </div>
+</section>
+
+<section id="ar4" aria-labelledby="ar4h">
+  <div class="sec-head"><span class="eyebrow"><span>04</span><span>What else is being hit</span></span><h2 id="ar4h">Artillery, vehicles and drones</h2></div>
+  <div class="two">
+    <div class="figure"><div class="chart" id="c-ar-art" style="height:200px"></div></div>
+    <div class="figure"><div class="chart" id="c-ar-veh" style="height:200px"></div></div>
+  </div>
+  <div class="figure"><div class="chart" id="c-ar-drone" style="height:200px"></div><p class="fig-note">All three series: General Staff claims per month. "Drones shot down" counts Russian drones downed, not drones used.</p></div>
+  <div class="verdict">
+    <span class="eyebrow">Assessment</span>
+    <span class="claim">The fastest-growing claims are the hardest to check.</span>
+    <p>As armour claims fell, claims for artillery, vehicles and downed drones rose to records. These are the targets drones hit most and photographers record least. Oryx has verified about one in 23 claimed artillery systems and one in 36 claimed vehicles.</p>
+  </div>
+</section>
+
+<section id="ar5" aria-labelledby="ar5h">
+  <div class="sec-head"><span class="eyebrow"><span>05</span><span>From the research</span></span><h2 id="ar5h">What stands out</h2></div>
+  <ol class="ar-standout" id="ar-standout"></ol>
+</section>
+
+<section aria-labelledby="ar-src">
+  <div class="sec-head"><span class="eyebrow">Method</span><h2 id="ar-src">Data and sources</h2></div>
+  <div class="prose"><p>Ukraine's General Staff equipment claims come from the same daily bulletins as the manpower series. Oryx totals come from its live page and Wayback Machine snapshots from July 2022 to November 2026. Months are compared with the average of the three before them. Research findings come only from sources outside Ukraine; figures that trace back to Ukrainian units or officials are left out.</p></div>
+  <ol class="sources">
+    <li><span class="eyebrow">Subject under test</span> General Staff equipment claims via <a href="https://github.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset" target="_blank" rel="noopener">PetroIvaniuk/2022-Ukraine-Russia-War-Dataset</a></li>
+    <li><span class="eyebrow">Verified losses</span> <a href="https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html" target="_blank" rel="noopener">Oryx: Russian equipment losses</a> and <a href="https://web.archive.org/web/2025*/oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html" target="_blank" rel="noopener">Wayback Machine snapshots</a></li>
+    <li><span class="eyebrow">Doctrine</span> IISS: <a href="https://www.iiss.org/online-analysis/military-balance/2026/04/attrition-and-adaptation-ukraines-evolving-war-effort/" target="_blank" rel="noopener">Attrition and adaptation (Apr 2026)</a></li>
+    <li><span class="eyebrow">Doctrine</span> IISS: <a href="https://www.iiss.org/online-analysis/military-balance/2025/02/combat-losses-and-manpower-challenges-underscore-the-importance-of-mass-in-ukraine/" target="_blank" rel="noopener">Combat losses and manpower challenges (Feb 2025)</a></li>
+    <li><span class="eyebrow">Doctrine</span> RUSI: <a href="https://static.rusi.org/tactical-developments-third-year-russo-ukrainian-war-february-2205.pdf" target="_blank" rel="noopener">Tactical developments in the third year (Feb 2025)</a></li>
+    <li><span class="eyebrow">Doctrine</span> RUSI: <a href="https://static.rusi.org/emergent-approaches-combined-arms-manoeuvre-ukraine-oct-25.pdf" target="_blank" rel="noopener">Emergent approaches to combined arms manoeuvre (Oct 2025)</a></li>
+    <li><span class="eyebrow">Doctrine</span> Meduza: <a href="https://meduza.io/en/brief/2026/05/19/panic-in-the-rear" target="_blank" rel="noopener">Panic in the rear (May 2026)</a></li>
+    <li><span class="eyebrow">Losses</span> iStories: <a href="https://istories.media/en/stories/2025/09/09/less-equipment-losses/" target="_blank" rel="noopener">Russia is losing less equipment (Sep 2025)</a></li>
+    <li><span class="eyebrow">Losses</span> Meduza on UK Defence Intelligence: <a href="https://meduza.io/en/news/2023/11/04/u-k-defense-ministry-thousands-of-russian-soldiers-likely-killed-during-assault-on-avdiivka-since-start-of-october" target="_blank" rel="noopener">Avdiivka (Nov 2023)</a></li>
+    <li><span class="eyebrow">Losses</span> CIT: <a href="https://notes.citeam.org/dispatch-oct-27-30-2023" target="_blank" rel="noopener">Dispatch, 27–30 Oct 2023</a></li>
+    <li><span class="eyebrow">Claims vs verified</span> Re:Russia: <a href="https://re-russia.net/en/analytics/0234/" target="_blank" rel="noopener">Russia's tank reserves (Jan 2025)</a></li>
+    <li><span class="eyebrow">Oryx method</span> The Insider: <a href="https://theins.press/en/news/292986" target="_blank" rel="noopener">Oryx page size limit (May 2026)</a></li>
+    <li><span class="eyebrow">Stocks</span> Defence24: <a href="https://defence24.com/armed-forces/what-are-the-equipment-reserves-russia-has-at-its-disposal-analysis" target="_blank" rel="noopener">Russia's equipment reserves (Apr 2024)</a></li>
+    <li><span class="eyebrow">Stocks</span> Global Defense Corp: <a href="https://www.globaldefensecorp.com/2026/06/12/satellite-imagery-suggests-russias-t-55-t-72-and-t-80-tank-reserve-is-nearly-gone/" target="_blank" rel="noopener">Tank reserve satellite count (Jun 2026)</a></li>
+    <li><span class="eyebrow">Stocks</span> European Security &amp; Defence: <a href="https://euro-sd.com/2025/02/major-news/42546/2025-military-balance-launch/" target="_blank" rel="noopener">IISS Military Balance 2025 launch</a></li>
+    <li><span class="eyebrow">Stocks</span> Novaya Gazeta Europe: <a href="https://novayagazeta.eu/amp/articles/2026/10/18/rossiia-vnov-napolniaet-bazy-khraneniia-voennoi-tekhnikoi-v-tom-chisle-u-granits-nato-news" target="_blank" rel="noopener">Storage bases being refilled (Oct 2026)</a></li>
+    <li><span class="eyebrow">Drones</span> Foreign Policy: <a href="https://foreignpolicy.com/2024/04/09/drones-russia-tanks-ukraine-war-fpv-artillery/" target="_blank" rel="noopener">FPV drones and Russian tanks (Apr 2024)</a></li>
+    <li><span class="eyebrow">Drones</span> The War Zone: <a href="https://www.twz.com/news-features/new-russian-turtle-tank-with-cage-like-armor-emerges-on-ukrainian-battlefield" target="_blank" rel="noopener">The 'turtle tank' (Apr 2024)</a></li>
+  </ol>
+</section>
+</div>
 
 <footer>Charts and data refresh on the 1st of each month; data currently to <span data-asof>6 Nov 2026</span>. Written findings last reviewed <span id="reviewed">6 Nov 2026</span>. Statistics computed for this page from the sources above. Figures from either side's government are claims, not verified counts.</footer>
 </div>
@@ -1453,6 +1601,103 @@ function drawFv(r) {
   P.forEach(x => { el("circle", { cx: xs(D(x.date)), cy: ys(x.fig), r: 4.5, fill: css("--s-indep"), stroke: css("--surface"), "stroke-width": 2 }, c.svg); });
 }
 
+
+/* ---- Armour vs manpower ---- */
+const AR = (() => {
+  const cur = DATA.armour.asof.slice(0, 7);
+  return DATA.armour.monthly.filter(r => r[0] >= "2022-03" && r[0] < cur).map(r => ({ k: r[0], d: D(r[0]), pers: r[1], tank: r[2], apc: r[3], armour: r[2] + r[3], art: r[4], veh: r[5], drone: r[6] }));
+})();
+function arBars(id, series, opts = {}) {
+  const c = setup(id, { t: 18, r: 12, b: 22, l: 50 });
+  const max = Math.max(...AR.map(r => series.reduce((a, s) => a + r[s.key], 0)));
+  const { ticks, top } = niceTicks(max, 3); const ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys);
+  if (opts.title) txt(c.svg, c.m.l, 10, opts.title, { class: "lbl" });
+  const n = AR.length, bw = c.iw / n, bx = i => c.m.l + i * bw;
+  AR.forEach((r, i) => {
+    let base = 0;
+    series.forEach(s => { const v = r[s.key]; if (v > 0) { const y0 = ys(base), y1 = ys(base + v); el("rect", { x: bx(i) + 1, y: y1, width: Math.max(1, bw - 2), height: Math.max(0, y0 - y1 - (base ? 1 : 0)), fill: css(s.tok) }, c.svg); } base += v; });
+    if (r.d.getUTCMonth() === 0) txt(c.svg, bx(i) + 2, c.m.t + c.ih + 15, String(r.d.getUTCFullYear()));
+  });
+  ((c.iw < 520 && opts.marksShort) || opts.marks || []).forEach(([k, label]) => {
+    const i = AR.findIndex(r => r.k === k); if (i < 0) return;
+    const v = series.reduce((a, s) => a + AR[i][s.key], 0);
+    txt(c.svg, i < 3 ? bx(i) : bx(i) + bw / 2, ys(v) - 5, label, { class: "lbl-strong", "text-anchor": i > n - 6 ? "end" : i < 3 ? "start" : "middle" });
+  });
+  const hit = el("rect", { x: c.m.l, y: c.m.t, width: c.iw, height: c.ih, fill: "transparent" }, c.svg);
+  const hl = el("rect", { y: c.m.t, height: c.ih, width: bw, fill: css("--ink"), "fill-opacity": 0.07, visibility: "hidden" }, c.svg);
+  c.svg.insertBefore(hl, c.svg.firstChild);
+  hit.addEventListener("pointermove", e => {
+    const r0 = c.svg.getBoundingClientRect(), px = (e.clientX - r0.left) * c.W / r0.width;
+    const i = Math.max(0, Math.min(n - 1, Math.floor((px - c.m.l) / bw))), r = AR[i];
+    hl.setAttribute("x", bx(i)); hl.setAttribute("visibility", "visible");
+    showTip(c, (bx(i) + bw / 2) * r0.width / c.W, c.m.t * r0.height / c.H + 8, `${mlabel(r.d)}<br><span class="k">Personnel</span> <b>${fmt(r.pers)}</b><br><span class="k">Tanks</span> <b>${fmt(r.tank)}</b> <span class="k">Other armour</span> <b>${fmt(r.apc)}</b><br><span class="k">Artillery</span> <b>${fmt(r.art)}</b> <span class="k">Vehicles</span> <b>${fmt(r.veh)}</b><br><span class="k">Personnel per armoured vehicle</span> <b>${fmt(r.pers / r.armour)}</b>`);
+  });
+  hit.addEventListener("pointerleave", () => { c.tip.hidden = true; hl.setAttribute("visibility", "hidden"); });
+}
+function arRatio() {
+  const c = setup("c-ar-ratio", { t: 18, r: 14, b: 22, l: 44 });
+  const vals = AR.map(r => r.pers / r.armour), top = 300;
+  const n = AR.length, bw = c.iw / n, x = i => c.m.l + i * bw + bw / 2, ys = v => c.m.t + c.ih - Math.min(v, top) / top * c.ih;
+  yAxis(c, [0, 100, 200, 300], ys, v => String(v));
+  txt(c.svg, c.m.l, 10, "Claimed personnel losses per armoured vehicle claimed", { class: "lbl" });
+  const yr = {}; AR.forEach((r, i) => { const y = r.k.slice(0, 4); (yr[y] = yr[y] || { p: 0, a: 0, i0: i, i1: i }); yr[y].p += r.pers; yr[y].a += r.armour; yr[y].i1 = i; });
+  Object.entries(yr).forEach(([y, o]) => { const v = o.p / o.a; el("line", { x1: x(o.i0) - bw / 2, x2: x(o.i1) + bw / 2, y1: ys(v), y2: ys(v), stroke: css("--ink-3"), "stroke-width": 1 }, c.svg); txt(c.svg, (x(o.i0) + x(o.i1)) / 2, ys(v) - 5, Math.round(v) + " in " + y, { class: "lbl", "text-anchor": "middle" }); });
+  el("path", { d: vals.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + ys(v).toFixed(1)).join(""), fill: "none", stroke: css("--s-claims"), "stroke-width": 2, "stroke-linejoin": "round" }, c.svg);
+  const li = n - 1; el("circle", { cx: x(li), cy: ys(vals[li]), r: 4.5, fill: css("--s-claims"), stroke: css("--surface"), "stroke-width": 2 }, c.svg);
+  AR.forEach((r, i) => { if (r.d.getUTCMonth() === 0) txt(c.svg, x(i) - bw / 2 + 2, c.m.t + c.ih + 15, String(r.d.getUTCFullYear())); });
+}
+function arOryx() {
+  const O = DATA.armour.oryx || []; if (!O.length) return;
+  const c = setup("c-ar-oryx", { t: 16, r: 16, b: 24, l: 52 });
+  const cum = Object.entries(DATA.armour.cum).map(([k, v]) => [D(k), v]);
+  const d0 = D("2022-02-24"), d1 = D(DATA.armour.asof);
+  const { ticks, top } = niceTicks(Math.max(...cum.map(r => r[1][1])), 4);
+  const xs = d => c.m.l + (d - d0) / (d1 - d0) * c.iw, ys = v => c.m.t + c.ih - v / top * c.ih;
+  yAxis(c, ticks, ys); yearAxis(c, xs, d0, d1);
+  [[0, "--s-claims", "Tanks"], [1, "--s-ru", "All armour"]].forEach(([j, tok, lab]) => {
+    el("path", { d: cum.map((r, i) => (i ? "L" : "M") + xs(r[0]).toFixed(1) + "," + ys(r[1][j]).toFixed(1)).join(""), fill: "none", stroke: css(tok), "stroke-width": 2 }, c.svg);
+    const L = cum[cum.length - 1]; txt(c.svg, xs(L[0]) - 6, ys(L[1][j]) - 7, lab + " claimed " + fmtK(L[1][j]), { class: "lbl-strong", "text-anchor": "end" });
+  });
+  O.forEach(o => {
+    [[o.tanks, "--s-claims", "Oryx tanks"], [o.acv, "--s-ru", "Oryx armour"]].forEach(([v, tok, lab]) => {
+      if (v == null || isNaN(v)) return;
+      const cx = xs(D(o.date)), cy = ys(v);
+      el("circle", { cx, cy, r: 4.5, fill: css("--surface"), stroke: css(tok), "stroke-width": 2 }, c.svg);
+      const hit = el("circle", { cx, cy, r: 10, fill: "transparent" }, c.svg);
+      hit.addEventListener("pointerenter", () => { const r0 = c.svg.getBoundingClientRect(); const ua = lab.includes("tanks") ? o.ua_tanks : o.ua_acv; showTip(c, cx * r0.width / c.W, cy * r0.height / c.H, `${lab}, ${dlabel(D(o.date))}<br><b>${fmt(v)}</b> photo-verified<br><span class="k">Ukraine claimed</span> <b>${fmt(ua)}</b> <span class="k">(${(ua / v).toFixed(1)}×)</span>`); });
+      hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
+    });
+  });
+}
+function armourStatic() {
+  const T = DATA.armour.totals, A = AR, last = A[A.length - 1];
+  const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  const OL = (DATA.armour.oryx || []).slice(-1)[0];
+  if (OL) { set("ar-k-tank-v", fmt(OL.tanks)); set("ar-k-armour-v", fmt(OL.acv)); set("ar-k-art-v", fmt(OL.art)); }
+  set("ar-k-tank", fmt(T.tank)); set("ar-k-armour", fmt(T.tank + T.APC)); set("ar-k-art", fmt(T.artillery)); set("ar-k-veh", fmt(T.vehicles));
+  const y22 = A.filter(r => r.k.startsWith("2022")), r22 = y22.reduce((a, r) => a + r.pers, 0) / y22.reduce((a, r) => a + r.armour, 0);
+  set("ar-k-r22", Math.round(r22)); set("ar-k-rlast", fmt(last.pers / last.armour)); set("ar-k-rlastm", mlabel(last.d));
+  document.querySelectorAll("[data-ar-asof]").forEach(e => { e.textContent = dlabel(D(DATA.armour.asof)); });
+  const O = DATA.armour.oryx || [], tb = document.getElementById("t-ar-oryx");
+  if (tb && O.length) tb.innerHTML = `<table class="dtable stack-sm"><thead><tr><th>Date</th><th>Tanks: claimed / verified</th><th>All armour: claimed / verified</th><th>Artillery: claimed / verified</th></tr></thead><tbody>` +
+    O.map(o => { const f = (u, v) => v == null || isNaN(v) ? "–" : `${fmt(u)} / ${fmt(v)} <b>${(u / v).toFixed(1)}×</b>`; return `<tr><td>${dlabel(D(o.date))}</td><td data-label="Tanks: claimed / verified">${f(o.ua_tanks, o.tanks)}</td><td data-label="All armour: claimed / verified">${f(o.ua_acv, o.acv)}</td><td data-label="Artillery: claimed / verified">${f(o.ua_art, o.art)}</td></tr>`; }).join("") + "</tbody></table>";
+  const N = DATA.armour.notes || {};
+  const ev = document.getElementById("ar-events");
+  if (ev && N.events) ev.innerHTML = N.events.map(e => `<article class="ar-ev"><span class="ar-when">${e.when}</span><h3>${e.title}</h3><span class="ar-nums">${e.nums}</span><p>${e.text}</p></article>`).join("");
+  const so = document.getElementById("ar-standout");
+  if (so && N.standout) so.innerHTML = N.standout.map((s, i) => `<li><span class="n">${String(i + 1).padStart(2, "0")}</span><div><p><b>${s.title}</b> ${s.text}</p><p class="src">${s.src}</p></div></li>`).join("");
+}
+function drawArmour() {
+  arBars("c-ar-pers", [{ key: "pers", tok: "--s-claims" }], { title: "Claimed personnel losses per month", marks: [["2026-10", "54.2k"]] });
+  arBars("c-ar-armour", [{ key: "tank", tok: "--s-ru" }, { key: "apc", tok: "--s-muted" }], { title: "Claimed tanks and other armoured vehicles per month", marks: [["2023-10", "Avdiivka 1,340"], ["2022-03", "1,383 in March 2022"]], marksShort: [["2023-10", "1,340"], ["2022-03", "1,383"]] });
+  arRatio();
+  arBars("c-ar-art", [{ key: "art", tok: "--s-indep" }], { title: "Artillery and rocket launchers" });
+  arBars("c-ar-veh", [{ key: "veh", tok: "--s-recruit" }], { title: "Trucks, vehicles and fuel tankers" });
+  arBars("c-ar-drone", [{ key: "drone", tok: "--s-drone" }], { title: "Drones shot down" });
+  arOryx();
+}
+
 /* 8. Target */
 function drawTarget() {
   const c = setup("c-target", { t: 18, r: 12, b: 26, l: 46 });
@@ -1495,15 +1740,50 @@ function drawYard() {
   pins.innerHTML = [["A", 85], ["B", 65], ["C", 45], ["D", 97.5]].map(([k, p]) => `<span class="pin" style="left:${p}%">${k}</span>`).join("");
 }
 
-function drawAll() {
+function drawAudit() {
   drawDaily(); drawMonthly(); sim(); drawBattleDaily(); drawBattles(); drawEras(); drawPostureScatter(); drawPostureSplit(); drawRecruit(); drawCum(); drawTarget(); drawDrone(); drawShare(); fvUpdate(); drawCampPanel("c-camp-cas", "cas"); drawCampPanel("c-camp-dead", "dead");
   [["w-precip", "precip"], ["w-snow", "snow"], ["w-temp", "temp"], ["w-wind", "wind"]].forEach(a => drawWeather(...a));
 }
+
+function drawAll() {
+  if (!document.getElementById("tab-audit").hidden) drawAudit();
+  if (!document.getElementById("tab-armour").hidden) drawArmour();
+}
+function showTab(name, scrollTo) {
+  ["audit", "armour"].forEach(n => {
+    const on = n === name;
+    document.getElementById("tab-" + n).hidden = !on;
+    document.getElementById("tabbtn-" + n).setAttribute("aria-selected", String(on));
+  });
+  try { localStorage.setItem("tab", name); } catch (e) {}
+  drawAll();
+  if (scrollTo) { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+window.addEventListener("hashchange", () => {
+  const h = location.hash.slice(1), el = h && document.getElementById(h);
+  if (h === "armour") showTab("armour");
+  else if (h === "audit") showTab("audit");
+  else if (el) { const p = el.closest(".tabpanel"); if (p && p.hidden) showTab(p.id.slice(4), h); }
+});
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute("href").slice(1), el = id && document.getElementById(id); if (!el) return;
+  const panel = el.closest(".tabpanel");
+  if (panel && panel.hidden) { e.preventDefault(); showTab(panel.id.slice(4), id); }
+});
 document.querySelectorAll("[data-asof]").forEach(e => { e.textContent = dlabel(D(DATA.asof)); });
 document.getElementById("kpi-total").textContent = fmt(DATA.total);
 DATA.figs.fv50 = (fvCalc(0.5, 0.75).now / 1e6).toFixed(2);
 document.querySelectorAll("[data-fig]").forEach(e => { if (DATA.figs[e.dataset.fig] != null) e.textContent = DATA.figs[e.dataset.fig]; });
-drawHeat(); drawRatio(); drawDisp(); drawCampTable(); drawYard(); drawAll();
+drawHeat(); drawRatio(); drawDisp(); drawCampTable(); drawYard(); armourStatic();
+(() => {
+  const h = location.hash.slice(1), el = h && document.getElementById(h);
+  let start = "audit";
+  if (h === "armour" || (el && el.closest("#tab-armour"))) start = "armour";
+  else if (!h) { try { if (localStorage.getItem("tab") === "armour") start = "armour"; } catch (e) {} }
+  showTab(start, el && h !== "armour" ? h : null);
+})();
 ["r-front", "r-sector", "r-k", "r-shock", "r-mu"].forEach(id => document.getElementById(id).addEventListener("input", sim));
 ["r-hit", "r-dshare"].forEach(id => document.getElementById(id).addEventListener("input", fvUpdate));
 document.querySelectorAll(".fv-presets button").forEach(b => b.addEventListener("click", () => { document.getElementById("r-hit").value = b.dataset.hit; fvUpdate(); }));

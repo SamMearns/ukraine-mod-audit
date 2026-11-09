@@ -22,3 +22,8 @@
 ## 2026-11-09
 
 - Test 10 example recaptioned: frame 2 is a clear hit (code B), not a cut-away.
+
+## 2026-11-09
+
+- New tab: Armour vs Manpower. General Staff equipment claims (tanks, armoured vehicles, artillery, vehicles, drones) against manpower claims, monthly; rises and dips; Oryx photo-verified comparison from 28 Wayback snapshots (Jul 2022 – Nov 2026); research findings from non-Ukrainian sources.
+- Data refreshed to 9 Nov 2026.
