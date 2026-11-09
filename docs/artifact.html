@@ -305,6 +305,23 @@ details summary::marker { color: var(--hi); }
 .sources .eyebrow { font-size: 0.8rem; }
 footer { border-top: 1px solid var(--rule); color: var(--ink-3); }
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline-color: var(--hi); border-radius: 0; }
+
+/* ---- Phone layout ---- */
+@media (max-width: 640px) {
+  .topnav .links { display: none; }
+  .topnav { min-height: 52px; }
+  table.stack-sm, .stack-sm tbody, .stack-sm tr, .stack-sm td { display: block; width: 100%; }
+  .stack-sm thead { display: none; }
+  .stack-sm tr { background: var(--bg); padding: 14px 16px 16px; margin-bottom: 2px; }
+  .stack-sm td { border: 0 !important; padding: 0 !important; text-align: left !important; white-space: normal !important; min-width: 0 !important; }
+  .stack-sm td + td { margin-top: 6px; }
+  .stack-sm td:first-child { font-weight: 500; font-size: 1.02rem; color: var(--ink); letter-spacing: -0.02em; }
+  .stack-sm td[data-label]::before { content: attr(data-label); display: block; font-size: 0.78rem; font-weight: 500; color: var(--ink-3); margin-top: 6px; }
+  .scorecard.stack-sm tr { background: var(--surface); }
+  .scorecard.stack-sm td:first-child a { text-decoration: none; }
+  .scorecard.stack-sm td:nth-child(2) { color: var(--ink-2); line-height: 1.5; }
+  .scorecard.stack-sm td:last-child { margin-top: 12px; }
+}
 </style>
 
 <div class="wrap">
@@ -349,7 +366,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   </div>
 
   <div class="table-scroll">
-  <table class="scorecard">
+  <table class="scorecard stack-sm">
     <thead><tr><th>Test</th><th>What the data shows</th><th>Reliability signal</th></tr></thead>
     <tbody>
       <tr><td><a href="#s1">1 · Seasons</a></td><td>No dip in the spring and autumn mud seasons. Since 2024, day-to-day variation drops by more than half every summer.</td><td><span class="chip warn"><svg viewBox="0 0 12 12"><path d="M6 1 11 10.5H1Z" fill="currentColor"/></svg>Caution</span></td></tr>
@@ -1185,8 +1202,8 @@ function drawEras() {
     hit.addEventListener("pointerenter", () => { const r0 = c.svg.getBoundingClientRect(); showTip(c, (x0 + x1) / 2 * r0.width / c.W, ys(e.mean) * r0.height / c.H, `${i + 1}. ${e.name}<br><span class="k">${e.note}</span><br><span class="k">Claimed per day</span> <b>${fmt(e.mean)}</b>`); });
     hit.addEventListener("pointerleave", () => { c.tip.hidden = true; });
   });
-  document.getElementById("t-eras").innerHTML = `<table class="dtable" style="margin-top:6px"><thead><tr><th>Period</th><th>Firepower (outside sources)</th><th>Claimed per day</th><th>Change</th></tr></thead><tbody>` +
-    DATA.eras.map((e, i) => `<tr><td>${i + 1}. ${e.name}</td><td style="text-align:left;white-space:normal;min-width:22ch">${e.note}</td><td>${fmt(e.mean)}</td><td class="hi">${i ? ((e.mean / DATA.eras[i - 1].mean - 1) * 100 > 0 ? "+" : "") + Math.round((e.mean / DATA.eras[i - 1].mean - 1) * 100) + "%" : "–"}</td></tr>`).join("") + "</tbody></table>";
+  document.getElementById("t-eras").innerHTML = `<table class="dtable stack-sm" style="margin-top:6px"><thead><tr><th>Period</th><th>Firepower (outside sources)</th><th>Claimed per day</th><th>Change</th></tr></thead><tbody>` +
+    DATA.eras.map((e, i) => `<tr><td>${i + 1}. ${e.name}</td><td data-label="Firepower (outside sources)" style="text-align:left;white-space:normal;min-width:22ch">${e.note}</td><td data-label="Claimed per day">${fmt(e.mean)}</td><td data-label="Change on previous period" class="hi">${i ? ((e.mean / DATA.eras[i - 1].mean - 1) * 100 > 0 ? "+" : "") + Math.round((e.mean / DATA.eras[i - 1].mean - 1) * 100) + "%" : "–"}</td></tr>`).join("") + "</tbody></table>";
 }
 
 /* 6. Recruitment */
@@ -1335,8 +1352,8 @@ function drawDisp() {
     ["All fronts, December 2025", "35,050 (General Staff)", "~35,000 (Western officials to Bloomberg)", "1.0×"],
     ["All fronts, September 2026", "45,770 (General Staff)", ">50,000, ≥28,000 killed (NATO official to Bloomberg)", "0.9×"],
   ];
-  document.getElementById("t-disp").innerHTML = `<table class="dtable"><thead><tr><th>Battle or period</th><th>Ukrainian figure</th><th>Outside figure</th><th>Ukrainian ÷ outside</th></tr></thead><tbody>` +
-    R.map(r => `<tr><td>${r[0]}</td><td style="text-align:left;white-space:normal;min-width:16ch">${r[1]}</td><td style="text-align:left;white-space:normal;min-width:20ch">${r[2]}</td><td class="hi">${r[3]}</td></tr>`).join("") + "</tbody></table>";
+  document.getElementById("t-disp").innerHTML = `<table class="dtable stack-sm"><thead><tr><th>Battle or period</th><th>Ukrainian figure</th><th>Outside figure</th><th>Ukrainian ÷ outside</th></tr></thead><tbody>` +
+    R.map(r => `<tr><td>${r[0]}</td><td data-label="Ukrainian figure" style="text-align:left;white-space:normal;min-width:16ch">${r[1]}</td><td data-label="Outside figure" style="text-align:left;white-space:normal;min-width:20ch">${r[2]}</td><td data-label="Ukrainian ÷ outside" class="hi">${r[3]}</td></tr>`).join("") + "</tbody></table>";
 }
 
 
