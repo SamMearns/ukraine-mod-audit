@@ -18,3 +18,7 @@
 ## 2026-11-09
 
 - Phone layout: hid the section links under the title; key-judgements scorecard, firepower-periods table and same-battle table now stack as cards.
+
+## 2026-11-09
+
+- Test 10 example recaptioned: frame 2 is a clear hit (code B), not a cut-away.
